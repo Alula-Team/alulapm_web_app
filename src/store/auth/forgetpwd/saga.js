@@ -14,7 +14,9 @@ import {
 const fireBaseBackend = getFirebaseBackend()
 
 //If user is send successfully send mail link then dispatch redux action's are directly from here.
-function* forgetUser({ payload: { user, history } }) {
+function* forgetUser({ payload: { user
+  // , history 
+} }) {
   try {
     if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
       const response = yield call(fireBaseBackend.forgetPassword, user.email)

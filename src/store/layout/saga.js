@@ -60,7 +60,7 @@ function* changeLayout({ payload: layout }) {
     }
     yield call(changeBodyAttribute, "data-layout", layout)
   } catch (error) {
-    
+    console.log()
   }
 }
 
@@ -82,7 +82,9 @@ function* changeLayoutWidth({ payload: width }) {
       yield call(changeBodyAttribute, "data-layout-size", width)
       yield call(changeBodyAttribute, "data-layout-scrollable", false)
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log()
+  }
 }
 
 /**
@@ -92,7 +94,9 @@ function* changeLayoutWidth({ payload: width }) {
 function* changeLeftSidebarTheme({ payload: theme }) {
   try {
     yield call(changeBodyAttribute, "data-sidebar", theme)
-  } catch (error) {}
+  } catch (error) {
+    console.log()
+  }
 }
 
 /**
@@ -102,7 +106,9 @@ function* changeLeftSidebarTheme({ payload: theme }) {
  function* changeLeftSidebarThemeImage({ payload: theme }) {
   try {
     yield call(changeBodyAttribute, "data-sidebar-image", theme)
-  } catch (error) {}
+  } catch (error) {
+    console.log()
+  }
 }
 
 /**
@@ -112,7 +118,9 @@ function* changeLeftSidebarTheme({ payload: theme }) {
 function* changeTopbarTheme({ payload: theme }) {
   try {
     yield call(changeBodyAttribute, "data-topbar", theme)
-  } catch (error) {}
+  } catch (error) {
+    console.log()
+  }
 }
 
 /**
@@ -151,7 +159,9 @@ function* changeLeftSidebarType({ payload: { sidebarType, isMobile } }) {
           yield call(manageBodyClass, "vertical-collpsed", "remove")
         break
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log()
+  }
 }
 
 /**
@@ -160,7 +170,9 @@ function* changeLeftSidebarType({ payload: { sidebarType, isMobile } }) {
 function* showRightSidebar() {
   try {
     yield call(manageBodyClass, "right-bar-enabled", "add")
-  } catch (error) {}
+  } catch (error) {
+    console.log()
+  }
 }
 
 /**

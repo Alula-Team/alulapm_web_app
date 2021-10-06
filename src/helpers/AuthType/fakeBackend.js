@@ -60,7 +60,9 @@ const fakeBackend = () => {
   mock.onPost(url.POST_FAKE_REGISTER).reply(config => {
     const user = JSON.parse(config["data"])
     users.push(user)
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, 
+      // reject
+      ) => {
       setTimeout(() => {
         resolve([200, user])
       })
@@ -86,10 +88,14 @@ const fakeBackend = () => {
     })
   })
 
-  mock.onPost("/fake-forget-pwd").reply(config => {
+  mock.onPost("/fake-forget-pwd").reply((
+    // config 
+    ) => {
     // User needs to check that user is eXist or not and send mail for Reset New password
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, 
+      // reject
+      ) => {
       setTimeout(() => {
         resolve([200, "Check you mail and reset your password."])
       })
@@ -100,7 +106,9 @@ const fakeBackend = () => {
     const user = JSON.parse(config["data"])
     users.push(user)
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, 
+      // reject
+      ) => {
       setTimeout(() => {
         resolve([200, user])
       })
@@ -199,10 +207,14 @@ const fakeBackend = () => {
     })
   })
 
-  mock.onPost("/jwt-forget-pwd").reply(config => {
+  mock.onPost("/jwt-forget-pwd").reply((
+    // config
+    ) => {
     // User needs to check that user is eXist or not and send mail for Reset New password
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, 
+      // reject
+      ) => {
       setTimeout(() => {
         resolve([200, "Check you mail and reset your password."])
       })

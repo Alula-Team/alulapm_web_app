@@ -92,58 +92,121 @@ const SidebarContent = props => {
       <SimpleBar className="h-100" ref={ref}>
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">{props.t("Dashboard Navigation")} </li>
+            <li className="menu-title">{props.t("Menu")} </li>
 
             {/* DASHBOARD */}
             <li>
               <Link to="/dashboard" className="">
                 <i className="bx bx-home-circle"></i>
-                <span className="badge rounded-pill bg-info float-end">
-                  04
-                </span>
                 <span>{props.t("Dashboard")}</span>
               </Link>
             </li>
 
+            <li className="menu-title">{props.t("Apps")} </li>
+
             {/* CALENDAR */}
             <li>
-              <Link to="#" className=" ">
+              <Link to="/calendar" className="">
                 <i className="bx bx-calendar"></i>
+                <span className="badge rounded-pill bg-warning float-end text-dark">
+                  3
+                </span>
                 <span>{props.t("Calendar")}</span>
               </Link>
             </li>
 
             {/* CHAT - Mass/Group Messages and Invidual Messages */}
             <li>
-              <Link to="#" className="">
+              <Link to="/chat" className="">
                 <i className="bx bx-chat"></i>
+                <span className="badge rounded-pill bg-danger float-end">
+                  14
+                </span>
                 <span>{props.t("Chat")}</span>
+              </Link>
+            </li>
+
+            {/* Invoices - */}
+            <li>
+              <Link to="#" className="">
+                <i className="bx bx-receipt"></i>
+                <span className="badge rounded-pill bg-success float-end text-dark">
+                  New
+                </span>
+                <span>{props.t("Invoices")}</span>
+              </Link>
+            </li>
+
+            {/* Notifications - */}
+            <li>
+              <Link to="#" className="">
+                <i className="bx bx-bell"></i>
+                <span className="badge rounded-pill bg-danger float-end">
+                  124
+                </span>
+                <span>{props.t("Notifications")}</span>
               </Link>
             </li>
 
             {/* SERVICE REQUESTS - Projects List UI w/ Detail (Create task button that links to create task compose) */}
             <li>
-              <Link to="/#" className="">
-                <i className="bx bx-receipt"></i>
+              <Link to="#" className="">
+                <i className="bx bx-briefcase-alt-2"></i>
+                <span className="badge rounded-pill bg-danger float-end">
+                  10
+                </span>
                 <span>{props.t("Service Requests")}</span>
               </Link>
             </li>
 
             {/* TASK CREATION & KANBAN BOARD */}
             <li>
-              <Link to="/#" className="has-arrow">
+              <Link to="/tasks" className="">
                 <i className="bx bx-task"></i>
+                <span className="badge rounded-pill bg-danger float-end">
+                  7
+                </span>
                 <span>{props.t("Tasks")}</span>
               </Link>
-              <ul className="sub-menu" aria-expanded="false">
-                <li>
-                  <Link to="#">{props.t("Create Task")}</Link>
-                </li>
-                <li>
-                  <Link to="#">{props.t("Task Board")}</Link>
-                </li>
-              </ul>
             </li>
+
+            {/* Team - User user list ui */}
+            <li>
+              <Link to="/contact-list" className="">
+                <i className="bx bxs-user-detail"></i>
+                <span>{props.t("Team")}</span>
+              </Link>
+            </li>
+
+            {/* User Navigation*/}
+            <li className="menu-title mt-5">{props.t("User Navigation")} </li>
+
+            {/* Profile */}
+            <li>
+              <Link to="#" className="">
+                <i className="bx bx-user"></i>
+                <span>{props.t("Profile")}</span>
+              </Link>
+            </li>
+
+            {/* Account Settings */}
+            <li>
+              <Link to="#" className="mb-4">
+                <i className="bx bx-cog"></i>
+                <span>{props.t("Account Settings")}</span>
+              </Link>
+            </li>
+
+            <hr style={{width: '80%', margin: 'auto'}} />
+
+            {/* Logout */}
+            <li>
+              <Link to="#" className="mt-4">
+                <i className="bx bx-exit text-warning"></i>
+                <span className="text-warning">{props.t("Logout")}</span>
+              </Link>
+            </li>
+
           </ul>
         </div>
       </SimpleBar>

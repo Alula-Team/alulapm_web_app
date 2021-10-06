@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+// import PropTypes from "prop-types"
 import MetaTags from "react-meta-tags"
 import React, { useState, useEffect } from "react"
 import {
@@ -27,7 +27,7 @@ import avatar from "../../assets/images/users/avatar-1.jpg"
 // actions
 import { editProfile, resetProfileFlag } from "../../store/actions"
 
-const UserProfile = props => {
+const UserProfile = () => {
   const dispatch = useDispatch()
 
   const { error, success } = useSelector(state => ({

@@ -15,7 +15,6 @@ import {
 import Header from "./Header"
 import Sidebar from "./Sidebar"
 import Footer from "./Footer"
-import Rightbar from "../CommonForBoth/RightSidebar"
 
 //redux
 import { useSelector, useDispatch } from "react-redux"
@@ -29,7 +28,6 @@ const Layout = props => {
     layoutWidth,
     leftSideBarType,
     topbarTheme,
-    showRightSidebar,
     leftSideBarTheme,
   } = useSelector(state => ({
     isPreloader: state.Layout.isPreloader,
@@ -37,7 +35,6 @@ const Layout = props => {
     leftSideBarType: state.Layout.leftSideBarType,
     layoutWidth: state.Layout.layoutWidth,
     topbarTheme: state.Layout.topbarTheme,
-    showRightSidebar: state.Layout.showRightSidebar,
     leftSideBarTheme: state.Layout.leftSideBarTheme,
   }))
 
@@ -133,7 +130,6 @@ const Layout = props => {
         <div className="main-content">{props.children}</div>
         <Footer />
       </div>
-      {showRightSidebar ? <Rightbar /> : null}
     </React.Fragment>
   )
 }

@@ -17,10 +17,12 @@ import { Link } from "react-router-dom"
 import profileImg from "../../assets/images/profile-img.png"
 import logoImg from "../../assets/images/logo.svg"
 
-const Register = props => {
+const Register = () => {
   const dispatch = useDispatch()
 
-  const { user, registrationError, loading } = useSelector(state => ({
+  const { user, registrationError, 
+    // loading 
+  } = useSelector(state => ({
     user: state.Account.user,
     registrationError: state.Account.registrationError,
     loading: state.Account.loading,
@@ -38,7 +40,7 @@ const Register = props => {
   return (
     <React.Fragment>
       <MetaTags>
-        <title>Register | Skote - React Admin & Dashboard Template</title>
+        <title>Register | Alula - Building the Future of Property Management</title>
       </MetaTags>
       <div className="home-btn d-none d-sm-block">
         <Link to="/" className="text-dark">
@@ -54,8 +56,8 @@ const Register = props => {
                   <Row>
                     <Col className="col-7">
                       <div className="text-primary p-4">
-                        <h5 className="text-primary">Free Register</h5>
-                        <p>Get your free Skote account now.</p>
+                        <h5 className="text-primary">Register</h5>
+                        <p>Get your free Alula account now.</p>
                       </div>
                     </Col>
                     <Col className="col-5 align-self-end">
@@ -137,7 +139,7 @@ const Register = props => {
 
                       <div className="mt-4 text-center">
                         <p className="mb-0">
-                          By registering you agree to the Skote{" "}
+                          By registering you agree to Alula&#39;s {" "}
                           <Link to="#" className="text-primary">
                             Terms of Use
                           </Link>
@@ -156,8 +158,8 @@ const Register = props => {
                   </Link>{" "}
                 </p>
                 <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger" /> by Themesbrand
+                  © {new Date().getFullYear()} Alula. Made with{" "}
+                  <i className="mdi mdi-heart text-danger" /> in Las Vegas
                 </p>
               </div>
             </Col>
