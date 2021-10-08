@@ -10,7 +10,8 @@ import { getChartsData as onGetChartsData } from "../../store/actions"
 import WelcomeComp from "./WelcomeComp"
 import MonthlyEarnings from "./MonthlyEarnings"
 import MonthlyExpenses from "./MonthlyExpenses"
-// import ActivityComp from "./ActivityComp"
+import PropertiesTable from "./propertiesTable"
+import TransactionsTable from "./transactionsTable"
 
 //i18n
 import { withTranslation } from "react-i18next"
@@ -56,26 +57,15 @@ const Dashboard = () => {
 
           {/* Row 2 - Properties Table*/}
           <div className="row">
-            {/* Vacant Property List */}
-            <div className="col-6">
-              
-            </div>
-
-            {/* Renewal List */}
-            <div className="col-6">
-              
-            </div>
-
-            {/* Occupied Properties List */}
             <div className="col-12">
-              
+              <PropertiesTable />
             </div>
           </div>
 
           {/* Row 3 - Transaction Table List */}
           <div className="row">
             <div className="col-12">
-
+              <TransactionsTable />
             </div>
           </div>
         </Container>

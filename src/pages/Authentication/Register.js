@@ -158,7 +158,7 @@ const Register = () => {
                   </Link>{" "}
                 </p>
                 <p>
-                  © {new Date().getFullYear()} Alula. Made with{" "}
+                  © {new Date().getFullYear()} Alula Software Inc. Made with{" "}
                   <i className="mdi mdi-heart text-danger" /> in Las Vegas
                 </p>
               </div>
