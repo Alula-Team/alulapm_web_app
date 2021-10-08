@@ -21,9 +21,6 @@ import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction"
 import BootstrapTheme from "@fullcalendar/bootstrap"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
-
 import {
   addNewEvent as onAddNewEvent,
   deleteEvent as onDeleteEvent,
@@ -230,11 +227,12 @@ const Calender = props => {
       />
       <div className="page-content">
         <MetaTags>
-          <title>Calendar | Skote - React Admin & Dashboard Template</title>
+          <title>Calendar | Alula - Building the Future of Property Management</title>
         </MetaTags>
         <Container fluid={true}>
-          {/* Render Breadcrumb */}
-          <Breadcrumbs title="Skote" breadcrumbItem="Calendar" />
+          <div className="page-title-box">
+            <h4 className="mb-0 font-size-18">Calendar</h4>
+          </div>
           <Row>
             <Col className="col-12">
               <Card>

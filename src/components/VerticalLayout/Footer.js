@@ -9,7 +9,7 @@ const Footer = () => {
           <Row>
             <Col md={12}>
               <div className="text-end ">
-                {new Date().getFullYear()} © Alula.
+                {new Date().getFullYear()} © Alula Software Inc.
               </div>
             </Col>
           </Row>

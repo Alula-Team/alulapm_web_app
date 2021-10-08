@@ -34,8 +34,6 @@ import classnames from "classnames"
 import PerfectScrollbar from "react-perfect-scrollbar"
 import "react-perfect-scrollbar/dist/css/styles.css"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
 import images from "../../assets/images"
 import {
   addMessage as onAddMessage,
@@ -147,12 +145,12 @@ const Chat = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Chat | Skote - React Admin & Dashboard Template</title>
+          <title>Chat | Alula - Building the Future of Property Management</title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumb */}
-          <Breadcrumbs title="Skote" breadcrumbItem="Chat" />
-
+          <div className="page-title-box">
+            <h4 className="mb-0 font-size-18">Chat</h4>
+          </div>
           <Row>
             <Col lg="12">
               <div className="d-lg-flex">

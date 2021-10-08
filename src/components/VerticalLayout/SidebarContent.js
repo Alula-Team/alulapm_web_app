@@ -179,7 +179,7 @@ const SidebarContent = props => {
             </li>
 
             {/* User Navigation*/}
-            <li className="menu-title mt-5">{props.t("User Navigation")} </li>
+            <li className="menu-title mt-2">{props.t("User Navigation")} </li>
 
             {/* Profile */}
             <li>

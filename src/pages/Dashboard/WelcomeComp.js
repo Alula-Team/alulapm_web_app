@@ -52,7 +52,7 @@ const WelcomeComp = () => {
               </div>
             </Col>
 
-            <div className="mt-2 d-flex justify-content-center">
+            <div className="mt-4 d-flex justify-content-center">
               <Link to="" className="btn btn-primary btn-sm">
                 View Profile <i className="mdi mdi-arrow-right ms-1"></i>
               </Link>
