@@ -101,6 +101,7 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     <AvField
                                         name="propertyAddress"
                                         label="Property Address"
+                                        placeholder="Enter property address..."
                                         type="text"
                                         errorMessage="Please enter the property address"
                                         validate={{
@@ -113,10 +114,11 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     {/* Unit - Optional */}
                                     <AvField
                                         name="unit"
-                                        label="Unit (optional)"
+                                        label="Unit"
+                                        placeholder="Enter unit number... "
+                                        helpMessage="Optional - include &quot;Apt&quot;, &quot;Unit&quot;, etc..."
                                         type="text"
                                         value={event ? event.title : ""}
-                                        className="mb-3"
                                     />
                                 </Col>
                             </div>
@@ -129,6 +131,7 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     <AvField
                                         name="bedCount"
                                         label="Bedrooms"
+                                        placeholder="Enter number of bedrooms..."
                                         type="text"
                                         errorMessage="Please enter the number of bedrooms"
                                         validate={{
@@ -142,8 +145,9 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     <AvField
                                         name="bathCount"
                                         label="Bathrooms"
+                                        placeholder="Enter number of bathrooms..."
                                         type="text"
-                                        errorMessage="Please enter the number of bathrooms"
+                                        errorMessage="Please enter the number of bathrooms..."
                                         validate={{
                                             required: { value: true },
                                         }}
@@ -154,7 +158,8 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     {/* Square Footage */}
                                     <AvField
                                         name="livingSQFT"
-                                        label="Living or Working Space Sqft"
+                                        label="Living Space Sqft"
+                                        placeholder="Enter number of living space SqFt..."
                                         type="text"
                                         errorMessage="Please enter the square footage of living space"
                                         validate={{
@@ -168,6 +173,7 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     <AvField
                                         name="lotSQFT"
                                         label="Lot Sqft"
+                                        placeholder="Enter number of lot SqFt..."
                                         type="text"
                                         errorMessage="Please enter the square footage of the lot"
                                         validate={{
@@ -194,6 +200,7 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                         name="tenant_name"
                                         label="Tenant Name"
                                         type="text"
+                                        placeholder="Enter tenant's name..."
                                         errorMessage="Please enter the tenant's name"
                                         validate={{
                                             required: { value: true },
@@ -206,6 +213,7 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     <AvField
                                         name="tenant_email"
                                         label="Tenant's Email"
+                                        placeholder="Enter tenant's email..."
                                         type="text"
                                         errorMessage="Please enter the tenant's email"
                                         helpMessage="Your tenant will receive an invitation to download the Alula tenant app"
