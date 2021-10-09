@@ -1,9 +1,8 @@
 import firebase from 'firebase/compat/app'
+
 // Add the Firebase products that you want to use
 import "firebase/auth"
 import "firebase/firestore"
-
-
 
 
 class FirebaseAuthBackend {
@@ -82,39 +81,42 @@ class FirebaseAuthBackend {
   /**
    * forget Password user with given details
    */
-  // forgetPassword = email => {
-  //   return new Promise((resolve, reject) => {
-  //     firebase
-  //       .auth()
-  //       .sendPasswordResetEmail(email, {
-  //         url:
-  //           window.location.protocol + "//" + window.location.host + "/login",
-  //       })
-  //       .then(() => {
-  //         resolve(true)
-  //       })
-  //       .catch(error => {
-  //         reject(this._handleError(error))
-  //       })
-  //   })
-  // }
+
+  forgetPassword = email => {
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .sendPasswordResetEmail(email, {
+          url:
+            window.location.protocol + "//" + window.location.host + "/login",
+        })
+        .then(() => {
+          resolve(true)
+        })
+        .catch(error => {
+          reject(this._handleError(error))
+        })
+    })
+  }
+
 
   /**
    * Logout the user
    */
-  // logout = () => {
-  //   return new Promise((resolve, reject) => {
-  //     firebase
-  //       .auth()
-  //       .signOut()
-  //       .then(() => {
-  //         resolve(true)
-  //       })
-  //       .catch(error => {
-  //         reject(this._handleError(error))
-  //       })
-  //   })
-  // }
+
+  logout = () => {
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          resolve(true)
+        })
+        .catch(error => {
+          reject(this._handleError(error))
+        })
+    })
+  }
 
   /**
    * Social Login user with given details
@@ -164,10 +166,11 @@ class FirebaseAuthBackend {
   /**
    * Returns the authenticated user
    */
-  // getAuthenticatedUser = () => {
-  //   if (!localStorage.getItem("authUser")) return null
-  //   return JSON.parse(localStorage.getItem("authUser"))
-  // }
+
+  getAuthenticatedUser = () => {
+    if (!localStorage.getItem("authUser")) return null
+    return JSON.parse(localStorage.getItem("authUser"))
+  }
 
   /**
    * Handle the error
