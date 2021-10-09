@@ -1,7 +1,6 @@
 import React from "react"
 
 import { Row, Col, Card, CardBody } from "reactstrap"
-import { Link } from "react-router-dom"
 
 import avatar1 from "../../assets/images/users/avatar-1.jpg"
 import profileImg from "../../assets/images/profile-img.png"
@@ -33,30 +32,14 @@ const WelcomeComp = () => {
                   className="img-thumbnail rounded-circle"
                 />
               </div>
-              <h5 className="font-size-15 text-truncate">User&#39;s Name</h5>
-              <p className="text-muted mb-0 text-truncate">User&#39;s Job Title</p>
             </Col>
 
             <Col sm="8">
-              <div className="pt-4">
-                <Row>
-                  <Col xs="6">
-                    <h5 className="font-size-15">125</h5>
-                    <p className="text-muted mb-0">Oustanding Tasks</p>
-                  </Col>
-                  <Col xs="6">
-                    <h5 className="font-size-15">$1245</h5>
-                    <p className="text-muted mb-0">Unread Messages</p>
-                  </Col>
-                </Row>
+              <div className="pt-2">
+                <h5 className="font-size-15 text-truncate">User&#39;s Name</h5>
+                <p className="text-muted mb-0 text-truncate">User&#39;s Job Title</p>
               </div>
             </Col>
-
-            <div className="mt-4 d-flex justify-content-center">
-              <Link to="" className="btn btn-primary btn-sm">
-                View Profile <i className="mdi mdi-arrow-right ms-1"></i>
-              </Link>
-            </div>
           </Row>
         </CardBody>
       </Card>

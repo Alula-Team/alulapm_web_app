@@ -393,7 +393,7 @@ const Calender = props => {
                         className={props.className}
                       >
                         <ModalHeader toggle={toggleCategory} tag="h4">
-                          Add a category
+                            Create Event
                         </ModalHeader>
                         <ModalBody>
                           <AvForm
@@ -403,9 +403,9 @@ const Calender = props => {
                               <Col className="col-12 mb-3">
                                 <AvField
                                   name="title_category"
-                                  label="Category Name"
+                                  label="Event Title"
                                   type="text"
-                                  errorMessage="Invalid name"
+                                  errorMessage="Please enter event title"
                                   validate={{
                                     required: { value: true },
                                   }}
