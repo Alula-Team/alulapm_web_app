@@ -123,7 +123,7 @@ const Calender = props => {
     })
     setIsEdit(true)
     toggle()
-  }
+  } 
 
   /**
    * Handling submit event on event form
