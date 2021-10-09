@@ -1,4 +1,5 @@
-import React from 'react'
+import PropTypes from "prop-types"
+import React, { useState, useEffect } from 'react'
 // import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit"
 import { Card, CardBody, Button, Input } from "reactstrap"
 import { Link } from "react-router-dom"
@@ -6,8 +7,55 @@ import { Link } from "react-router-dom"
 //redux
 // import { useSelector, useDispatch } from "react-redux"
 
+// Firebase
+import { db } from '../../helpers/firebase_helper_2'
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
+
+
+
+const OneProperty = ({ thing }) => (
+    <tr>
+        {/* Property Address */}
+        <td>{thing.address}</td>
+
+        {/* Tenant Name */}
+        <td className=""> {thing.city} </td>
+
+        {/* Date Added */}
+        <td> 11-06-2020 </td>
+
+        {/* Status */}
+        <td> Renewal </td>
+
+        {/* View Details */}
+        <td className="d-flex justify-content-center">
+            <Link to="" className="btn btn-primary btn-sm">
+                View Details
+            </Link>
+        </td>
+    </tr>
+)
 
 const PropertiesTable = () => {
+    const [properties, setProperties] = useState([])
+    const theQuery = query(collection(db, "properties"), orderBy("address", "asc"))
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(theQuery, (snapshot) => {
+            const data = snapshot.docs.map(doc => doc.data())
+            console.log(data)
+            setProperties(data)
+        })
+
+        return () => unsubscribe()
+    }, [])
+
+    let zeeTable
+    if (!properties) {
+        zeeTable = <tr><td>Loading...</td></tr>
+    } else {
+        zeeTable = properties.map((thing) => <OneProperty key={thing.address} thing={thing} />)
+    }
 
     return (
         <React.Fragment>
@@ -81,26 +129,7 @@ const PropertiesTable = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        {/* Property Address */}
-                                        <td> 595 S. Green Valley Pkwy Unit 121 </td>
-
-                                        {/* Tenant Name */}
-                                        <td className=""> Kane Toomer </td>
-
-                                        {/* Date Added */}
-                                        <td> 11-06-2020 </td>
-
-                                        {/* Status */}
-                                        <td> Renewal </td>
-
-                                        {/* View Details */}
-                                        <td className="d-flex justify-content-center">
-                                            <Link to="" className="btn btn-primary btn-sm">
-                                                View Details
-                                            </Link>
-                                        </td>
-                                    </tr>
+                                    {zeeTable}
                                 </tbody>
                             </table>
                         </div>
@@ -109,6 +138,10 @@ const PropertiesTable = () => {
             </Card>
         </React.Fragment>
     )
+}
+
+OneProperty.propTypes = {
+    thing: PropTypes.object
 }
 
 export default PropertiesTable
