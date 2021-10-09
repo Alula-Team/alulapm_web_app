@@ -9,7 +9,8 @@ const Footer = () => {
           <Row>
             <Col md={12}>
               <div className="text-end ">
-                {new Date().getFullYear()} © Alula Software Inc.
+              © {new Date().getFullYear()} Alula Software Inc. Made with{" "}
+                  <i className="mdi mdi-heart text-danger" /> in Las Vegas
               </div>
             </Col>
           </Row>

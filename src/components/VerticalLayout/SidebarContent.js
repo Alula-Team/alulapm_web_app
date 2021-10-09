@@ -108,9 +108,6 @@ const SidebarContent = props => {
             <li>
               <Link to="/calendar" className="">
                 <i className="bx bx-calendar"></i>
-                <span className="badge rounded-pill bg-warning float-end text-dark">
-                  3
-                </span>
                 <span>{props.t("Calendar")}</span>
               </Link>
             </li>
@@ -130,9 +127,6 @@ const SidebarContent = props => {
             <li>
               <Link to="#" className="">
                 <i className="bx bx-receipt"></i>
-                <span className="badge rounded-pill bg-success float-end text-dark">
-                  New
-                </span>
                 <span>{props.t("Invoices")}</span>
               </Link>
             </li>
@@ -161,7 +155,7 @@ const SidebarContent = props => {
 
             {/* TASK CREATION & KANBAN BOARD */}
             <li>
-              <Link to="/tasks" className="">
+              <Link to="#" className="">
                 <i className="bx bx-task"></i>
                 <span className="badge rounded-pill bg-danger float-end">
                   7
@@ -172,7 +166,7 @@ const SidebarContent = props => {
 
             {/* Team - User user list ui */}
             <li>
-              <Link to="/contact-list" className="">
+              <Link to="#" className="">
                 <i className="bx bxs-user-detail"></i>
                 <span>{props.t("Team")}</span>
               </Link>

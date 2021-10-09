@@ -1,11 +1,8 @@
-// import firebase from 'firebase/compat/app'
-// // Add the Firebase products that you want to use
-// import "firebase/auth"
-// import "firebase/firestore"
+import firebase from 'firebase/compat/app'
+// Add the Firebase products that you want to use
+import "firebase/auth"
+import "firebase/firestore"
 
-import { initializeApp } from 'firebase/app'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
 
 
 
@@ -13,9 +10,8 @@ class FirebaseAuthBackend {
   constructor(firebaseConfig) {
     if (firebaseConfig) {
       // Initialize Firebase
-
-      initializeApp(firebaseConfig)
-      auth.onAuthStateChanged(user => {
+      firebase.initializeApp(firebaseConfig)
+      firebase.auth().onAuthStateChanged(user => {
         if (user) {
           localStorage.setItem("authUser", JSON.stringify(user))
         } else {

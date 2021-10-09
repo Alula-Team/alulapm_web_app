@@ -3,8 +3,6 @@ import React from "react"
 import { Row, Col, Card, CardBody, CardTitle } from "reactstrap"
 import { Link } from "react-router-dom"
 
-import ApexRadial from "./ApexRadial"
-
 const MonthlyEarning = () => {
   return (
     <React.Fragment>
@@ -13,21 +11,16 @@ const MonthlyEarning = () => {
         <CardBody>
           <CardTitle className="mb-2">Monthly Expenses</CardTitle>
           <Row className="align-items-center">
-            <Col sm="6">
+            <Col sm="12">
               <p className="text-muted">This month</p>
-              <h3>$34,252</h3>
-              <p className="text-muted">
+              <h3 className="text-center">$34,252</h3>
+              <p className="text-muted text-center">
                 <span className="text-danger me-2">
                   {" "}
                   12% <i className="mdi mdi-arrow-up"></i>{" "}
                 </span>{" "}
                 From previous period
               </p>
-            </Col>
-            <Col sm="6">
-              <div className="mt-4 mt-sm-0">
-                <ApexRadial />
-              </div>
             </Col>
           </Row>
           <div className="mt-4 d-flex justify-content-center">
