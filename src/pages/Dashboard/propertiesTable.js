@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit"
 import { Card, CardBody, Button, Input } from "reactstrap"
 import { Link } from "react-router-dom"
@@ -6,11 +6,19 @@ import { Link } from "react-router-dom"
 //redux
 // import { useSelector, useDispatch } from "react-redux"
 
+// Modals
+import AddPropertyModal from "./modals/AddPropertyModal"
+
 
 const PropertiesTable = () => {
-
+    const [addPropertyModal, setAddPropertyModal] = useState(false)
+    
     return (
         <React.Fragment>
+            <AddPropertyModal 
+                show={addPropertyModal}
+                onCloseClick={ () => setAddPropertyModal(false) }
+            />
             <Card>
                 <CardBody>
                     <div className="d-flex justify-content-between align-items-center">
@@ -38,7 +46,7 @@ const PropertiesTable = () => {
                                 <option value="4">Vacant</option>
                             </select>
                             {/* Add Property Button */}
-                            <Button className="btn btn-danger btn-sm mb-4 d-flex align-items-center">
+                            <Button className="btn btn-danger btn-sm mb-4 d-flex align-items-center" onClick={() => setAddPropertyModal(true)}>
                                 <i className="mdi mdi-plus-circle-outline me-1" />
                                 Add Property
                             </Button>
