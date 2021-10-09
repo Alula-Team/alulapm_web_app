@@ -126,61 +126,63 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                             {/* PAGE 2 MODAL SPLIT */}
                             <div className="modal-split" id="page2">
                                 <Col className="col-12 mb-3">
-
                                     {/* # of Bedrooms */}
                                     <AvField
                                         name="bedCount"
                                         label="Bedrooms"
                                         placeholder="Enter number of bedrooms..."
-                                        type="text"
+                                        helpMessage="Numbers only"
+                                        type="number"
                                         errorMessage="Please enter the number of bedrooms"
                                         validate={{
                                             required: { value: true },
                                         }}
                                         value={event ? event.title : ""}
-                                        className="mb-3"
                                     />
-
+                                </Col>
+                                <Col className="col-12 mb-3">
                                     {/* # of Bathrooms */}
                                     <AvField
                                         name="bathCount"
                                         label="Bathrooms"
                                         placeholder="Enter number of bathrooms..."
-                                        type="text"
+                                        helpMessage="Numbers only"
+                                        type="number"
                                         errorMessage="Please enter the number of bathrooms..."
                                         validate={{
                                             required: { value: true },
                                         }}
                                         value={event ? event.title : ""}
-                                        className="mb-3"
                                     />
-
+                                </Col>
+                                <Col className="col-12 mb-3">
                                     {/* Square Footage */}
                                     <AvField
                                         name="livingSQFT"
                                         label="Living Space Sqft"
                                         placeholder="Enter number of living space SqFt..."
-                                        type="text"
+                                        helpMessage="Numbers only"
+                                        type="number"
                                         errorMessage="Please enter the square footage of living space"
                                         validate={{
                                             required: { value: true },
                                         }}
                                         value={event ? event.title : ""}
-                                        className="mb-3"
                                     />
-
+                                </Col>
+                                <Col className="col-12 mb-3">
                                     {/* Square Footage - Optional */}
                                     <AvField
                                         name="lotSQFT"
                                         label="Lot Sqft"
                                         placeholder="Enter number of lot SqFt..."
-                                        type="text"
+                                        helpMessage="Numbers only"
+                                        type="number"
                                         errorMessage="Please enter the square footage of the lot"
                                         validate={{
                                             required: { value: true },
                                         }}
                                         value={event ? event.title : ""}
-                                        className="mb-3"
                                     />
                                 </Col>
                             </div>
