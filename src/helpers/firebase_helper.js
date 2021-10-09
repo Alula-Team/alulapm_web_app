@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat/app'
-// // Add the Firebase products that you want to use
+// Add the Firebase products that you want to use
 import "firebase/auth"
 import "firebase/firestore"
 

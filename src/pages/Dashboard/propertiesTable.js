@@ -8,14 +8,12 @@ import { Link } from "react-router-dom"
 //redux
 // import { useSelector, useDispatch } from "react-redux"
 
-//Modals
-import AddPropertyModal from './modals/AddPropertyModal'
+// Modals
+import AddPropertyModal from "./modals/AddPropertyModal"
 
 // Firebase
 import { db } from '../../helpers/firebase_helper_2'
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
-
-
 
 const OneProperty = ({ thing }) => (
     <tr>
@@ -41,6 +39,7 @@ const OneProperty = ({ thing }) => (
 )
 
 const PropertiesTable = () => {
+    const [properties, setProperties] = useState([])
     const [addPropertyModal, setAddPropertyModal] = useState(false)
     const theQuery = query(collection(db, "properties"), orderBy("address", "asc"))
 
@@ -60,12 +59,11 @@ const PropertiesTable = () => {
     } else {
         zeeTable = properties.map((thing) => <OneProperty key={thing.address} thing={thing} />)
     }
-    
     return (
         <React.Fragment>
-            <AddPropertyModal 
+            <AddPropertyModal
                 show={addPropertyModal}
-                onCloseClick={ () => setAddPropertyModal(false) }
+                onCloseClick={() => setAddPropertyModal(false)}
             />
             <Card>
                 <CardBody>
