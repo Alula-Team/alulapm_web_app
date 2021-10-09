@@ -188,6 +188,33 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                         <AvRadio label="Vacant" value="vacant" />
                                     </AvRadioGroup>
                                 </Col>
+                                <Col className="col-12 mb-3">
+                                    {/* Tenant Name - Optional */}
+                                    <AvField
+                                        name="tenant_name"
+                                        label="Tenant Name"
+                                        type="text"
+                                        errorMessage="Please enter the tenant's name"
+                                        validate={{
+                                            required: { value: true },
+                                        }}
+                                        value={event ? event.title : ""}
+                                        className="mb-3"
+                                    />
+
+                                    {/* Tenant Email - Optional */}
+                                    <AvField
+                                        name="tenant_email"
+                                        label="Tenant's Email"
+                                        type="text"
+                                        errorMessage="Please enter the tenant's email"
+                                        helpMessage="Your tenant will receive an invitation to download the Alula tenant app"
+                                        validate={{
+                                            required: { value: true },
+                                        }}
+                                        value={event ? event.title : ""}
+                                    />
+                                </Col>
                             </div>
                         </Row>
                     </AvForm>

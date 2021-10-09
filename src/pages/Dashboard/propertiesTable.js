@@ -11,12 +11,12 @@ import AddPropertyModal from "./modals/AddPropertyModal"
 
 
 const PropertiesTable = () => {
-    const [addPropertymodal, setAddPropertyModal] = useState(false)
+    const [addPropertyModal, setAddPropertyModal] = useState(false)
     
     return (
         <React.Fragment>
             <AddPropertyModal 
-                show={addPropertymodal}
+                show={addPropertyModal}
                 onCloseClick={ () => setAddPropertyModal(false) }
             />
             <Card>
