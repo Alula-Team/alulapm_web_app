@@ -1,16 +1,21 @@
-import firebase from 'firebase/compat/app'
+// import firebase from 'firebase/compat/app'
+// // Add the Firebase products that you want to use
+// import "firebase/auth"
+// import "firebase/firestore"
 
-// Add the Firebase products that you want to use
-import "firebase/auth"
-import "firebase/firestore"
+import { initializeApp } from 'firebase/app'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
+
 
 
 class FirebaseAuthBackend {
   constructor(firebaseConfig) {
     if (firebaseConfig) {
       // Initialize Firebase
-      firebase.initializeApp(firebaseConfig)
-      firebase.auth().onAuthStateChanged(user => {
+
+      initializeApp(firebaseConfig)
+      auth.onAuthStateChanged(user => {
         if (user) {
           localStorage.setItem("authUser", JSON.stringify(user))
         } else {
@@ -81,39 +86,39 @@ class FirebaseAuthBackend {
   /**
    * forget Password user with given details
    */
-  forgetPassword = email => {
-    return new Promise((resolve, reject) => {
-      firebase
-        .auth()
-        .sendPasswordResetEmail(email, {
-          url:
-            window.location.protocol + "//" + window.location.host + "/login",
-        })
-        .then(() => {
-          resolve(true)
-        })
-        .catch(error => {
-          reject(this._handleError(error))
-        })
-    })
-  }
+  // forgetPassword = email => {
+  //   return new Promise((resolve, reject) => {
+  //     firebase
+  //       .auth()
+  //       .sendPasswordResetEmail(email, {
+  //         url:
+  //           window.location.protocol + "//" + window.location.host + "/login",
+  //       })
+  //       .then(() => {
+  //         resolve(true)
+  //       })
+  //       .catch(error => {
+  //         reject(this._handleError(error))
+  //       })
+  //   })
+  // }
 
   /**
    * Logout the user
    */
-  logout = () => {
-    return new Promise((resolve, reject) => {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          resolve(true)
-        })
-        .catch(error => {
-          reject(this._handleError(error))
-        })
-    })
-  }
+  // logout = () => {
+  //   return new Promise((resolve, reject) => {
+  //     firebase
+  //       .auth()
+  //       .signOut()
+  //       .then(() => {
+  //         resolve(true)
+  //       })
+  //       .catch(error => {
+  //         reject(this._handleError(error))
+  //       })
+  //   })
+  // }
 
   /**
    * Social Login user with given details
@@ -163,10 +168,10 @@ class FirebaseAuthBackend {
   /**
    * Returns the authenticated user
    */
-  getAuthenticatedUser = () => {
-    if (!localStorage.getItem("authUser")) return null
-    return JSON.parse(localStorage.getItem("authUser"))
-  }
+  // getAuthenticatedUser = () => {
+  //   if (!localStorage.getItem("authUser")) return null
+  //   return JSON.parse(localStorage.getItem("authUser"))
+  // }
 
   /**
    * Handle the error

@@ -81,6 +81,7 @@ class FirebaseAuthBackend {
   /**
    * forget Password user with given details
    */
+
   forgetPassword = email => {
     return new Promise((resolve, reject) => {
       firebase
@@ -98,9 +99,11 @@ class FirebaseAuthBackend {
     })
   }
 
+
   /**
    * Logout the user
    */
+
   logout = () => {
     return new Promise((resolve, reject) => {
       firebase
@@ -163,6 +166,7 @@ class FirebaseAuthBackend {
   /**
    * Returns the authenticated user
    */
+
   getAuthenticatedUser = () => {
     if (!localStorage.getItem("authUser")) return null
     return JSON.parse(localStorage.getItem("authUser"))
