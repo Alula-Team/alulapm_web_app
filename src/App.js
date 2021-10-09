@@ -1,18 +1,23 @@
 import PropTypes from 'prop-types'
 import React from "react"
 
-import { Switch, BrowserRouter as Router } from "react-router-dom"
+// import { Switch, BrowserRouter as Router } from "react-router-dom"
 import { connect } from "react-redux"
 
+// import { db } from './helpers/firebase_helper_2'
+// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+// import { writeBatch, addDoc } from 'firebase/firestore'
+// import { query, onSnapshot, collection } from 'firebase/firestore'
+
 // Import Routes all
-import { authProtectedRoutes, publicRoutes } from "./routes"
+// import { authProtectedRoutes, publicRoutes } from "./routes"
 
 // Import all middleware
-import Authmiddleware from "./routes/route"
+// import Authmiddleware from "./routes/route"
 
 // layouts Format
-import VerticalLayout from "./components/VerticalLayout/"
-import NonAuthLayout from "./components/NonAuthLayout"
+// import VerticalLayout from "./components/VerticalLayout/"
+// import NonAuthLayout from "./components/NonAuthLayout"
 
 // Import scss
 import "./assets/scss/theme.scss"
@@ -20,43 +25,86 @@ import "./assets/scss/theme.scss"
 // Import Firebase Configuration file
 // import { initFirebaseBackend } from "./helpers/firebase_helper"
 
-import fakeBackend from "./helpers/AuthType/fakeBackend"
+// import fakeBackend from "./helpers/AuthType/fakeBackend"
 
 // Activating fake backend
-fakeBackend()
+// fakeBackend()
 
 // const firebaseConfig = {
-//   apiKey: process.env.REACT_APP_APIKEY,
-//   authDomain: process.env.REACT_APP_AUTHDOMAIN,
-//   databaseURL: process.env.REACT_APP_DATABASEURL,
-//   projectId: process.env.REACT_APP_PROJECTID,
-//   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
-//   messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
-//   appId: process.env.REACT_APP_APPID,
-//   measurementId: process.env.REACT_APP_MEASUREMENTID,
+//   apiKey: "AIzaSyDWdcgwt4z8h6oVXxsOshaIbzDZjZIw8CI",
+//   authDomain: "alula-5e6c6.firebaseapp.com",
+//   projectId: "alula-5e6c6",
+//   storageBucket: "alula-5e6c6.appspot.com",
+//   messagingSenderId: "633732970516",
+//   appId: "1:633732970516:web:b4cf1643121fa99a7acf01"
 // }
 
 // init firebase backend
 // initFirebaseBackend(firebaseConfig)
+function Whatever() {
+  return (
+    <div>
+      Coming to you from the function, saying
+    </div>
+  )
+}
 
-const App = props => {
 
-  function getLayout() {
-    let layoutCls = VerticalLayout
-    switch (props.layout.layoutType) {
-      default:
-        layoutCls = VerticalLayout
-        break
-    }
-    return layoutCls
-  }
+const App = () => {
+  // const [zeeThings, setZeeThings] = useState([])
+  // const getCollectionDocs = async (collectionName) => {
+  //   const collectionQuery = query(
+  //     collection(db, collectionName),
+  //   )
+  //   const querySnapshot = await getDocs(collectionQuery)
+  //   let dataArray = []
+  //   querySnapshot.forEach((doc) => {
+  //     const data = doc.data()
+  //     console.log(data)
+  //   })
 
-  const Layout = getLayout()
+  //   console.log(dataArray)
+  // }
+
+  // getCollectionDocs("properties")
+
+  // const getCollection = (collectionName) => {
+  //   const collectionQuery = query(collection(db, collectionName))
+
+  //   onSnapshot(collectionQuery, (querySnapshot) => {
+  //     let dataArray = []
+  //     querySnapshot.forEach((doc) => {
+  //       dataArray.push(doc.data())
+  //     })
+  //     dataArray.map((d) => console.log(d))
+  //   })
+  //   return "Yo"
+  // }
+
+
+
+  // setDoc(documentRef, {
+  //   city: "Whooooooooooooolibase"
+  // }, { merge: false })
+  // function getLayout() {
+  //   let layoutCls = VerticalLayout
+  //   switch (props.layout.layoutType) {
+  //     default:
+  //       layoutCls = VerticalLayout
+  //       break
+  //   }
+  //   return layoutCls
+  // }
+
+  // const Layout = getLayout()
   return (
     <React.Fragment>
-      <Router>
+      <button>Sign In</button>
+      <Whatever />
+      {/* <Router>
         <Switch>
-          {publicRoutes.map((route, idx) => (
+          <div layout={Layout}>Home</div> */}
+      {/* {publicRoutes.map((route, idx) => (
             <Authmiddleware
               path={route.path}
               layout={NonAuthLayout}
@@ -76,15 +124,16 @@ const App = props => {
               isAuthProtected={false}
               exact
             />
-          ))}
-        </Switch>
-      </Router>
+          ))} */}
+      {/* </Switch>
+      </Router> */}
     </React.Fragment>
   )
 }
 
 App.propTypes = {
-  layout: PropTypes.any
+  layout: PropTypes.any,
+  greeting: PropTypes.string
 }
 
 const mapStateToProps = state => {
