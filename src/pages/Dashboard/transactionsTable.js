@@ -62,6 +62,12 @@ const TransactionsTable = () => {
                                             <span className="order-4"></span>
                                         </th>
 
+                                        {/* Transaction TYPE */}
+                                        <th tabIndex="0" aria-label="Property Address sortable" className="sortable">
+                                            Transaction Type
+                                            <span className="order-4"></span>
+                                        </th>
+
                                         {/* Billing Name */}
                                         <th tabIndex="0" aria-label="Property Address sortable" className="sortable">
                                             Billing Name
@@ -104,6 +110,9 @@ const TransactionsTable = () => {
                                         {/* Transaction ID */}
                                         <td> #ID NUMBER </td>
 
+                                        {/* Transaction Type */}
+                                        <td> Expense </td>
+
                                         {/* Billing Name */}
                                         <td> Kane Toomer </td>
 
@@ -118,9 +127,8 @@ const TransactionsTable = () => {
                                             <span className="btn btn-success btn-sm">Paid</span>
                                         </td>
 
-                                        {/* Payment Method - ACH (mdi-bank) or Cash (mdi-cash) */}
+                                        {/* Payment Method */}
                                         <td className="text-center"> 
-                                            <i className="mdi mdi-bank mdi-18px me-1"></i> 
                                             ACH 
                                         </td>
 
