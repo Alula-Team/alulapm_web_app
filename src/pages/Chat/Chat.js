@@ -184,9 +184,9 @@ const Chat = () => {
                             <i className="mdi mdi-dots-horizontal font-size-18"></i>
                           </DropdownToggle>
                           <DropdownMenu>
-                            <DropdownItem href="#">Action</DropdownItem>
-                            <DropdownItem href="#">Another action</DropdownItem>
-                            <DropdownItem href="#">Something else</DropdownItem>
+                            <DropdownItem href="#">Active</DropdownItem>
+                            <DropdownItem href="#">Away</DropdownItem>
+                            <DropdownItem href="#">Do Not Disturb</DropdownItem>
                           </DropdownMenu>
                         </Dropdown>
                       </Media>
@@ -249,6 +249,10 @@ const Chat = () => {
                         <TabPane tabId="1">
                           <div>
                             <h5 className="font-size-14 mb-3">Recent</h5>
+                            <a href="#" className="d-flex justify-content-center">
+                              <i className="mdi mdi-plus-circle-outline me-1" />
+                              <u>Create Chat</u>
+                            </a>
                             <ul className="list-unstyled chat-list">
                               <PerfectScrollbar style={{ height: "410px" }}>
                                 {map(chats, chat => (
@@ -313,6 +317,11 @@ const Chat = () => {
 
                         <TabPane tabId="2">
                           <h5 className="font-size-14 mb-3">Group</h5>
+                          <a href="#" className="d-flex justify-content-center">
+                            <i className="mdi mdi-plus-circle-outline me-1" />
+                            <u>Create Group</u>
+                          </a>
+
                           <ul className="list-unstyled chat-list">
                             <PerfectScrollbar style={{ height: "410px" }}>
                               {groups &&

@@ -4,9 +4,6 @@ import "firebase/auth"
 import "firebase/firestore"
 
 
-
-
-
 class FirebaseAuthBackend {
   constructor(firebaseConfig) {
     if (firebaseConfig) {
