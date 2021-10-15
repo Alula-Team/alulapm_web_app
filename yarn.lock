@@ -8649,6 +8649,11 @@ linkify-it@^2.2.0:
   dependencies:
     uc.micro "^1.0.1"
 
+little-state-machine@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/little-state-machine/-/little-state-machine-4.1.2.tgz#0f3c7505f70097d4d3c75091e9196ee4295ac26e"
+  integrity sha512-plFK9JAuZgW+hzyNfwn8ONvKDWMnLjXfhqiMrZ7pAFLwYh2B2CnGxLSWwSmbin4EGQJLhLuAIfB7OUANNc9Q3A==
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"

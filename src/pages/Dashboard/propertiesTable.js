@@ -40,7 +40,7 @@ const OneProperty = ({ thing }) => (
 
 const PropertiesTable = () => {
     const [properties, setProperties] = useState([])
-    const [addPropertyModal, setAddPropertyModal] = useState(false)
+    const [showPropertyModal, setShowPropertyModal] = useState(false)
     const theQuery = query(collection(db, "properties"), orderBy("address", "asc"))
 
     useEffect(() => {
@@ -63,9 +63,10 @@ const PropertiesTable = () => {
     return (
         <React.Fragment>
             <AddPropertyModal
-                show={addPropertyModal}
-                onCloseClick={() => setAddPropertyModal(false)}
+                show={showPropertyModal}
+                onCloseClick={() => setShowPropertyModal(false)}
             />
+
             <Card>
                 <CardBody>
                     <div className="d-flex justify-content-between align-items-center">
@@ -93,7 +94,7 @@ const PropertiesTable = () => {
                                 <option value="4">Vacant</option>
                             </select>
                             {/* Add Property Button */}
-                            <Button className="btn btn-danger btn-sm mb-4 d-flex align-items-center" onClick={() => setAddPropertyModal(true)}>
+                            <Button className="btn btn-danger btn-sm mb-4 d-flex align-items-center" onClick={() => setShowPropertyModal(true)}>
                                 <i className="mdi mdi-plus-circle-outline me-1" />
                                 Add Property
                             </Button>
