@@ -1,12 +1,9 @@
-import React
-// , { useRef, useState } 
-from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap'
 import { AvField, AvForm, AvInput, AvRadio, AvRadioGroup } from "availity-reactstrap-validation"
 
 const AddTransactionsModal = ({ show, onCloseClick }) => {
-
 
     $(document).ready(function() {
         prep_modal()
@@ -100,7 +97,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                             <div className="modal-split" id="page1">
                                 <Col className="col-12 mb-3">
                                     {/* Select Transaction Type */}
-                                    <p style={{fontWeight: 500}}>Select Transaction Type</p>
+                                    <p style={{fontWeight: 500}}>Select Transaction Type*</p>
                                     <AvRadioGroup inline name="transactionTypeRadio" required>
                                         <AvRadio label="Expense" value="expense" />
                                         <AvRadio label="Payment" value="payment" />
@@ -112,7 +109,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                                     <AvField
                                         type="select"
                                         name="transaction_destination"
-                                        label="Transaction Destination"
+                                        label="Transaction Destination*"
                                         helpMessage="Select the appropriate property or choose general transaction"
                                         validate={{
                                             required: { value: true },
@@ -136,7 +133,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                                     <AvField
                                         type="select"
                                         name="transaction_category"
-                                        label="Transaction Category"
+                                        label="Transaction Category*"
                                         validate={{
                                             required: { value: true },
                                         }}
@@ -166,7 +163,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                                     <AvField
                                         type="select"
                                         name="payment_type"
-                                        label="Payment Type"
+                                        label="Payment Type*"
                                         validate={{
                                             required: { value: true },
                                         }}
@@ -188,7 +185,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                                     {/* Amount */}
                                     <AvField
                                         name="amount"
-                                        label="Amount"
+                                        label="Amount*"
                                         placeholder="i.e 1500"
                                         helpMessage="Numbers only"
                                         type="number"
@@ -204,7 +201,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                                     {/* Date Paid */}
                                     <AvField
                                         name="date-paid"
-                                        label="Date Paid"
+                                        label="Date Paid*"
                                         placeholder="i.e MM-DD-YYYY"
                                         helpMessage="Numbers only"
                                         type="number"
@@ -232,6 +229,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                             {/* Page 4 MODAL SPLIT */}
                             <div className="modal-split" id="page3">
                                 {/* Upload Invoice or Receipt - PDF or IMG */}
+                                <p style={{fontWeight: 500}}>Upload File</p>
                             </div>
                         </Row>
                     </AvForm>
