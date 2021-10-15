@@ -14,11 +14,11 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap"
-import { AvField, AvForm } from "availity-reactstrap-validation"
+import { AvField, AvForm, AvInput } from "availity-reactstrap-validation"
 
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
-import interactionPlugin, { Draggable } from "@fullcalendar/interaction"
+import interactionPlugin from "@fullcalendar/interaction"
 import BootstrapTheme from "@fullcalendar/bootstrap"
 
 import {
@@ -40,9 +40,8 @@ import { useSelector, useDispatch } from "react-redux"
 const Calender = props => {
   const dispatch = useDispatch()
 
-  const { events, categories } = useSelector(state => ({
-    events: state.calendar.events,
-    categories: state.calendar.categories,
+  const { events } = useSelector(state => ({
+    events: state.calendar.events
   }))
 
   const [modal, setModal] = useState(false)
@@ -55,9 +54,6 @@ const Calender = props => {
   useEffect(() => {
     dispatch(onGetCategories())
     dispatch(onGetEvents())
-    new Draggable(document.getElementById("external-events"), {
-      itemSelector: ".external-event",
-    })
   }, [])
 
   useEffect(() => {
@@ -187,13 +183,6 @@ const Calender = props => {
   }
 
   /**
-   * On category darg event
-   */
-  const onDrag = event => {
-    event.preventDefault()
-  }
-
-  /**
    * On calendar drop event
    */
   const onDrop = event => {
@@ -230,74 +219,31 @@ const Calender = props => {
           <title>Calendar | Alula - Building the Future of Property Management</title>
         </MetaTags>
         <Container fluid={true}>
-          <div className="page-title-box">
-            <h4 className="mb-0 font-size-18">Calendar</h4>
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="page-title-box">
+              <h4 className="mb-0 font-size-18">Calendar</h4>
+            </div>
+            <Button
+              color="primary"
+              className="font-16 btn-block mb-3"
+              onClick={toggleCategory}
+            >
+              <i className="mdi mdi-plus-circle-outline me-1" />
+              Create New Event
+            </Button>
           </div>
           <Row>
             <Col className="col-12">
               <Card>
                 <CardBody>
                   <Row>
-                    <Col lg={3}>
-                      <Button
-                        color="primary"
-                        className="font-16 btn-block"
-                        onClick={toggleCategory}
-                      >
-                        <i className="mdi mdi-plus-circle-outline me-1" />
-                        Create New Event
-                      </Button>
-
-                      <div id="external-events" className="mt-3">
-                        <p className="text-muted">
-                          Drag and drop your event or click in the calendar
-                        </p>
-                        {categories &&
-                          categories.map((category
-                            // , i
-                            ) => (
-                            <div
-                              className={`${category.type} external-event text-white p-1 mb-2`}
-                              key={"cat-" + category.id}
-                              draggable
-                              onDrag={event => onDrag(event, category)}
-                            >
-                              <i className="mdi mdi-checkbox-blank-circle me-2 vertical-middle" />
-                              {category.title}
-                            </div>
-                          ))}
-                      </div>
-
-                      <div className="mt-5 d-none d-xl-block">
-                        <h5 className="text-center">How It Works ?</h5>
-
-                        <ul className="ps-3">
-                          <li className="text-muted mb-3">
-                            It has survived not only five centuries, but also
-                            the leap into electronic typesetting, remaining
-                            essentially unchanged.
-                          </li>
-                          <li className="text-muted mb-3">
-                            Richard McClintock, a Latin professor at
-                            Hampden-Sydney College in Virginia, looked up one of
-                            the more obscure Latin words, consectetur, from a
-                            Lorem Ipsum passage.
-                          </li>
-                          <li className="text-muted mb-3">
-                            It has survived not only five centuries, but also
-                            the leap into electronic typesetting, remaining
-                            essentially unchanged.
-                          </li>
-                        </ul>
-                      </div>
-                    </Col>
-                    <Col className="col-lg-9">
+                    <Col className="col-12">
                       {/* fullcalendar control */}
                       <FullCalendar
                         plugins={[
                           BootstrapTheme,
                           dayGridPlugin,
-                          interactionPlugin,
+                          interactionPlugin
                         ]}
                         slotDuration={"00:15:00"}
                         handleWindowResize={true}
@@ -400,10 +346,12 @@ const Calender = props => {
                             onValidSubmit={handleValidEventSubmitcategory}
                           >
                             <Row form>
+                              {/* EVENT TITLE */}
                               <Col className="col-12 mb-3">
                                 <AvField
                                   name="title_category"
                                   label="Event Title"
+                                  placeholder="Enter event title..."
                                   type="text"
                                   errorMessage="Please enter event title"
                                   validate={{
@@ -416,22 +364,61 @@ const Calender = props => {
                                   }
                                 />
                               </Col>
+
+                              {/* CATEGORY */}
                               <Col className="col-12 mb-3">
                                 <AvField
                                   type="select"
                                   name="event_category"
-                                  label="Choose Category Color"
+                                  label="Choose Category"
                                   value={
                                     event ? event.event_category : "bg-primary"
                                   }
                                 >
-                                  <option value="bg-danger">Danger</option>
-                                  <option value="bg-success">Success</option>
-                                  <option value="bg-primary">Primary</option>
-                                  <option value="bg-info">Info</option>
-                                  <option value="bg-dark">Dark</option>
-                                  <option value="bg-warning">Warning</option>
+                                  <option value="">Select Category...</option>
+                                  <option value="">Appointment</option>
+                                  <option value="">Meeting</option>
+                                  <option value="">Other</option>
+                                  <option value="">Out of Office</option>
+                                  <option value="">Showing</option>
+                                  <option value="">Task</option>
                                 </AvField>
+                              </Col>
+
+                              
+
+                              {/* DATE & TIME FUNCTION - Option to repeat task: daily, weekly, monthly, yearly */}
+                              {/* REMINIDER */}
+                              {/* ADD LOCATION */}
+                              <Col className="col-12 mb-3">
+                                <AvField
+                                    name="location"
+                                    label="Add Location"
+                                    placeholder="Enter location..."
+                                    type="location"
+                                    value={event ? event.title : ""}
+                                />
+                              </Col>
+                              {/* ADD LINK */}
+                              <Col className="col-12 mb-3">
+                                <AvField
+                                    name="link"
+                                    label="Add Link"
+                                    placeholder="Enter link..."
+                                    type="link"
+                                    value={event ? event.title : ""}
+                                />
+                              </Col>
+
+                              {/* ADD DESCRIPTION */}
+                              <Col className="col-12 mb-3">
+                                <p style={{fontWeight: 500, marginBottom: 10}}>Description</p>
+                                <AvInput
+                                    name="description"
+                                    placeholder="Enter event description..."
+                                    type="textarea"
+                                    style={{ "height": "150px"}}
+                                />
                               </Col>
                             </Row>
                             <Row>
