@@ -1,42 +1,42 @@
-import React, { useEffect } from "react"
-import MetaTags from "react-meta-tags"
-import PropTypes from "prop-types"
-import { Link, withRouter } from "react-router-dom"
-import { Card, CardBody, Col, Container, Row, Table } from "reactstrap"
-import { isEmpty, map } from "lodash"
+import React, { useEffect } from "react";
+import MetaTags from "react-meta-tags";
+import PropTypes from "prop-types";
+import { Link, withRouter } from "react-router-dom";
+import { Card, CardBody, Col, Container, Row, Table } from "reactstrap";
+import { isEmpty, map } from "lodash";
 
 //Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
+import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 //Import Image
-import logo from "../../assets/images/logo-dark.png"
-import { getInvoiceDetail as onGetInvoiceDetail } from "../../store/invoices/actions"
+import logo from "../../assets/images/logo-dark.png";
+import { getInvoiceDetail as onGetInvoiceDetail } from "../../store/invoices/actions";
 //redux
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 
 const InvoiceDetail = props => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const { invoiceDetail } = useSelector(state => ({
     invoiceDetail: state.invoices.invoiceDetail,
-  }))
+  }));
 
   const {
     match: { params },
-  } = props
+  } = props;
 
   useEffect(() => {
     if (params && params.id) {
-      dispatch(onGetInvoiceDetail(params.id))
+      dispatch(onGetInvoiceDetail(params.id));
     } else {
-      dispatch(onGetInvoiceDetail(1)) //remove this after full integration
+      dispatch(onGetInvoiceDetail(1)); //remove this after full integration
     }
-  }, [params, onGetInvoiceDetail])
+  }, [params, onGetInvoiceDetail]);
 
   //Print the Invoice
   const printInvoice = () => {
-    window.print()
-  }
+    window.print();
+  };
 
   return (
     <React.Fragment>
@@ -197,11 +197,11 @@ const InvoiceDetail = props => {
         </Container>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
 InvoiceDetail.propTypes = {
   match: PropTypes.any,
-}
+};
 
-export default withRouter(InvoiceDetail)
+export default withRouter(InvoiceDetail);

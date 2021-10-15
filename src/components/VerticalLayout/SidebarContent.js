@@ -123,14 +123,6 @@ const SidebarContent = props => {
               </Link>
             </li>
 
-            {/* Invoices - */}
-            <li>
-              <Link to="#" className="">
-                <i className="bx bx-receipt"></i>
-                <span>{props.t("Invoices")}</span>
-              </Link>
-            </li>
-
             {/* Notifications - */}
             <li>
               <Link to="#" className="">
@@ -171,36 +163,6 @@ const SidebarContent = props => {
                 <span>{props.t("Team")}</span>
               </Link>
             </li>
-
-            {/* User Navigation*/}
-            <li className="menu-title mt-2">{props.t("User Navigation")} </li>
-
-            {/* Profile */}
-            <li>
-              <Link to="#" className="">
-                <i className="bx bx-user"></i>
-                <span>{props.t("Profile")}</span>
-              </Link>
-            </li>
-
-            {/* Account Settings */}
-            <li>
-              <Link to="#" className="mb-4">
-                <i className="bx bx-cog"></i>
-                <span>{props.t("Account Settings")}</span>
-              </Link>
-            </li>
-
-            <hr style={{width: '80%', margin: 'auto'}} />
-
-            {/* Logout */}
-            <li>
-              <Link to="#" className="mt-4">
-                <i className="bx bx-exit text-warning"></i>
-                <span className="text-warning">{props.t("Logout")}</span>
-              </Link>
-            </li>
-
           </ul>
         </div>
       </SimpleBar>

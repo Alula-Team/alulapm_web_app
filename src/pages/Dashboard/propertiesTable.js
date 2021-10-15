@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 
 // import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit"
 import { Card, CardBody, Button, Input } from "reactstrap"
-import { Link } from "react-router-dom"
 
 //redux
 // import { useSelector, useDispatch } from "react-redux"
@@ -31,9 +30,9 @@ const OneProperty = ({ thing }) => (
 
         {/* View Details */}
         <td className="d-flex justify-content-center">
-            <Link to="" className="btn btn-primary btn-sm">
-                View Details
-            </Link>
+            <a href="#">
+                <u>View Details</u>
+            </a>
         </td>
     </tr>
 )
