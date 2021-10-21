@@ -1,61 +1,44 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap'
-import { AvField, AvForm, AvRadio, AvRadioGroup } from "availity-reactstrap-validation"
-// import { nextPrev } from './modalUtilities'
+import { Form, Col, Modal, ModalHeader, ModalBody, Row, Button, Input, FormText, FormGroup, Label } from 'reactstrap'
+import { useForm, Controller } from 'react-hook-form'
+import { db } from '../../../helpers/firebase_helper_2'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+
 
 const AddPropertyModal = ({ show, onCloseClick }) => {
-    var currentTab = 0
-    function showTab(n) {
-        var x = document.getElementsByClassName("tab")
-        x[n].style.display = "block"
-        if (n == 0) {
-            document.getElementById("prevBtn").style.display = "none"
-        } else {
-            document.getElementById("prevBtn").style.display = "inline"
-        }
-        if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = '<i class="fa fa-angle-double-right"></i>'
-        } else {
-            document.getElementById("nextBtn").innerHTML = '<i class="fa fa-angle-double-right"></i>'
-        }
-        fixStepIndicator(n)
+    const [tab, setTab] = useState(0)
+    const [property, setProperty] = useState({})
+
+    let whichTab = useRef(0)
+
+    let { handleSubmit, control, register, setValue, formState: { errors } } = useForm()
+
+    function nextTab() {
+        whichTab.current++
+        setTab(whichTab.current)
     }
 
-    function nextPrev(n) {
-        var x = document.getElementsByClassName("tab")
-        if (n == 1 && !validateForm()) return false
-        x[currentTab].style.display = "none"
-        currentTab = currentTab + n
-        if (currentTab >= x.length) {
-
-            document.getElementById("nextprevious").style.display = "none"
-            document.getElementById("all-steps").style.display = "none"
-            document.getElementById("register").style.display = "none"
-            document.getElementById("text-message").style.display = "block"
-        }
-        showTab(currentTab)
+    function prevTab() {
+        whichTab.current--
+        setTab(whichTab.current)
     }
 
-    function validateForm() {
-        var x, y, i, valid = true
-        x = document.getElementsByClassName("tab")
-        y = x[currentTab].getElementsByTagName("input")
-        for (i = 0; i < y.length; i++) {
-            if (y[i].value == "") {
-                y[i].className += " invalid"; valid = false
-            }
-        } if (valid) {
-            document.getElementsByClassName("step")[currentTab].className += " finish"
-        } return valid
+    function onSubmit(data) {
+        setProperty({ ...data })
+        nextTab()
     }
 
-    function fixStepIndicator(n) {
-        var i, x = document.getElementsByClassName("step")
-        for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" active", "")
-        } x[n].className += " active"
+
+    async function addAProperty() {
+        const docRef = await addDoc(collection(db, "properties"), {
+            ...property,
+            createdAt: serverTimestamp()
+        })
+        setValue("propertyAddress", "")
+        console.log("Document written with ID: ", docRef.id)
     }
+
     return (
         <React.Fragment>
             <Modal isOpen={show} toggle={onCloseClick} centered={true}>
@@ -63,152 +46,128 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                     Add Property
                 </ModalHeader>
                 <ModalBody>
-                    <AvForm
-                    // onValidSubmit={handleValidEventSubmit}
-                    >
-                        <Row form>
-                            {/* PAGE 1 MODAL SPLIT */}
-                            <div className="tab">
+                    <Row form>
+                        {/* PAGE 1 MODAL SPLIT */}
+                        {tab === 0 && <div className="tab">
+                            <Form onSubmit={handleSubmit(onSubmit)}>
                                 <Col className="col-12 mb-3">
                                     {/* Property Address - Needs Google Places API */}
-                                    <AvField
+                                    <Controller
                                         name="propertyAddress"
-                                        label="Property Address"
-                                        placeholder="Enter property address..."
-                                        type="text"
-                                        errorMessage="Please enter the property address"
-                                        validate={{
-                                            required: { value: true },
-                                        }}
-                                        value={event ? event.title : ""}
-                                        className="mb-3"
-                                    />
+                                        control={control}
+                                        render={({ field }) => <Input type="text" placeholder="Enter property address..." {...field} />}
+                                        rules={{ required: true }}
 
-                                    {/* Unit - Optional */}
-                                    <AvField
-                                        name="unit"
-                                        label="Unit"
-                                        placeholder="Enter unit number... "
-                                        helpMessage="Optional - include &quot;Apt&quot;, &quot;Unit&quot;, etc..."
-                                        type="text"
-                                        value={event ? event.title : ""}
                                     />
+                                    {errors.propertyAddress && <FormText color="danger">This field is required</FormText>}
                                 </Col>
-                            </div>
+                                <Col className="col-12 mb-3">
+                                    {/* Unit - Optional */}
+                                    <Controller
+                                        name="unit"
+                                        control={control}
+                                        render={({ field }) => <Input type="text" placeholder="Enter unit number..." {...field} />}
+                                        rules={{ required: false }}
+                                    />
+                                    <FormText color="muted">
+                                        Optional - include &quot;Apt&quot;, &quot;Unit&quot;, etc...
+                                    </FormText>
+                                </Col>
+                                <Button>Next</Button>
+                            </Form>
+                        </div>}
 
-                            {/* PAGE 2 MODAL SPLIT */}
-                            <div className="tab">
+                        {/* PAGE 2 MODAL SPLIT */}
+                        {tab === 1 && <div className="tab">
+                            <Form onSubmit={handleSubmit(onSubmit)}>
                                 <Col className="col-12 mb-3">
                                     {/* # of Bedrooms */}
-                                    <AvField
+                                    <Controller
                                         name="bedCount"
-                                        label="Bedrooms"
-                                        placeholder="Enter number of bedrooms..."
-                                        helpMessage="Numbers only"
-                                        type="number"
-                                        errorMessage="Please enter the number of bedrooms"
-                                        validate={{
-                                            required: { value: true },
-                                        }}
-                                        value={event ? event.title : ""}
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) => <Input type="number" placeholder="Enter number of bedrooms..." {...field} />}
                                     />
+                                    {errors.bedCount && <FormText color="danger">This field is required</FormText>}
                                 </Col>
                                 <Col className="col-12 mb-3">
                                     {/* # of Bathrooms */}
-                                    <AvField
+                                    <Controller
                                         name="bathCount"
-                                        label="Bathrooms"
-                                        placeholder="Enter number of bathrooms..."
-                                        helpMessage="Numbers only"
-                                        type="number"
-                                        errorMessage="Please enter the number of bathrooms..."
-                                        validate={{
-                                            required: { value: true },
-                                        }}
-                                        value={event ? event.title : ""}
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) => <Input type="number" placeholder="Enter number of bathrooms..." {...field} />}
                                     />
+                                    {errors.bathCount && <FormText color="danger">This field is required</FormText>}
                                 </Col>
                                 <Col className="col-12 mb-3">
                                     {/* Square Footage */}
-                                    <AvField
+                                    <Controller
                                         name="livingSQFT"
-                                        label="Living Space Sqft"
-                                        placeholder="Enter number of living space SqFt..."
-                                        helpMessage="Numbers only"
-                                        type="number"
-                                        errorMessage="Please enter the square footage of living space"
-                                        validate={{
-                                            required: { value: true },
-                                        }}
-                                        value={event ? event.title : ""}
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) => <Input type="number" placeholder="Enter number of living space SqFt..." {...field} />}
                                     />
+                                    {errors.livingSQFT && <FormText color="danger">This field is required</FormText>}
                                 </Col>
                                 <Col className="col-12 mb-3">
                                     {/* Square Footage - Optional */}
-                                    <AvField
+                                    <Controller
                                         name="lotSQFT"
-                                        label="Lot Sqft"
-                                        placeholder="Enter number of lot SqFt..."
-                                        helpMessage="Numbers only"
-                                        type="number"
-                                        errorMessage="Please enter the square footage of the lot"
-                                        validate={{
-                                            required: { value: true },
-                                        }}
-                                        value={event ? event.title : ""}
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) => <Input type="number" placeholder="Enter number of lot SqFt..." {...field} />}
                                     />
+                                    {errors.lotSQFT && <FormText color="danger">This field is required</FormText>}
                                 </Col>
-                            </div>
+                                <div className="modal-footer"></div>
+                                <Button type="button" onClick={prevTab}>Back</Button>
+                                <Button>Next</Button>
+                            </Form>
+                        </div>}
 
-                            {/* PAGE 3 MODAL SPLIT - Needs to Hide or show tenant add in */}
-                            <div className="tab">
+                        {/* PAGE 3 MODAL SPLIT - Needs to Hide or show tenant add in */}
+                        {tab === 2 && <div className="tab">
+                            <Form onSubmit={handleSubmit(onSubmit)}>
                                 <Col className="col-12 mb-3">
                                     <p style={{ fontWeight: 500 }}>Select Property Status</p>
-                                    <AvRadioGroup inline name="statusRadio" required>
-                                        <AvRadio label="Occupied" value="occupied" />
-                                        <AvRadio label="Vacant" value="vacant" />
-                                    </AvRadioGroup>
+                                    <FormGroup tag="fieldset">
+                                        <Label className="mr-3">Occupied{' '}<input {...register} type="radio" value="occcupied" name="status" /></Label>
+                                        <Label>Vacant{' '}<input {...register} type="radio" value="vacant" name="status" /></Label>
+                                    </FormGroup>
+                                    {errors.status && <FormText color="danger">This field is required</FormText>}
                                 </Col>
                                 <Col className="col-12 mb-3">
                                     {/* Tenant Name - Optional */}
-                                    <AvField
-                                        name="tenant_name"
-                                        label="Tenant Name"
-                                        type="text"
-                                        placeholder="Enter tenant's name..."
-                                        errorMessage="Please enter the tenant's name"
-                                        validate={{
-                                            required: { value: true },
-                                        }}
-                                        value={event ? event.title : ""}
+                                    <Controller
+                                        name="tenantName"
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) => <Input type="text" placeholder="Enter Tenant's name..." {...field} />}
                                         className="mb-3"
                                     />
-
-                                    {/* Tenant Email - Optional */}
-                                    <AvField
-                                        name="tenant_email"
-                                        label="Tenant's Email"
-                                        placeholder="Enter tenant's email..."
-                                        type="text"
-                                        errorMessage="Please enter the tenant's email"
-                                        helpMessage="Your tenant will receive an invitation to download the Alula tenant app"
-                                        validate={{
-                                            required: { value: true },
-                                        }}
-                                        value={event ? event.title : ""}
-                                    />
+                                    {errors.tenantName && <FormText color="danger">This field is required</FormText>}
                                 </Col>
-                            </div>
-                            <div className="thanks-message text-center" id="text-message">
-                                <h3>Thankyou for your feedback!</h3> <span>Thanks for your valuable information.It helps us to improve our services!</span>
-                            </div>
-                            <div style={{ overflow: "auto" }} id="nextprevious">
-                                <div style={{ float: "right" }}> <button type="button" id="prevBtn" onClick={nextPrev(-1)}><i className="fa fa-angle-double-left"></i></button> <button type="button" id="nextBtn" onClick={nextPrev(1)}><i className="fa fa-angle-double-right"></i></button> </div>
-                            </div>
-                        </Row>
-                    </AvForm>
+                                <Col className="col-12 mb-3">
+                                    {/* Tenant Email - Optional */}
+                                    <Controller
+                                        name="tenantEmail"
+                                        control={control}
+                                        rules={{ required: true }}
+                                        render={({ field }) => <Input type="email" placeholder="Enter Tenant's email" {...field} />}
+                                        className="mb-3"
+                                    />
+                                    <FormText color="muted">Your tenant will receive an invitation to download the Alula tenant app</FormText><br />
+                                    {errors.tenantEmail && <FormText color="danger">This field is required</FormText>}
+
+                                    <div className="modal-footer"></div>
+                                    <Button type="button" onClick={prevTab}>Back</Button>
+                                    <Button onClick={addAProperty}>Submit</Button>
+                                </Col>
+                            </Form>
+                        </div>}
+                    </Row>
                 </ModalBody>
-                <div className="modal-footer"></div>
             </Modal>
         </React.Fragment>
     )

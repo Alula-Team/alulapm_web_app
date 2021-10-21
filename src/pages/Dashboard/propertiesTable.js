@@ -18,7 +18,7 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 const OneProperty = ({ thing }) => (
     <tr>
         {/* Property Address */}
-        <td>{thing.address}</td>
+        <td>{thing.propertyAddress}</td>
 
         {/* Tenant Name */}
         <td className=""> {thing.city} </td>
