@@ -123,8 +123,8 @@ const ForgetPasswordPage = props => {
                   </Link>{" "}
                 </p>
                 <p>
-                  © {new Date().getFullYear()} Alula. Made with{" "}
-                  <i className="mdi mdi-heart text-danger" /> in Las Vegas
+                  © {new Date().getFullYear()} Alula Software Inc. Made with{" "}
+                  <i className="mdi mdi-heart text-danger" /> in Las Vegas.
                 </p>
               </div>
             </Col>

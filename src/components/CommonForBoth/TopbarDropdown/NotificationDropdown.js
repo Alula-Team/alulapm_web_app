@@ -39,9 +39,9 @@ const NotificationDropdown = props => {
                 <h6 className="m-0"> {props.t("Notifications")} </h6>
               </Col>
               <div className="col-auto">
-                <a href="#!" className="small">
+                <a href="#!" className="medium">
                   {" "}
-                  View All
+                  <u>Mark all as read</u>
                 </a>
               </div>
             </Row>
@@ -147,7 +147,7 @@ const NotificationDropdown = props => {
             >
               <i className="mdi mdi-arrow-right-circle me-1"></i>
               {" "}
-              {props.t("View all")}{" "}
+              {props.t("See all activity")}{" "}
             </Link>
           </div>
         </DropdownMenu>

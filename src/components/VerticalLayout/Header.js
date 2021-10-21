@@ -144,10 +144,6 @@ const Header = props => {
               </div>
             </div>
 
-            <NotificationDropdown />
-
-            <ProfileMenu />
-
             <div className="dropdown d-none d-lg-inline-block ms-1">
               <button
                 type="button"
@@ -161,6 +157,10 @@ const Header = props => {
                 <p>Full Screen</p>
               </button>
             </div>
+
+            <NotificationDropdown />
+
+            <ProfileMenu />
           </div>
         </div>
       </header>

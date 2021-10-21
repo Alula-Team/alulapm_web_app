@@ -15,11 +15,11 @@ const MonthlyEarning = () => {
               <p className="text-muted">This month</p>
               <h3 className="text-center">$34,252</h3>
               <p className="text-muted text-center">
-                <span className="text-success me-2">
+                <span className="text-success">
                   {" "}
                   12% <i className="mdi mdi-arrow-up"></i>{" "}
                 </span>{" "}
-                From previous period
+                From previous month
               </p>
             </Col>
           </Row>

@@ -23,10 +23,6 @@ import ProjectsList from "../pages/Projects/projects-list"
 import ProjectsOverview from "../pages/Projects/ProjectOverview/projects-overview"
 import ProjectsCreate from "../pages/Projects/projects-create"
 
-//Invoices
-import InvoicesList from "../pages/Invoices/invoices-list"
-import InvoiceDetail from "../pages/Invoices/invoices-detail"
-
 // Authentication related pages
 import Login from "../pages/Authentication/Login"
 import Logout from "../pages/Authentication/Logout"
@@ -39,11 +35,24 @@ import TwostepVerification from "../pages/Authentication/auth-two-step-verificat
 
 // Dashboard
 import Dashboard from "../pages/Dashboard/index"
+import InvoiceDetail from "../pages/Dashboard/invoices-detail"
 
-//Pages
+// Rentals
+import Rentals from "../pages/Rentals/index"
+
+// Accounting
+import Accounting from "../pages/Accounting/index"
 
 const authProtectedRoutes = [
+  //dashboard
   { path: "/dashboard", component: Dashboard },
+  { path: "/invoices-detail/:id?", component: InvoiceDetail },
+
+  // rentals
+  { path: "/rentals", component: Rentals },
+
+  // accounting
+  { path: "/accounting", component: Accounting },
 
   //chat
   { path: "/chat", component: Chat },
@@ -53,10 +62,6 @@ const authProtectedRoutes = [
 
   // //profile
   { path: "/profile", component: UserProfile },
-
-  //Invoices
-  { path: "/invoices-list", component: InvoicesList },
-  { path: "/invoices-detail/:id?", component: InvoiceDetail },
 
   // Tasks
   { path: "/tasks-list", component: TasksList },
