@@ -5,7 +5,6 @@ import { useForm, Controller } from 'react-hook-form'
 import { db } from '../../../helpers/firebase_helper_2'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 
-
 const AddPropertyModal = ({ show, onCloseClick }) => {
     const [tab, setTab] = useState(0)
     const [property, setProperty] = useState({})
@@ -28,14 +27,23 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
         setProperty({ ...data })
         nextTab()
     }
-
-
+    // createdAt: serverTimestamp()
     async function addAProperty() {
+        console.log("Property is: ", property)
         const docRef = await addDoc(collection(db, "properties"), {
             ...property,
             createdAt: serverTimestamp()
         })
-        setValue("propertyAddress", "")
+        setValue({
+            "propertyAddress": "",
+            "unit": "",
+            "bedCount": "",
+            "bathCount": "",
+            "livingSQFT": "",
+            "lotSQFT": "",
+            "tenantName": "",
+            "tenantEmail": ""
+        })
         console.log("Document written with ID: ", docRef.id)
     }
 
@@ -162,14 +170,26 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
 
                                     <div className="modal-footer"></div>
                                     <Button type="button" onClick={prevTab}>Back</Button>
-                                    <Button onClick={addAProperty}>Submit</Button>
+                                    <Button>Next</Button>
                                 </Col>
+                            </Form>
+                        </div>}
+                        {tab === 3 && <div className="tab">
+                            <Form onSubmit={handleSubmit(addAProperty)}>
+                                <div>
+                                    <p><strong>Address:</strong> {property.propertyAddress} {property.unit && `Unit ${property.unit}`}<br />
+                                        <strong>Lot SQFT: </strong> {property.lotSQFT}<br />
+                                        <strong>Living SQFT: </strong> {property.livingSQFT}
+                                    </p>
+                                </div>
+                                <Button type="button" onClick={prevTab}>Back</Button>
+                                <Button onClick={addAProperty}>Submit</Button>
                             </Form>
                         </div>}
                     </Row>
                 </ModalBody>
-            </Modal>
-        </React.Fragment>
+            </Modal >
+        </React.Fragment >
     )
 }
 

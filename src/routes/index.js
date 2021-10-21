@@ -24,8 +24,8 @@ import ProjectsOverview from "../pages/Projects/ProjectOverview/projects-overvie
 import ProjectsCreate from "../pages/Projects/projects-create"
 
 //Invoices
-import InvoicesList from "../pages/Invoices/invoices-list"
-import InvoiceDetail from "../pages/Invoices/invoices-detail"
+// import InvoicesList from "../pages/Invoices/invoices-list"
+// import InvoiceDetail from "../pages/Invoices/invoices-detail"
 
 // Authentication related pages
 import Login from "../pages/Authentication/Login"
@@ -55,8 +55,7 @@ const authProtectedRoutes = [
   { path: "/profile", component: UserProfile },
 
   //Invoices
-  { path: "/invoices-list", component: InvoicesList },
-  { path: "/invoices-detail/:id?", component: InvoiceDetail },
+
 
   // Tasks
   { path: "/tasks-list", component: TasksList },

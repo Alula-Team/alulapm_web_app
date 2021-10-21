@@ -20,10 +20,10 @@ const OneProperty = ({ thing }) => (
         <td>{thing.propertyAddress}</td>
 
         {/* Tenant Name */}
-        <td className=""> {thing.city} </td>
+        <td className=""> {thing.tenantName} </td>
 
         {/* Date Added */}
-        <td> 11-06-2020 </td>
+        <td> {thing.createdAt} </td>
 
         {/* Status */}
         <td> Renewal </td>
@@ -56,7 +56,7 @@ const PropertiesTable = () => {
     if (!properties) {
         zeeTable = <tr><td>Loading...</td></tr>
     } else {
-        zeeTable = properties.map((thing) => <OneProperty key={thing.address} thing={thing} />)
+        zeeTable = properties.map((thing) => <OneProperty key={thing.propertyAddress} thing={thing} />)
     }
     return (
         <React.Fragment>
