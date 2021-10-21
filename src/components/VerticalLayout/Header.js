@@ -8,6 +8,9 @@ import { Link } from "react-router-dom"
 import logo from "../../assets/images/logo.svg"
 import logoLightSvg from "../../assets/images/logo-light.svg"
 
+import NotificationDropdown from '../CommonForBoth/TopbarDropdown/NotificationDropdown'
+import ProfileMenu from '../CommonForBoth/TopbarDropdown/ProfileMenu'
+
 //i18n
 import { withTranslation } from "react-i18next"
 
@@ -140,6 +143,10 @@ const Header = props => {
                 </form>
               </div>
             </div>
+
+            <NotificationDropdown />
+
+            <ProfileMenu />
 
             <div className="dropdown d-none d-lg-inline-block ms-1">
               <button
