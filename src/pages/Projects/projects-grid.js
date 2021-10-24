@@ -11,8 +11,6 @@ import {
 import { withRouter } from "react-router-dom"
 import { map } from "lodash"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
 
 //Import Cards
 import CardProject from "./card-project"
@@ -49,8 +47,7 @@ const ProjectsGrid = () => {
           </title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Projects" breadcrumbItem="Projects Grid" />
+          
 
           <Row>
             {/* Import Cards */}

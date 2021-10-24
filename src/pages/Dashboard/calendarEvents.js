@@ -95,11 +95,10 @@ const CalendarEvents = () => {
                                 </Media>
                             </Media>
                         </li>
-                        
                     </ul>
 
                     {/* MAX 5 EVENTS PER PAGE */}
-                    <p className="text-center mt-4">Pagination goes at the bottom; fixed</p>
+                    <p className="text-center mt-4">This is supposed to scroll</p>
                 </CardBody>
             </Card>
         </React.Fragment>

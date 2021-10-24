@@ -5,11 +5,10 @@ import { connect } from "react-redux"
 import 'react-drawer/lib/react-drawer.css'
 import { Link } from "react-router-dom"
 
-import logo from "../../assets/images/logo.svg"
-import logoLightSvg from "../../assets/images/logo-light.svg"
+import logo from "../../assets/images/Logo_color.png"
 
-import NotificationDropdown from '../CommonForBoth/TopbarDropdown/NotificationDropdown'
-import ProfileMenu from '../CommonForBoth/TopbarDropdown/ProfileMenu'
+import NotificationDropdown from './NotificationDropdown'
+import ProfileMenu from './ProfileMenu'
 
 //i18n
 import { withTranslation } from "react-i18next"
@@ -69,15 +68,10 @@ const Header = props => {
           <div className="d-flex">
 
             <div className="navbar-brand-box d-lg-none d-md-block">
-              <Link to="/" className="logo logo-dark">
-                <span className="logo-sm">
-                  <img src={logo} alt="" height="22" />
-                </span>
-              </Link>
 
               <Link to="/" className="logo logo-light">
                 <span className="logo-sm">
-                  <img src={logoLightSvg} alt="" height="22" />
+                  <img src={logo} alt="" height="22" />
                 </span>
               </Link>
             </div>

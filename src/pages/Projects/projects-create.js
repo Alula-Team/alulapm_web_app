@@ -8,9 +8,6 @@ import { Button, Card, CardBody, CardTitle, Col, Container, Form, FormGroup, Inp
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
-
 const ProjectsCreate = () => {
   const [startDate, setstartDate] = useState(new Date())
   const [endDate, setendDate] = useState(new Date())
@@ -52,8 +49,7 @@ const ProjectsCreate = () => {
           <title>Create New Projects | Skote - React Admin & Dashboard Template</title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Projects" breadcrumbItem="Create New" />
+          
 
           <Row>
             <Col lg="12">

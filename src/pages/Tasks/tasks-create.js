@@ -21,8 +21,6 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
 
 const TasksCreate = () => {
   const inpRow = [{ name: "", file: "" }]
@@ -56,8 +54,6 @@ const TasksCreate = () => {
           <title>Create Task | Skote - React Admin & Dashboard Template</title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Tasks" breadcrumbItem="Create Task" />
 
           <Row>
             <Col lg="12">

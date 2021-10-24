@@ -5,8 +5,6 @@ import { Link, withRouter } from "react-router-dom"
 import { Card, CardBody, Col, Container, Row, Table } from "reactstrap"
 import { isEmpty, map } from "lodash"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
 
 //Import Image
 import logo from "../../assets/images/logo-dark.png"
@@ -47,8 +45,8 @@ const InvoiceDetail = props => {
           </title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Invoices" breadcrumbItem="Invoice Detail" />
+          
+          
           {!isEmpty(invoiceDetail) && (
             <Row>
               <Col lg="12">

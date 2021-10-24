@@ -35,13 +35,13 @@ import TwostepVerification from "../pages/Authentication/auth-two-step-verificat
 
 // Dashboard
 import Dashboard from "../pages/Dashboard/index"
-import InvoiceDetail from "../pages/Dashboard/invoices-detail"
 
 // Rentals
 import Rentals from "../pages/Rentals/index"
 
 // Accounting
 import Accounting from "../pages/Accounting/index"
+import InvoiceDetail from "../pages/Accounting/invoices-detail"
 
 const authProtectedRoutes = [
   //dashboard

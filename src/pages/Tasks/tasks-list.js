@@ -4,8 +4,7 @@ import { isEmpty, map, size } from "lodash"
 import { Link, withRouter } from "react-router-dom"
 import classNames from "classnames"
 import { Card, CardBody, CardTitle, Col, Container, Row } from "reactstrap"
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
+
 import ReactApexChart from "react-apexcharts"
 //Import Images
 import images from "../../assets/images"
@@ -36,8 +35,7 @@ const TasksList = () => {
           <title>Task List | Skote - React Admin & Dashboard Template</title>
         </MetaTags>
         <Container fluid>
-          <Breadcrumbs title="Tasks" breadcrumbItem="Task List" />
-          {/* Render Breadcrumbs */}
+          
           <Row>
             <Col lg={8}>
               {map(tasks, (task, i) => (

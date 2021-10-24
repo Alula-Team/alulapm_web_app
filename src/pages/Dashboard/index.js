@@ -8,6 +8,8 @@ import OutstandingBalances from "./outstandingBalances"
 import OutstandingTasks from "./outstandingTasks"
 import CalendarEvents from "./calendarEvents"
 import LeaseExpiration from "./expiringLeases"
+import MaintenanceRequests from "./maintenanceRequests"
+import Applicants from "./applicantBox"
 
 //i18n
 import { withTranslation } from "react-i18next"
@@ -45,8 +47,19 @@ const Dashboard = () => {
 
           {/* Row 2 - Upcoming Lease Renewals, Property Chart */}
           <Row>
+            {/* Expiring Leases */}
             <Col className="col-4">
               <LeaseExpiration />
+            </Col>
+
+            {/* Maintenance Requests */}
+            <Col className="col-4">
+              <MaintenanceRequests />
+            </Col>
+
+            {/* Rental Applications */}
+            <Col className="col-4">
+              <Applicants />
             </Col>
           </Row>
 

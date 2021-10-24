@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MetaTags from "react-meta-tags"
 import { Container, Button } from "reactstrap"
 
 // Components
 import PropertiesTable from "./propertiesTable"
+import AddPropertyModal from "./AddPropertyModal"
 
 const Rentals = () => {
+    const [addPropertyModal, setAddPropertyModal] = useState(false)
     return (
         <React.Fragment>
+            <AddPropertyModal
+                show={addPropertyModal}
+                onCloseClick={() => setAddPropertyModal(false)}
+            />
             <div className="page-content">
                 <MetaTags>
                     <title>Rentals | Alula - Building the Future of Property Management</title>
@@ -20,6 +26,7 @@ const Rentals = () => {
                     <Button
                         color="primary"
                         className="font-16 btn-block mb-3"
+                        onClick={() => setAddPropertyModal(true)}
                     >
                         <i className="mdi mdi-plus-circle-outline me-1" />
                         Add Properties
