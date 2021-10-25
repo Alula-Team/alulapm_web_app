@@ -16,7 +16,7 @@ import { userForgetPassword } from "../../store/actions"
 
 // import images
 import profile from "../../assets/images/profile-img.png"
-import logo from "../../assets/images/logo.svg"
+import logo from "../../assets/images/favicon.png"
 
 const ForgetPasswordPage = props => {
   const dispatch = useDispatch()
@@ -47,12 +47,12 @@ const ForgetPasswordPage = props => {
           <Row className="justify-content-center">
             <Col md={8} lg={6} xl={5}>
               <Card className="overflow-hidden">
-                <div className="bg-primary bg-softbg-soft-primary">
+                <div className="bg-primary bg-soft">
                   <Row>
-                    <Col xs={7}>
+                    <Col className="col-7">
                       <div className="text-primary p-4">
-                        <h5 className="text-primary">Welcome Back !</h5>
-                        <p>Sign in to continue to Alula.</p>
+                        <h5 className="text-primary">Forgot Password</h5>
+                        <p>Enter your email to get started.</p>
                       </div>
                     </Col>
                     <Col className="col-5 align-self-end">
@@ -69,7 +69,7 @@ const ForgetPasswordPage = props => {
                             src={logo}
                             alt=""
                             className="rounded-circle"
-                            height="34"
+                            height="70"
                           />
                         </span>
                       </div>
@@ -123,8 +123,8 @@ const ForgetPasswordPage = props => {
                   </Link>{" "}
                 </p>
                 <p>
-                  © {new Date().getFullYear()} Alula. Made with{" "}
-                  <i className="mdi mdi-heart text-danger" /> in Las Vegas
+                  © {new Date().getFullYear()} Alula Software Inc. Made with{" "}
+                  <i className="mdi mdi-heart text-danger" /> in Las Vegas.
                 </p>
               </div>
             </Col>

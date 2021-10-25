@@ -6,8 +6,6 @@ import { withRouter } from "react-router-dom"
 import { isEmpty } from "lodash"
 import { Col, Container, Row } from "reactstrap"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../../components/Common/Breadcrumb"
 
 import { getProjectDetail as onGetProjectDetail } from "../../../store/projects/actions"
 import ProjectDetail from "./projectDetail"
@@ -48,8 +46,7 @@ const ProjectsOverview = props => {
           </title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Projects" breadcrumbItem="Project Overview" />
+          
 
           {!isEmpty(projectDetail) && (
             <>

@@ -21,8 +21,6 @@ import {
 } from "reactstrap"
 import { AvForm, AvField } from "availity-reactstrap-validation"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
 
 //Import Image
 import images from "../../assets/images"
@@ -137,8 +135,6 @@ const ProjectsList = () => {
           </title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Projects" breadcrumbItem="Projects List" />
 
           <Row>
             <Col lg="12">

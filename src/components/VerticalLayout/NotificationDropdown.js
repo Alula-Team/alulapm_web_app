@@ -5,8 +5,8 @@ import { Dropdown, DropdownToggle, DropdownMenu, Row, Col } from "reactstrap"
 import SimpleBar from "simplebar-react"
 
 //Import images
-import avatar3 from "../../../assets/images/users/avatar-3.jpg"
-import avatar4 from "../../../assets/images/users/avatar-4.jpg"
+import avatar3 from "../../assets/images/users/avatar-3.jpg"
+import avatar4 from "../../assets/images/users/avatar-4.jpg"
 
 //i18n
 import { withTranslation } from "react-i18next"
@@ -39,9 +39,9 @@ const NotificationDropdown = props => {
                 <h6 className="m-0"> {props.t("Notifications")} </h6>
               </Col>
               <div className="col-auto">
-                <a href="#!" className="small">
+                <a href="#!" className="medium">
                   {" "}
-                  View All
+                  <u>Mark all as read</u>
                 </a>
               </div>
             </Row>
@@ -147,7 +147,7 @@ const NotificationDropdown = props => {
             >
               <i className="mdi mdi-arrow-right-circle me-1"></i>
               {" "}
-              {props.t("View all")}{" "}
+              {props.t("See all activity")}{" "}
             </Link>
           </div>
         </DropdownMenu>

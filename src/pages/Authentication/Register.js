@@ -15,7 +15,7 @@ import { Link } from "react-router-dom"
 
 // import images
 import profileImg from "../../assets/images/profile-img.png"
-import logoImg from "../../assets/images/logo.svg"
+import logoImg from "../../assets/images/favicon.png"
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -74,7 +74,7 @@ const Register = () => {
                             src={logoImg}
                             alt=""
                             className="rounded-circle"
-                            height="34"
+                            height="70"
                           />
                         </span>
                       </div>

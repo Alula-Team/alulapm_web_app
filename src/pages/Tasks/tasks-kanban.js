@@ -5,8 +5,6 @@ import { Container } from "reactstrap"
 import { withRouter } from "react-router-dom"
 import { isEmpty, map } from "lodash"
 
-//Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb"
 
 //Import Task Cards
 import UncontrolledBoard from "./UncontrolledBoard"
@@ -38,8 +36,7 @@ const TasksKanban = () => {
           <title>Kanban Board | Skote - React Admin & Dashboard Template</title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumbs */}
-          <Breadcrumbs title="Tasks" breadcrumbItem="Kanban Board" />
+          
           {!isEmpty(data) && (
             <UncontrolledBoard board={{ columns: data }} content={tasks} />
           )}

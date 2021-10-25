@@ -14,11 +14,11 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap"
-import { AvField, AvForm } from "availity-reactstrap-validation"
+import { AvField, AvForm, AvInput } from "availity-reactstrap-validation"
 
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
-import interactionPlugin, { Draggable } from "@fullcalendar/interaction"
+import interactionPlugin from "@fullcalendar/interaction"
 import BootstrapTheme from "@fullcalendar/bootstrap"
 
 import {
@@ -26,7 +26,7 @@ import {
   deleteEvent as onDeleteEvent,
   getCategories as onGetCategories,
   getEvents as onGetEvents,
-  updateEvent as onUpdateEvent,
+  // updateEvent as onUpdateEvent,
 } from "../../store/actions"
 
 import DeleteModal from "./DeleteModal"
@@ -40,9 +40,8 @@ import { useSelector, useDispatch } from "react-redux"
 const Calender = props => {
   const dispatch = useDispatch()
 
-  const { events, categories } = useSelector(state => ({
-    events: state.calendar.events,
-    categories: state.calendar.categories,
+  const { events } = useSelector(state => ({
+    events: state.calendar.events
   }))
 
   const [modal, setModal] = useState(false)
@@ -55,9 +54,6 @@ const Calender = props => {
   useEffect(() => {
     dispatch(onGetCategories())
     dispatch(onGetEvents())
-    new Draggable(document.getElementById("external-events"), {
-      itemSelector: ".external-event",
-    })
   }, [])
 
   useEffect(() => {
@@ -128,39 +124,39 @@ const Calender = props => {
   /**
    * Handling submit event on event form
    */
-  const handleValidEventSubmit = (e, values) => {
-    const date = event['start']
-    const day = date.getDate()
-    const month = date.getMonth()
-    const year = date.getFullYear()
+  // const handleValidEventSubmit = (e, values) => {
+  //   const date = event['start']
+  //   const day = date.getDate()
+  //   const month = date.getMonth()
+  //   const year = date.getFullYear()
 
-    const currectDate = new Date()
-    const currentHour = currectDate.getHours()
-    const currentMin = currectDate.getMinutes()
-    const currentSec = currectDate.getSeconds()
-    const modifiedDate = new Date(year, month, day, currentHour, currentMin, currentSec)
-    if (isEdit) {
-      const updateEvent = {
-        id: event.id,
-        title: values.title,
-        classNames: values.category + " text-white",
-        start: modifiedDate,
-      }
-      // update event
-      dispatch(onUpdateEvent(updateEvent))
-    } else {
-      const newEvent = {
-        id: Math.floor(Math.random() * 100),
-        title: values["title"],
-        start: selectedDay ? selectedDay.date : new Date(),
-        className: values.category + " text-white",
-      }
-      // save new event
-      dispatch(onAddNewEvent(newEvent))
-    }
-    setSelectedDay(null)
-    toggle()
-  }
+  //   const currectDate = new Date()
+  //   const currentHour = currectDate.getHours()
+  //   const currentMin = currectDate.getMinutes()
+  //   const currentSec = currectDate.getSeconds()
+  //   const modifiedDate = new Date(year, month, day, currentHour, currentMin, currentSec)
+  //   if (isEdit) {
+  //     const updateEvent = {
+  //       id: event.id,
+  //       title: values.title,
+  //       classNames: values.category + " text-white",
+  //       start: modifiedDate,
+  //     }
+  //     // update event
+  //     dispatch(onUpdateEvent(updateEvent))
+  //   } else {
+  //     const newEvent = {
+  //       id: Math.floor(Math.random() * 100),
+  //       title: values["title"],
+  //       start: selectedDay ? selectedDay.date : new Date(),
+  //       className: values.category + " text-white",
+  //     }
+  //     // save new event
+  //     dispatch(onAddNewEvent(newEvent))
+  //   }
+  //   setSelectedDay(null)
+  //   toggle()
+  // }
 
   const handleValidEventSubmitcategory = (event, values) => {
     const newEvent = {
@@ -184,13 +180,6 @@ const Calender = props => {
     dispatch(onDeleteEvent(event))
     setDeleteModal(false)
     toggle()
-  }
-
-  /**
-   * On category darg event
-   */
-  const onDrag = event => {
-    event.preventDefault()
   }
 
   /**
@@ -230,74 +219,31 @@ const Calender = props => {
           <title>Calendar | Alula - Building the Future of Property Management</title>
         </MetaTags>
         <Container fluid={true}>
-          <div className="page-title-box">
-            <h4 className="mb-0 font-size-18">Calendar</h4>
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="page-title-box">
+              <h4 className="mb-0 font-size-18">Calendar</h4>
+            </div>
+            <Button
+              color="primary"
+              className="font-16 btn-block mb-3"
+              onClick={toggleCategory}
+            >
+              <i className="mdi mdi-plus-circle-outline me-1" />
+              Create New Event
+            </Button>
           </div>
           <Row>
             <Col className="col-12">
               <Card>
                 <CardBody>
                   <Row>
-                    <Col lg={3}>
-                      <Button
-                        color="primary"
-                        className="font-16 btn-block"
-                        onClick={toggleCategory}
-                      >
-                        <i className="mdi mdi-plus-circle-outline me-1" />
-                        Create New Event
-                      </Button>
-
-                      <div id="external-events" className="mt-3">
-                        <p className="text-muted">
-                          Drag and drop your event or click in the calendar
-                        </p>
-                        {categories &&
-                          categories.map((category
-                            // , i
-                            ) => (
-                            <div
-                              className={`${category.type} external-event text-white p-1 mb-2`}
-                              key={"cat-" + category.id}
-                              draggable
-                              onDrag={event => onDrag(event, category)}
-                            >
-                              <i className="mdi mdi-checkbox-blank-circle me-2 vertical-middle" />
-                              {category.title}
-                            </div>
-                          ))}
-                      </div>
-
-                      <div className="mt-5 d-none d-xl-block">
-                        <h5 className="text-center">How It Works ?</h5>
-
-                        <ul className="ps-3">
-                          <li className="text-muted mb-3">
-                            It has survived not only five centuries, but also
-                            the leap into electronic typesetting, remaining
-                            essentially unchanged.
-                          </li>
-                          <li className="text-muted mb-3">
-                            Richard McClintock, a Latin professor at
-                            Hampden-Sydney College in Virginia, looked up one of
-                            the more obscure Latin words, consectetur, from a
-                            Lorem Ipsum passage.
-                          </li>
-                          <li className="text-muted mb-3">
-                            It has survived not only five centuries, but also
-                            the leap into electronic typesetting, remaining
-                            essentially unchanged.
-                          </li>
-                        </ul>
-                      </div>
-                    </Col>
-                    <Col className="col-lg-9">
+                    <Col className="col-12">
                       {/* fullcalendar control */}
                       <FullCalendar
                         plugins={[
                           BootstrapTheme,
                           dayGridPlugin,
-                          interactionPlugin,
+                          interactionPlugin
                         ]}
                         slotDuration={"00:15:00"}
                         handleWindowResize={true}
@@ -316,94 +262,26 @@ const Calender = props => {
                         drop={onDrop}
                       />
 
-                      {/* New/Edit event modal */}
-                      <Modal isOpen={modal} className={props.className}>
-                        <ModalHeader toggle={toggle} tag="h4">
-                          {!isEdit ? "Edit Event" : "Add Event"}
-                        </ModalHeader>
-                        <ModalBody>
-                          <AvForm onValidSubmit={handleValidEventSubmit}>
-                            <Row form>
-                              <Col className="col-12 mb-3">
-                                <AvField
-                                  name="title"
-                                  label="Event Name"
-                                  type="text"
-                                  errorMessage="Invalid name"
-                                  validate={{
-                                    required: { value: true },
-                                  }}
-                                  value={event ? event.title : ""}
-                                />
-                              </Col>
-                              <Col className="col-12 mb-3">
-                                <AvField
-                                  type="select"
-                                  name="category"
-                                  label="Select Category"
-                                  validate={{
-                                    required: { value: true },
-                                  }}
-                                  value={event ? event.category : "bg-primary"}
-                                >
-                                  <option value="bg-danger">Danger</option>
-                                  <option value="bg-success">Success</option>
-                                  <option value="bg-primary">Primary</option>
-                                  <option value="bg-info">Info</option>
-                                  <option value="bg-dark">Dark</option>
-                                  <option value="bg-warning">Warning</option>
-                                </AvField>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col>
-                                <div className="text-end">
-                                  <button
-                                    type="button"
-                                    className="btn btn-light me-2"
-                                    onClick={toggle}
-                                  >
-                                    Close
-                                  </button>
-                                  {!!isEdit && (
-                                    <button
-                                      type="button"
-                                      className="btn btn-danger me-2"
-                                      onClick={() => setDeleteModal(true)}
-                                    >
-                                      Delete
-                                    </button>
-                                  )}
-                                  <button
-                                    type="submit"
-                                    className="btn btn-success save-event"
-                                  >
-                                    Save
-                                  </button>
-                                </div>
-                              </Col>
-                            </Row>
-                          </AvForm>
-                        </ModalBody>
-                      </Modal>
-
+                      {/* Create Event / Edit Event Modal */}
                       <Modal
                         isOpen={modalcategory}
                         toggle={toggleCategory}
                         className={props.className}
                       >
-                        <ModalHeader toggle={toggleCategory} tag="h4">
-                            Create Event
+                        <ModalHeader toggle={toggle} tag="h4">
+                          Create Event
                         </ModalHeader>
                         <ModalBody>
                           <AvForm
                             onValidSubmit={handleValidEventSubmitcategory}
                           >
                             <Row form>
-                              <Col className="col-12 mb-3">
+                              {/* EVENT TITLE */}
+                              <Col className="col-12 mb-4">
                                 <AvField
                                   name="title_category"
                                   label="Event Title"
+                                  placeholder="Enter event title..."
                                   type="text"
                                   errorMessage="Please enter event title"
                                   validate={{
@@ -416,22 +294,329 @@ const Calender = props => {
                                   }
                                 />
                               </Col>
+
+                              {/* DATE & TIME*/}
+                              <Row>
+                                {/* DATE */}
+                                <Col className="col-5 mb-3">
+                                  <AvField 
+                                    name="date" 
+                                    type="date" 
+                                    errorMessage="Please enter event title" 
+                                  />
+                                </Col>
+
+                                {/* TIME Start */}
+                                <Col className="col-3 mb-3">
+                                  <AvField
+                                    type="select"
+                                    name="start_time"
+                                    value={
+                                      event ? event.start_time : "12:00am"
+                                    }
+                                  >
+                                    <option value="">12:00 am</option>
+                                    <option value="">12:15 am</option>
+                                    <option value="">12:30 am</option>
+                                    <option value="">12:45 am</option>
+                                    <option value="">1:00 am</option>
+                                    <option value="">1:15 am</option>
+                                    <option value="">1:30 am</option>
+                                    <option value="">1:45 am</option>
+                                    <option value="">2:00 am</option>
+                                    <option value="">2:15 am</option>
+                                    <option value="">2:30 am</option>
+                                    <option value="">2:45 am</option>
+                                    <option value="">3:00 am</option>
+                                    <option value="">3:15 am</option>
+                                    <option value="">3:30 am</option>
+                                    <option value="">3:45 am</option>
+                                    <option value="">4:00 am</option>
+                                    <option value="">4:15 am</option>
+                                    <option value="">4:30 am</option>
+                                    <option value="">4:45 am</option>
+                                    <option value="">5:00 am</option>
+                                    <option value="">5:15 am</option>
+                                    <option value="">5:30 am</option>
+                                    <option value="">5:45 am</option>
+                                    <option value="">6:00 am</option>
+                                    <option value="">6:15 am</option>
+                                    <option value="">6:30 am</option>
+                                    <option value="">6:45 am</option>
+                                    <option value="">7:00 am</option>
+                                    <option value="">7:15 am</option>
+                                    <option value="">7:30 am</option>
+                                    <option value="">7:45 am</option>
+                                    <option value="">8:00 am</option>
+                                    <option value="">8:15 am</option>
+                                    <option value="">8:30 am</option>
+                                    <option value="">8:45 am</option>
+                                    <option value="">9:00 am</option>
+                                    <option value="">9:15 am</option>
+                                    <option value="">9:30 am</option>
+                                    <option value="">9:45 am</option>
+                                    <option value="">10:00 am</option>
+                                    <option value="">10:15 am</option>
+                                    <option value="">10:30 am</option>
+                                    <option value="">10:45 am</option>
+                                    <option value="">11:00 am</option>
+                                    <option value="">11:15 am</option>
+                                    <option value="">11:30 am</option>
+                                    <option value="">11:45 am</option>
+                                    <option value="">12:00 pm</option>
+                                    <option value="">12:15 pm</option>
+                                    <option value="">12:30 pm</option>
+                                    <option value="">12:45 pm</option>
+                                    <option value="">1:00 pm</option>
+                                    <option value="">1:15 pm</option>
+                                    <option value="">1:30 pm</option>
+                                    <option value="">1:45 pm</option>
+                                    <option value="">2:00 pm</option>
+                                    <option value="">2:15 pm</option>
+                                    <option value="">2:30 pm</option>
+                                    <option value="">2:45 pm</option>
+                                    <option value="">3:00 pm</option>
+                                    <option value="">3:15 pm</option>
+                                    <option value="">3:30 pm</option>
+                                    <option value="">3:45 pm</option>
+                                    <option value="">4:00 pm</option>
+                                    <option value="">4:15 pm</option>
+                                    <option value="">4:30 pm</option>
+                                    <option value="">4:45 pm</option>
+                                    <option value="">5:00 pm</option>
+                                    <option value="">5:15 pm</option>
+                                    <option value="">5:30 pm</option>
+                                    <option value="">5:45 pm</option>
+                                    <option value="">6:00 pm</option>
+                                    <option value="">6:15 pm</option>
+                                    <option value="">6:30 pm</option>
+                                    <option value="">6:45 pm</option>
+                                    <option value="">7:00 pm</option>
+                                    <option value="">7:15 pm</option>
+                                    <option value="">7:30 pm</option>
+                                    <option value="">7:45 pm</option>
+                                    <option value="">8:00 pm</option>
+                                    <option value="">8:15 pm</option>
+                                    <option value="">8:30 pm</option>
+                                    <option value="">8:45 pm</option>
+                                    <option value="">9:00 pm</option>
+                                    <option value="">9:15 pm</option>
+                                    <option value="">9:30 pm</option>
+                                    <option value="">9:45 pm</option>
+                                    <option value="">10:00 pm</option>
+                                    <option value="">10:15 pm</option>
+                                    <option value="">10:30 pm</option>
+                                    <option value="">10:45 pm</option>
+                                    <option value="">11:00 pm</option>
+                                    <option value="">11:15 pm</option>
+                                    <option value="">11:30 pm</option>
+                                  </AvField>
+                                </Col>
+
+                                <Col className="col-1 mt-2">To</Col>
+
+                                {/* TIME End */}
+                                <Col className="col-3 mb-3">
+                                  <AvField
+                                    type="select"
+                                    name="end_time"
+                                    value={
+                                      event ? event.end_time : "12:00am"
+                                    }
+                                  >
+                                    <option value="">12:00 am</option>
+                                    <option value="">12:15 am</option>
+                                    <option value="">12:30 am</option>
+                                    <option value="">12:45 am</option>
+                                    <option value="">1:00 am</option>
+                                    <option value="">1:15 am</option>
+                                    <option value="">1:30 am</option>
+                                    <option value="">1:45 am</option>
+                                    <option value="">2:00 am</option>
+                                    <option value="">2:15 am</option>
+                                    <option value="">2:30 am</option>
+                                    <option value="">2:45 am</option>
+                                    <option value="">3:00 am</option>
+                                    <option value="">3:15 am</option>
+                                    <option value="">3:30 am</option>
+                                    <option value="">3:45 am</option>
+                                    <option value="">4:00 am</option>
+                                    <option value="">4:15 am</option>
+                                    <option value="">4:30 am</option>
+                                    <option value="">4:45 am</option>
+                                    <option value="">5:00 am</option>
+                                    <option value="">5:15 am</option>
+                                    <option value="">5:30 am</option>
+                                    <option value="">5:45 am</option>
+                                    <option value="">6:00 am</option>
+                                    <option value="">6:15 am</option>
+                                    <option value="">6:30 am</option>
+                                    <option value="">6:45 am</option>
+                                    <option value="">7:00 am</option>
+                                    <option value="">7:15 am</option>
+                                    <option value="">7:30 am</option>
+                                    <option value="">7:45 am</option>
+                                    <option value="">8:00 am</option>
+                                    <option value="">8:15 am</option>
+                                    <option value="">8:30 am</option>
+                                    <option value="">8:45 am</option>
+                                    <option value="">9:00 am</option>
+                                    <option value="">9:15 am</option>
+                                    <option value="">9:30 am</option>
+                                    <option value="">9:45 am</option>
+                                    <option value="">10:00 am</option>
+                                    <option value="">10:15 am</option>
+                                    <option value="">10:30 am</option>
+                                    <option value="">10:45 am</option>
+                                    <option value="">11:00 am</option>
+                                    <option value="">11:15 am</option>
+                                    <option value="">11:30 am</option>
+                                    <option value="">11:45 am</option>
+                                    <option value="">12:00 pm</option>
+                                    <option value="">12:15 pm</option>
+                                    <option value="">12:30 pm</option>
+                                    <option value="">12:45 pm</option>
+                                    <option value="">1:00 pm</option>
+                                    <option value="">1:15 pm</option>
+                                    <option value="">1:30 pm</option>
+                                    <option value="">1:45 pm</option>
+                                    <option value="">2:00 pm</option>
+                                    <option value="">2:15 pm</option>
+                                    <option value="">2:30 pm</option>
+                                    <option value="">2:45 pm</option>
+                                    <option value="">3:00 pm</option>
+                                    <option value="">3:15 pm</option>
+                                    <option value="">3:30 pm</option>
+                                    <option value="">3:45 pm</option>
+                                    <option value="">4:00 pm</option>
+                                    <option value="">4:15 pm</option>
+                                    <option value="">4:30 pm</option>
+                                    <option value="">4:45 pm</option>
+                                    <option value="">5:00 pm</option>
+                                    <option value="">5:15 pm</option>
+                                    <option value="">5:30 pm</option>
+                                    <option value="">5:45 pm</option>
+                                    <option value="">6:00 pm</option>
+                                    <option value="">6:15 pm</option>
+                                    <option value="">6:30 pm</option>
+                                    <option value="">6:45 pm</option>
+                                    <option value="">7:00 pm</option>
+                                    <option value="">7:15 pm</option>
+                                    <option value="">7:30 pm</option>
+                                    <option value="">7:45 pm</option>
+                                    <option value="">8:00 pm</option>
+                                    <option value="">8:15 pm</option>
+                                    <option value="">8:30 pm</option>
+                                    <option value="">8:45 pm</option>
+                                    <option value="">9:00 pm</option>
+                                    <option value="">9:15 pm</option>
+                                    <option value="">9:30 pm</option>
+                                    <option value="">9:45 pm</option>
+                                    <option value="">10:00 pm</option>
+                                    <option value="">10:15 pm</option>
+                                    <option value="">10:30 pm</option>
+                                    <option value="">10:45 pm</option>
+                                    <option value="">11:00 pm</option>
+                                    <option value="">11:15 pm</option>
+                                    <option value="">11:30 pm</option>
+                                  </AvField>
+                                </Col>
+                              </Row>
+                              
+                              {/* CATEGORY, REPEAT EVENT & REMINDER */}
+                              <Row>
+                                {/* CATEGORY */}
+                                <Col className="col-4 mb-3">
+                                  <AvField
+                                    type="select"
+                                    name="event_category"
+                                    label="Choose Category"
+                                    value={
+                                      event ? event.event_category : "select_category"
+                                    }
+                                  >
+                                    <option value="select_category">Select Category</option>
+                                    <option value="appointment">Appointment</option>
+                                    <option value="meeting">Meeting</option>
+                                    <option value="other">Other</option>
+                                    <option value="outOfOffice">Out of Office</option>
+                                    <option value="showing">Showing</option>
+                                    <option value="task">Task</option>
+                                  </AvField>
+                                </Col>
+
+
+                                {/* REPEAT EVENT - daily, weekly, monthly, yearly */}
+                                <Col className="col-4 mb-3">
+                                  <AvField
+                                    type="select"
+                                    name="repeat_event"
+                                    label="Repeat Event"
+                                    value={
+                                      event ? event.repeat_event : "none"
+                                    }
+                                  >
+                                    <option value="none">Does Not Repeat</option>
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="yearly">Yearly</option>
+                                    <option value="every_weekday">Every Weekday</option>
+                                  </AvField>
+                                </Col>
+
+                                {/* REMINIDER */}
+                                <Col className="col-4 mb-3">
+                                  <AvField
+                                    type="select"
+                                    name="reminder"
+                                    label="Reminder"
+                                    value={
+                                      event ? event.reminder : "none"
+                                    }
+                                  >
+                                    <option value="none">No Reminder</option>
+                                    <option value="30_min">30 minutes</option>
+                                    <option value="1_hour">1 hour</option>
+                                    <option value="1.5_hours">1.5 hours</option>
+                                    <option value="2_hours">2 hours</option>
+                                    <option value="1_day">1 day</option>
+                                    <option value="2_days">2 days</option>
+                                  </AvField>
+                                </Col>
+                              </Row>
+
+                              {/* ADD LOCATION - Google Places API */}
                               <Col className="col-12 mb-3">
                                 <AvField
-                                  type="select"
-                                  name="event_category"
-                                  label="Choose Category Color"
-                                  value={
-                                    event ? event.event_category : "bg-primary"
-                                  }
-                                >
-                                  <option value="bg-danger">Danger</option>
-                                  <option value="bg-success">Success</option>
-                                  <option value="bg-primary">Primary</option>
-                                  <option value="bg-info">Info</option>
-                                  <option value="bg-dark">Dark</option>
-                                  <option value="bg-warning">Warning</option>
-                                </AvField>
+                                    name="location"
+                                    label="Add Location"
+                                    placeholder="Enter location..."
+                                    type="location"
+                                    value={event ? event.location : ""}
+                                />
+                              </Col>
+
+                              {/* ADD LINK */}
+                              <Col className="col-12 mb-3">
+                                <AvField
+                                    name="link"
+                                    label="Add Link"
+                                    placeholder="Enter link..."
+                                    type="link"
+                                    value={event ? event.link : ""}
+                                />
+                              </Col>
+
+                              {/* ADD DESCRIPTION */}
+                              <Col className="col-12 mb-3">
+                                <p style={{fontWeight: 500, marginBottom: 10}}>Description</p>
+                                <AvInput
+                                    name="description"
+                                    placeholder="Enter event description..."
+                                    type="textarea"
+                                    style={{ "height": "150px"}}
+                                />
                               </Col>
                             </Row>
                             <Row>
@@ -442,7 +627,7 @@ const Calender = props => {
                                     className="btn btn-light me-2"
                                     onClick={toggleCategory}
                                   >
-                                    Close
+                                    Cancel
                                   </button>
                                   <button
                                     type="submit"
@@ -450,6 +635,15 @@ const Calender = props => {
                                   >
                                     Save
                                   </button>
+                                  {!!isEdit && (
+                                    <button
+                                      type="button"
+                                      className="btn btn-danger me-2"
+                                      onClick={() => setDeleteModal(true)}
+                                    >
+                                      Delete
+                                    </button>
+                                  )}
                                 </div>
                               </Col>
                             </Row>

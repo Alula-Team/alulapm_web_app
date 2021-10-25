@@ -20,8 +20,6 @@ import { useSelector, useDispatch } from "react-redux"
 
 import { withRouter } from "react-router-dom"
 
-//Import Breadcrumb
-import Breadcrumb from "../../components/Common/Breadcrumb"
 
 import avatar from "../../assets/images/users/avatar-1.jpg"
 // actions
@@ -68,11 +66,10 @@ const UserProfile = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Profile | Skote - React Admin & Dashboard Template</title>
+          <title>Profile | Alula - Building the Future of Property Management</title>
         </MetaTags>
         <Container fluid>
-          {/* Render Breadcrumb */}
-          <Breadcrumb title="Skote" breadcrumbItem="Profile" />
+          
 
           <Row>
             <Col lg="12">

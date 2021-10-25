@@ -1,30 +1,20 @@
 import PropTypes from "prop-types"
-import React, { useEffect } from "react"
+import React from "react"
 import MetaTags from "react-meta-tags"
-import { Container } from "reactstrap"
-
-//import action
-import { getChartsData as onGetChartsData } from "../../store/actions"
+import { Col, Container, Row } from "reactstrap"
 
 // Pages Components
-import WelcomeComp from "./WelcomeComp"
-import MonthlyEarnings from "./MonthlyEarnings"
-import MonthlyExpenses from "./MonthlyExpenses"
-import PropertiesTable from "./propertiesTable"
-import TransactionsTable from "./transactionsTable"
+import OutstandingBalances from "./outstandingBalances"
+import OutstandingTasks from "./outstandingTasks"
+import CalendarEvents from "./calendarEvents"
+import LeaseExpiration from "./expiringLeases"
+import MaintenanceRequests from "./maintenanceRequests"
+import Applicants from "./applicantBox"
 
 //i18n
 import { withTranslation } from "react-i18next"
 
-//redux
-import { useDispatch } from "react-redux"
-
 const Dashboard = () => {
-
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(onGetChartsData("yearly"))
-  }, [dispatch])
 
   return (
     <React.Fragment>
@@ -34,40 +24,45 @@ const Dashboard = () => {
         </MetaTags>
         <Container fluid>
           <div className="page-title-box">
-            <h4 className="mb-0 font-size-18">Dashboard</h4>
+              <h4 className="mb-0 font-size-18">Dashboard</h4>
           </div>
 
-          {/* Row 1 */}
-          <div className="row">
-            {/* Welcome Box */}
-            <div className="col-12 col-xl-4">
-              <WelcomeComp />
-            </div>
+          {/* Row 1 - Outstanding Balances, Outstanding Tasks, Upcoming Calendar Events */}
+          <Row>
+            {/* Outstanding Balances */}
+            <Col className="col-4">
+              <OutstandingBalances />
+            </Col>
 
-            {/* Money In - FOR PROPERTY MANAGERS ONLY */}
-            <div className="col-12 col-xl-4">
-              <MonthlyEarnings />
-            </div>
+            {/* Outstanding Tasks */}
+            <Col className="col-4">
+              <OutstandingTasks />
+            </Col>
 
-            {/* Money Out - FOR PROPERTY MANAGERS ONLY */}
-            <div className="col-12 col-xl-4">
-              <MonthlyExpenses />
-            </div>
-          </div>
+            {/* Upcoming Calendar Events */}
+            <Col className="col-4">
+              <CalendarEvents />
+            </Col>
+          </Row>
 
-          {/* Row 2 - Properties Table*/}
-          <div className="row">
-            <div className="col-12">
-              <PropertiesTable />
-            </div>
-          </div>
+          {/* Row 2 - Upcoming Lease Renewals, Property Chart */}
+          <Row>
+            {/* Expiring Leases */}
+            <Col className="col-4">
+              <LeaseExpiration />
+            </Col>
 
-          {/* Row 3 - Transaction Table List */}
-          <div className="row">
-            <div className="col-12">
-              <TransactionsTable />
-            </div>
-          </div>
+            {/* Maintenance Requests */}
+            <Col className="col-4">
+              <MaintenanceRequests />
+            </Col>
+
+            {/* Rental Applications */}
+            <Col className="col-4">
+              <Applicants />
+            </Col>
+          </Row>
+
         </Container>
       </div>
     </React.Fragment>

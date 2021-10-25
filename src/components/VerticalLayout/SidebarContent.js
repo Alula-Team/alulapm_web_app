@@ -102,6 +102,22 @@ const SidebarContent = props => {
               </Link>
             </li>
 
+            {/* Rentals */}
+            <li>
+              <Link to="/rentals" className="">
+                <i className="bx bx-building-house"></i>
+                <span>{props.t("Rentals")}</span>
+              </Link>
+            </li>
+
+            {/* Accounting */}
+            <li>
+              <Link to="/accounting" className="">
+                <i className="bx bx-file"></i>
+                <span>{props.t("Accounting")}</span>
+              </Link>
+            </li>
+
             <li className="menu-title">{props.t("Apps")} </li>
 
             {/* CALENDAR */}
@@ -123,25 +139,22 @@ const SidebarContent = props => {
               </Link>
             </li>
 
-            {/* Notifications - */}
+            {/* Leasing - Projects Grid UI w/ Detail (Create task button that links to create task compose) */}
             <li>
               <Link to="#" className="">
-                <i className="bx bx-bell"></i>
-                <span className="badge rounded-pill bg-danger float-end">
-                  124
-                </span>
-                <span>{props.t("Notifications")}</span>
+                <i className="bx bx-receipt"></i>
+                <span>{props.t("Leasing")}</span>
               </Link>
             </li>
 
-            {/* SERVICE REQUESTS - Projects List UI w/ Detail (Create task button that links to create task compose) */}
+            {/* Maintenance - Projects List UI w/ Detail (Create task button that links to create task compose) */}
             <li>
               <Link to="#" className="">
                 <i className="bx bx-briefcase-alt-2"></i>
                 <span className="badge rounded-pill bg-danger float-end">
                   10
                 </span>
-                <span>{props.t("Service Requests")}</span>
+                <span>{props.t("Maintenance")}</span>
               </Link>
             </li>
 
@@ -156,13 +169,13 @@ const SidebarContent = props => {
               </Link>
             </li>
 
-            {/* Team - User user list ui */}
+            {/* TEAM */}
             <li>
-              <Link to="#" className="">
+              <Link to="/team" className="">
                 <i className="bx bxs-user-detail"></i>
                 <span>{props.t("Team")}</span>
               </Link>
-            </li>
+            </li> 
           </ul>
         </div>
       </SimpleBar>

@@ -19,7 +19,7 @@ import { loginUser,
 
 // import images
 import profile from "../../assets/images/profile-img.png"
-import logo from "../../assets/images/logo.svg"
+import logo from "../../assets/images/favicon.png"
 
 const Login = props => {
   const dispatch = useDispatch()
@@ -50,10 +50,10 @@ const Login = props => {
               <Card className="overflow-hidden">
                 <div className="bg-primary bg-soft">
                   <Row>
-                    <Col xs={7}>
+                    <Col className="col-7">
                       <div className="text-primary p-4">
-                        <h5 className="text-primary">Welcome Back !</h5>
-                        <p>Sign in to continue to Alula.</p>
+                        <h5 className="text-primary">Sign In</h5>
+                        <p>Sign in to get started.</p>
                       </div>
                     </Col>
                     <Col className="col-5 align-self-end">
@@ -70,7 +70,7 @@ const Login = props => {
                             src={logo}
                             alt=""
                             className="rounded-circle"
-                            height="34"
+                            height="70"
                           />
                         </span>
                       </div>
