@@ -1,201 +1,240 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Col, Modal, ModalHeader, ModalBody, Row, Button, Input, FormText, FormGroup, Label } from 'reactstrap'
-import { useForm, Controller } from 'react-hook-form'
-import { db } from '../../../helpers/firebase_helper_2'
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import { Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap'
+import { AvField, AvForm, AvRadio, AvRadioGroup } from "availity-reactstrap-validation"
 
 const AddPropertyModal = ({ show, onCloseClick }) => {
-    const [tab, setTab] = useState(0)
-    const [property, setProperty] = useState({})
 
-    let whichTab = useRef(0)
+  $(document).ready(function () {
+    prep_modal()
+  })
+  function prep_modal() {
+    $(".modal").each(function () {
 
-    let { handleSubmit, control, register, setValue, formState: { errors } } = useForm()
+      var element = this
+      var pages = $(this).find('.modal-split')
 
-    function nextTab() {
-        whichTab.current++
-        setTab(whichTab.current)
-    }
+      if (pages.length != 0) {
+        pages.hide()
+        pages.eq(0).show()
 
-    function prevTab() {
-        whichTab.current--
-        setTab(whichTab.current)
-    }
+        var b_button = document.createElement("button")
+        b_button.setAttribute("type", "button")
+        b_button.setAttribute("class", "btn btn-light")
+        b_button.setAttribute("style", "display: none")
+        b_button.innerHTML = "Back"
 
-    function onSubmit(data) {
-        setProperty({ ...data })
-        nextTab()
-    }
-    // createdAt: serverTimestamp()
-    async function addAProperty() {
-        console.log("Property is: ", property)
-        const docRef = await addDoc(collection(db, "properties"), {
-            ...property,
-            createdAt: serverTimestamp()
+        var n_button = document.createElement("button")
+        n_button.setAttribute("type", "button")
+        n_button.setAttribute("class", "btn btn-primary")
+        n_button.innerHTML = "Next"
+
+        $(this).find('.modal-footer').append(b_button).append(n_button)
+
+
+        var page_track = 0
+
+        $(n_button).click(function () {
+
+          this.blur()
+
+          if (page_track == 0) {
+            $(b_button).show()
+          }
+
+          if (page_track == pages.length - 2) {
+            $(n_button).text("Save")
+          }
+
+          if (page_track == pages.length - 1) {
+            $(element).find("form").submit()
+          }
+
+          if (page_track < pages.length - 1) {
+            page_track++
+
+            pages.hide()
+            pages.eq(page_track).show()
+          }
         })
-        setValue({
-            "propertyAddress": "",
-            "unit": "",
-            "bedCount": "",
-            "bathCount": "",
-            "livingSQFT": "",
-            "lotSQFT": "",
-            "tenantName": "",
-            "tenantEmail": ""
+
+        $(b_button).click(function () {
+
+          if (page_track == 1) {
+            $(b_button).hide()
+          }
+
+          if (page_track == pages.length - 1) {
+            $(n_button).text("Next")
+          }
+
+          if (page_track > 0) {
+            page_track--
+
+            pages.hide()
+            pages.eq(page_track).show()
+          }
         })
-        console.log("Document written with ID: ", docRef.id)
-    }
+      }
+    })
+  }
 
-    return (
-        <React.Fragment>
-            <Modal isOpen={show} toggle={onCloseClick} centered={true}>
-                <ModalHeader tag="h4" toggle={onCloseClick}>
-                    Add Property
-                </ModalHeader>
-                <ModalBody>
-                    <Row form>
-                        {/* PAGE 1 MODAL SPLIT */}
-                        {tab === 0 && <div className="tab">
-                            <Form onSubmit={handleSubmit(onSubmit)}>
-                                <Col className="col-12 mb-3">
-                                    {/* Property Address - Needs Google Places API */}
-                                    <Controller
-                                        name="propertyAddress"
-                                        control={control}
-                                        render={({ field }) => <Input type="text" placeholder="Enter property address..." {...field} />}
-                                        rules={{ required: true }}
+  return (
+    <React.Fragment>
+      <Modal isOpen={show} toggle={onCloseClick} centered={true}>
+        <ModalHeader tag="h4" toggle={onCloseClick}>
+          Add Property
+        </ModalHeader>
+        <ModalBody>
+          <AvForm
+          // onValidSubmit={handleValidEventSubmit}
+          >
+            <Row form>
+              {/* PAGE 1 MODAL SPLIT */}
+              <div className="modal-split" id="page1">
+                <Col className="col-12 mb-3">
 
-                                    />
-                                    {errors.propertyAddress && <FormText color="danger">This field is required</FormText>}
-                                </Col>
-                                <Col className="col-12 mb-3">
-                                    {/* Unit - Optional */}
-                                    <Controller
-                                        name="unit"
-                                        control={control}
-                                        render={({ field }) => <Input type="text" placeholder="Enter unit number..." {...field} />}
-                                        rules={{ required: false }}
-                                    />
-                                    <FormText color="muted">
-                                        Optional - include &quot;Apt&quot;, &quot;Unit&quot;, etc...
-                                    </FormText>
-                                </Col>
-                                <Button>Next</Button>
-                            </Form>
-                        </div>}
+                  {/* Property Address - Needs Google Places API */}
+                  <AvField
+                    name="propertyAddress"
+                    label="Property Address"
+                    placeholder="Enter property address..."
+                    type="text"
+                    errorMessage="Please enter the property address"
+                    validate={{
+                      required: { value: true },
+                    }}
+                    value={event ? event.title : ""}
+                    className="mb-3"
+                  />
 
-                        {/* PAGE 2 MODAL SPLIT */}
-                        {tab === 1 && <div className="tab">
-                            <Form onSubmit={handleSubmit(onSubmit)}>
-                                <Col className="col-12 mb-3">
-                                    {/* # of Bedrooms */}
-                                    <Controller
-                                        name="bedCount"
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => <Input type="number" placeholder="Enter number of bedrooms..." {...field} />}
-                                    />
-                                    {errors.bedCount && <FormText color="danger">This field is required</FormText>}
-                                </Col>
-                                <Col className="col-12 mb-3">
-                                    {/* # of Bathrooms */}
-                                    <Controller
-                                        name="bathCount"
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => <Input type="number" placeholder="Enter number of bathrooms..." {...field} />}
-                                    />
-                                    {errors.bathCount && <FormText color="danger">This field is required</FormText>}
-                                </Col>
-                                <Col className="col-12 mb-3">
-                                    {/* Square Footage */}
-                                    <Controller
-                                        name="livingSQFT"
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => <Input type="number" placeholder="Enter number of living space SqFt..." {...field} />}
-                                    />
-                                    {errors.livingSQFT && <FormText color="danger">This field is required</FormText>}
-                                </Col>
-                                <Col className="col-12 mb-3">
-                                    {/* Square Footage - Optional */}
-                                    <Controller
-                                        name="lotSQFT"
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => <Input type="number" placeholder="Enter number of lot SqFt..." {...field} />}
-                                    />
-                                    {errors.lotSQFT && <FormText color="danger">This field is required</FormText>}
-                                </Col>
-                                <div className="modal-footer"></div>
-                                <Button type="button" onClick={prevTab}>Back</Button>
-                                <Button>Next</Button>
-                            </Form>
-                        </div>}
+                  {/* Unit - Optional */}
+                  <AvField
+                    name="unit"
+                    label="Unit"
+                    placeholder="Enter unit number... "
+                    helpMessage="Optional - include &quot;Apt&quot;, &quot;Unit&quot;, etc..."
+                    type="text"
+                    value={event ? event.title : ""}
+                  />
+                </Col>
+              </div>
 
-                        {/* PAGE 3 MODAL SPLIT - Needs to Hide or show tenant add in */}
-                        {tab === 2 && <div className="tab">
-                            <Form onSubmit={handleSubmit(onSubmit)}>
-                                <Col className="col-12 mb-3">
-                                    <p style={{ fontWeight: 500 }}>Select Property Status</p>
-                                    <FormGroup tag="fieldset">
-                                        <Label className="mr-3">Occupied{' '}<input {...register} type="radio" value="occcupied" name="status" /></Label>
-                                        <Label>Vacant{' '}<input {...register} type="radio" value="vacant" name="status" /></Label>
-                                    </FormGroup>
-                                    {errors.status && <FormText color="danger">This field is required</FormText>}
-                                </Col>
-                                <Col className="col-12 mb-3">
-                                    {/* Tenant Name - Optional */}
-                                    <Controller
-                                        name="tenantName"
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => <Input type="text" placeholder="Enter Tenant's name..." {...field} />}
-                                        className="mb-3"
-                                    />
-                                    {errors.tenantName && <FormText color="danger">This field is required</FormText>}
-                                </Col>
-                                <Col className="col-12 mb-3">
-                                    {/* Tenant Email - Optional */}
-                                    <Controller
-                                        name="tenantEmail"
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => <Input type="email" placeholder="Enter Tenant's email" {...field} />}
-                                        className="mb-3"
-                                    />
-                                    <FormText color="muted">Your tenant will receive an invitation to download the Alula tenant app</FormText><br />
-                                    {errors.tenantEmail && <FormText color="danger">This field is required</FormText>}
+              {/* PAGE 2 MODAL SPLIT */}
+              <div className="modal-split" id="page2">
+                <Col className="col-12 mb-3">
+                  {/* # of Bedrooms */}
+                  <AvField
+                    name="bedCount"
+                    label="Bedrooms"
+                    placeholder="Enter number of bedrooms..."
+                    helpMessage="Numbers only"
+                    type="number"
+                    errorMessage="Please enter the number of bedrooms"
+                    validate={{
+                      required: { value: true },
+                    }}
+                    value={event ? event.title : ""}
+                  />
+                </Col>
+                <Col className="col-12 mb-3">
+                  {/* # of Bathrooms */}
+                  <AvField
+                    name="bathCount"
+                    label="Bathrooms"
+                    placeholder="Enter number of bathrooms..."
+                    helpMessage="Numbers only"
+                    type="number"
+                    errorMessage="Please enter the number of bathrooms..."
+                    validate={{
+                      required: { value: true },
+                    }}
+                    value={event ? event.title : ""}
+                  />
+                </Col>
+                <Col className="col-12 mb-3">
+                  {/* Square Footage */}
+                  <AvField
+                    name="livingSQFT"
+                    label="Living Space Sqft"
+                    placeholder="Enter number of living space SqFt..."
+                    helpMessage="Numbers only"
+                    type="number"
+                    errorMessage="Please enter the square footage of living space"
+                    validate={{
+                      required: { value: true },
+                    }}
+                    value={event ? event.title : ""}
+                  />
+                </Col>
+                <Col className="col-12 mb-3">
+                  {/* Square Footage - Optional */}
+                  <AvField
+                    name="lotSQFT"
+                    label="Lot Sqft"
+                    placeholder="Enter number of lot SqFt..."
+                    helpMessage="Numbers only"
+                    type="number"
+                    errorMessage="Please enter the square footage of the lot"
+                    validate={{
+                      required: { value: true },
+                    }}
+                    value={event ? event.title : ""}
+                  />
+                </Col>
+              </div>
 
-                                    <div className="modal-footer"></div>
-                                    <Button type="button" onClick={prevTab}>Back</Button>
-                                    <Button>Next</Button>
-                                </Col>
-                            </Form>
-                        </div>}
-                        {tab === 3 && <div className="tab">
-                            <Form onSubmit={handleSubmit(addAProperty)}>
-                                <div>
-                                    <p><strong>Address:</strong> {property.propertyAddress} {property.unit && `Unit ${property.unit}`}<br />
-                                        <strong>Lot SQFT: </strong> {property.lotSQFT}<br />
-                                        <strong>Living SQFT: </strong> {property.livingSQFT}
-                                    </p>
-                                </div>
-                                <Button type="button" onClick={prevTab}>Back</Button>
-                                <Button onClick={addAProperty}>Submit</Button>
-                            </Form>
-                        </div>}
-                    </Row>
-                </ModalBody>
-            </Modal >
-        </React.Fragment >
-    )
+              {/* PAGE 3 MODAL SPLIT - Needs to Hide or show tenant add in */}
+              <div className="modal-split" id="page3">
+                <Col className="col-12 mb-3">
+                  <p style={{ fontWeight: 500 }}>Select Property Status</p>
+                  <AvRadioGroup inline name="statusRadio" required>
+                    <AvRadio label="Occupied" value="occupied" />
+                    <AvRadio label="Vacant" value="vacant" />
+                  </AvRadioGroup>
+                </Col>
+                <Col className="col-12 mb-3">
+                  {/* Tenant Name - Optional */}
+                  <AvField
+                    name="tenant_name"
+                    label="Tenant Name"
+                    type="text"
+                    placeholder="Enter tenant's name..."
+                    errorMessage="Please enter the tenant's name"
+                    validate={{
+                      required: { value: true },
+                    }}
+                    value={event ? event.title : ""}
+                    className="mb-3"
+                  />
+
+                  {/* Tenant Email - Optional */}
+                  <AvField
+                    name="tenant_email"
+                    label="Tenant's Email"
+                    placeholder="Enter tenant's email..."
+                    type="text"
+                    errorMessage="Please enter the tenant's email"
+                    helpMessage="Your tenant will receive an invitation to download the Alula tenant app"
+                    validate={{
+                      required: { value: true },
+                    }}
+                    value={event ? event.title : ""}
+                  />
+                </Col>
+              </div>
+            </Row>
+          </AvForm>
+        </ModalBody>
+        <div className="modal-footer"></div>
+      </Modal>
+    </React.Fragment>
+  )
 }
 
 AddPropertyModal.propTypes = {
-    onCloseClick: PropTypes.func,
-    show: PropTypes.any
+  onCloseClick: PropTypes.func,
+  show: PropTypes.any
 }
 
 export default AddPropertyModal
