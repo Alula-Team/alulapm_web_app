@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap'
+import { Col, FormText, Input, Modal, ModalHeader, ModalBody, Row } from 'reactstrap'
 import { AvField, AvForm, AvInput, AvRadio, AvRadioGroup } from "availity-reactstrap-validation"
 
 const AddTransactionsModal = ({ show, onCloseClick }) => {
@@ -229,7 +229,19 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                             {/* Page 4 MODAL SPLIT */}
                             <div className="modal-split" id="page3">
                                 {/* Upload Invoice or Receipt - PDF or IMG */}
-                                <p style={{fontWeight: 500}}>Upload File</p>
+                                <p style={{fontWeight: 500}}>Upload Invoice or Receipt</p>
+                                <Col >
+                                    <div className="mt-4 mt-md-0">
+                                        <Input
+                                        type="file"
+                                        className="form-control"
+                                        // defaultValue={}
+                                        />
+                                        <FormText color="muted">
+                                            Optional - any file type
+                                        </FormText>
+                                    </div>
+                                </Col>
                             </div>
                         </Row>
                     </AvForm>

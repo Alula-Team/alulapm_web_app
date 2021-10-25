@@ -5,38 +5,37 @@ import { Col, Modal, ModalBody, Row } from "reactstrap"
 const DeleteModal = ({ show, onDeleteClick, onCloseClick }) => {
   return (
     <Modal isOpen={show} toggle={onCloseClick} centered={true}>
-      <ModalBody className="py-3 px-5">
+      <ModalBody toggle={onCloseClick}>
         <Row>
-          <Col lg={12}>
-            <div className="text-center">
-              <i
-                className="mdi mdi-alert-circle-outline"
-                style={{ fontSize: "9em", color: "orange" }}
-              />
-              <h2>Are you sure?</h2>
-              <h4>{"You won't be able to undo this!"}</h4>
-            </div>
-          </Col>
+            <Col>
+                <p className="text-center mt-5 mb-3"> 
+                    Are you sure you want to delete this event?
+                </p>
+                <p className="text-muted text-center mb-5"> 
+                    You will not be able to undo this action.
+                </p>
+            </Col>
         </Row>
+
         <Row>
-          <Col>
-            <div className="text-center mt-3">
-              <button
-                type="button"
-                className="btn btn-success btn-lg ms-2"
-                onClick={onDeleteClick}
-              >
-                Yes, delete it!
-              </button>
-              <button
-                type="button"
-                className="btn btn-danger btn-lg ms-2"
-                onClick={onCloseClick}
-              >
-                Cancel
-              </button>
-            </div>
-          </Col>
+            <Col>
+                <div className="text-center">
+                    <button
+                      type="button"
+                      className="btn btn-light me-2"
+                      onClick={onCloseClick}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-danger save-event"
+                      onClick={onDeleteClick}
+                    >
+                      Delete
+                    </button>
+                </div>
+            </Col>
         </Row>
       </ModalBody>
     </Modal>

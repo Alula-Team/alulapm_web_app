@@ -6,18 +6,11 @@ import { Card, CardBody, Input } from "reactstrap"
 //redux
 // import { useSelector, useDispatch } from "react-redux"
 
-// Modals
-// import AddTransactionsModal from './modals/AddTransactionModal'
 
 const TransactionsTable = () => {
-    // const [addTransactionsModal, setAddTransactionsModal] = useState(false)
 
     return (
         <React.Fragment>
-            {/* <AddTransactionsModal 
-                show={addTransactionsModal}
-                onCloseClick={ () => setAddTransactionsModal(false) }
-            /> */}
             <Card style={{ minHeight: 650 }}>
                 <CardBody>
                     <div className="d-flex justify-content-between align-items-center">

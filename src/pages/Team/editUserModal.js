@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap'
 import { AvField, AvForm } from "availity-reactstrap-validation"
 
-const CreateUserModal = ({ show, onCloseClick }) => {
+const EditUserModal = ({ show, onCloseClick }) => {
 
     return(
         <React.Fragment>
             <Modal isOpen={show} toggle={onCloseClick} centered={true}>
                 <ModalHeader tag="h4" toggle={onCloseClick}>
-                    Create User
+                    Edit User
                 </ModalHeader>
                 <ModalBody>
                     <AvForm>
@@ -110,24 +110,24 @@ const CreateUserModal = ({ show, onCloseClick }) => {
                             </Col>
                         </Row>
                         <Row>
-                              <Col>
-                                <div className="text-end">
-                                  <button
-                                    type="button"
-                                    className="btn btn-light me-2"
-                                    onClick={onCloseClick}
-                                  >
-                                    Cancel
-                                  </button>
-                                  <button
-                                    type="submit"
-                                    className="btn btn-success save-event"
-                                  >
-                                    Save
-                                  </button>
-                                </div>
-                              </Col>
-                            </Row>
+                            <Col>
+                            <div className="text-end">
+                                <button
+                                type="button"
+                                className="btn btn-light me-2"
+                                onClick={onCloseClick}
+                                >
+                                Cancel
+                                </button>
+                                <button
+                                type="submit"
+                                className="btn btn-success save-event"
+                                >
+                                Save
+                                </button>
+                            </div>
+                            </Col>
+                        </Row>
                     </AvForm>
                 </ModalBody>
             </Modal>
@@ -135,9 +135,9 @@ const CreateUserModal = ({ show, onCloseClick }) => {
     )
 }
 
-CreateUserModal.propTypes = {
+EditUserModal.propTypes = {
     onCloseClick: PropTypes.func,
     show: PropTypes.any
 }
 
-export default CreateUserModal
+export default EditUserModal
