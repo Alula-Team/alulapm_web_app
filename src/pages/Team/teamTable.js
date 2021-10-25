@@ -1,65 +1,33 @@
-import PropTypes from "prop-types"
-import React, { useState, useEffect } from 'react'
+// import PropTypes from "prop-types"
+import React, { useState } from 'react'
+import { Icon } from '@iconify/react'
 
 // import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit"
 import { Card, CardBody, Input } from "reactstrap"
+
+// Components
+import EditUserModal from "./editUserModal"
+import DeleteUserModal from "./deleteUserModal"
 
 //redux
 // import { useSelector, useDispatch } from "react-redux"
 
 // Firebase
-import { db } from '../../helpers/firebase_helper_2'
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
-
-const OneProperty = ({ thing }) => (
-    <tr>
-        {/* Property Address */}
-        <td>{thing.address}</td>
-
-        {/* Tenant Name */}
-        <td className=""> {thing.city} </td>
-
-        {/* Start Date */}
-        <td> 11-06-2020 </td>
-
-        {/* End Date */}
-        <td> 11-06-2021 </td>
-
-        {/* Status */}
-        <td> Renewal </td>
-
-        {/* View Details */}
-        <td className="d-flex justify-content-center">
-            <a href="#">
-                <u>View Details</u>
-            </a>
-        </td>
-    </tr>
-)
 
 const TeamTable = () => {
-    const [properties, setProperties] = useState([])
-    // const [addPropertyModal, setAddPropertyModal] = useState(false)
-    const theQuery = query(collection(db, "properties"), orderBy("address", "asc"))
+    const [userModal, setUserModal] = useState(false)
+    const [deleteUserModal, setDeleteUserModal] = useState(false)
 
-    useEffect(() => {
-        const unsubscribe = onSnapshot(theQuery, (snapshot) => {
-            const data = snapshot.docs.map(doc => doc.data())
-            console.log(data)
-            setProperties(data)
-        })
-
-        return () => unsubscribe()
-    }, [])
-
-    let zeeTable
-    if (!properties) {
-        zeeTable = <tr className="text-center"><td>Loading...</td></tr>
-    } else {
-        zeeTable = properties.map((thing) => <OneProperty key={thing.address} thing={thing} />)
-    }
     return (
         <React.Fragment>
+            <EditUserModal
+                show={userModal}
+                onCloseClick={() => setUserModal(false)}
+            />
+            <DeleteUserModal
+                show={deleteUserModal}
+                onCloseClick={() => setDeleteUserModal(false)}
+            />
             <Card style={{ minHeight: 650 }}>
                 <CardBody>
                     <div className="d-flex justify-content-between align-items-center">
@@ -92,47 +60,57 @@ const TeamTable = () => {
                             <table className="table table align-middle table-nowrap table-check">
                                 <thead className="table-light">
                                     <tr>
-                                        {/* User Profile Image */}
-                                        <th></th>
-                                        {/* Property Address */}
+                                        {/* User's Name */}
                                         <th tabIndex="0" aria-label="Property Address sortable" className="sortable text-center">
                                             Name
                                             <span className="order-4"></span>
                                         </th>
 
-                                        {/* Tenant Name */}
+                                        {/* User's Email */}
                                         <th tabIndex="0" aria-label="Property Address sortable" className="sortable text-center">
                                             Email
                                             <span className="order-4"></span>
                                         </th>
 
-                                        {/* Start Date */}
+                                        {/* Phone Number */}
                                         <th tabIndex="0" aria-label="Date Added sortable" className="sortable text-center">
                                             Phone Number
                                             <span className="order-4"></span>
                                         </th>
 
-                                        {/* End Date */}
+                                        {/* Job Title */}
                                         <th tabIndex="0" aria-label="Date Added sortable" className="sortable text-center">
-                                            Hire Date
+                                            Job Title
                                             <span className="order-4"></span>
                                         </th>
 
-                                        {/* Status */}
-                                        <th tabIndex="0" aria-label="Status sortable" className="sortable text-center">
-                                            Status
-                                            <span className="order-4"></span>
-                                        </th>
-
-                                        {/* View Details */}
+                                        {/* Actions */}
                                         <th tabIndex="0" aria-label="View Details sortable" className="sortable text-center">
-                                            View Details
+                                            Actions
                                             <span className="order-4"></span>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {zeeTable}
+                                    <tr>
+                                        {/* User's Name*/}
+                                        <td className="text-center"> Kane Toomer </td>
+
+                                        {/* User's Email */}
+                                        <td className="text-center"> kane@alulapm.com </td>
+
+                                        {/* Uswer's Phone Number */}
+                                        <td className="text-center"> (702)918-9000 </td>
+
+                                        {/* Job Title*/}
+                                        <td className="text-center"> Property Owner </td>
+
+                                        {/* Actions */}
+                                        <td className="text-center">
+                                            <a onClick={() => setUserModal(true)}><Icon icon="bx:bx-pencil" width="25" height="25" className="me-3" /></a>
+                                            <a onClick={() => setDeleteUserModal(true)}><Icon icon="bx:bx-trash" width="25" height="25" /></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -144,10 +122,6 @@ const TeamTable = () => {
             </Card>
         </React.Fragment>
     )
-}
-
-OneProperty.propTypes = {
-    thing: PropTypes.object
 }
 
 export default TeamTable

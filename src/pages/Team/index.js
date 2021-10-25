@@ -4,15 +4,15 @@ import { Container, Button } from "reactstrap"
 
 // Components
 import TeamTable from "./teamTable"
-import CreateUserModal from "./createUserModal"
+import UserModal from "./createUserModal"
 
 const Contacts = () => {
-    const [createUserModal, setCreateUserModal] = useState(false)
+    const [userModal, setUserModal] = useState(false)
     return (
         <React.Fragment>
-            <CreateUserModal
-                show={createUserModal}
-                onCloseClick={() => setCreateUserModal(false)}
+            <UserModal
+                show={userModal}
+                onCloseClick={() => setUserModal(false)}
             />
             <div className="page-content">
                 <MetaTags>
@@ -26,7 +26,7 @@ const Contacts = () => {
                         <Button
                             color="primary"
                             className="font-16 btn-block mb-3"
-                            onClick={() => setCreateUserModal(true)}
+                            onClick={() => setUserModal(true)}
                         >
                             <i className="mdi mdi-plus-circle-outline me-1" />
                             Create New User

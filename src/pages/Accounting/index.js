@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MetaTags from "react-meta-tags"
 import { Container, Button } from "reactstrap"
 
 // Components
 import TransactionsTable from "./transactionsTable"
+import AddTransactionModal from "./AddTransactionModal"
 
 const Accounting = () => {
+    const [addTransactionModal, setAddTransactionModal] = useState(false)
     return (
         <React.Fragment>
+            <AddTransactionModal
+                show={addTransactionModal}
+                onCloseClick={() => setAddTransactionModal(false)}
+            />
             <div className="page-content">
                 <MetaTags>
                     <title>Accounting | Alula - Building the Future of Property Management</title>
@@ -20,6 +26,7 @@ const Accounting = () => {
                     <Button
                         color="primary"
                         className="font-16 btn-block mb-3"
+                        onClick={() => setAddTransactionModal(true)}
                     >
                         <i className="mdi mdi-plus-circle-outline me-1" />
                         Add Transaction
