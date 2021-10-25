@@ -9,7 +9,7 @@ import SidebarContent from "./SidebarContent"
 
 import { Link } from "react-router-dom"
 
-import logo from "../../assets/images/Logo_color.png"
+import logo from "../../assets/images/favicon.png"
 
 const Sidebar = props => {
 
@@ -19,10 +19,10 @@ const Sidebar = props => {
         <div className="navbar-brand-box">
           <Link to="/" className="logo logo-light">
             <span className="logo-sm">
-              <img src={logo} alt="" height="40" />
+              <img src={logo} alt="" height="50" />
             </span>
             <span className="logo-lg">
-              <img src={logo} alt="" height="50" />
+              <img src={logo} alt="" height="60" />
             </span>
           </Link>
         </div>

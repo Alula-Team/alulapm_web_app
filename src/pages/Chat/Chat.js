@@ -249,10 +249,6 @@ const Chat = () => {
                         <TabPane tabId="1">
                           <div>
                             <h5 className="font-size-14 mb-3">Recent</h5>
-                            <a href="#" className="d-flex justify-content-center">
-                              <i className="mdi mdi-plus-circle-outline me-1" />
-                              <u>Create Chat</u>
-                            </a>
                             <ul className="list-unstyled chat-list">
                               <PerfectScrollbar style={{ height: "410px" }}>
                                 {map(chats, chat => (
@@ -316,12 +312,13 @@ const Chat = () => {
                         </TabPane>
 
                         <TabPane tabId="2">
-                          <h5 className="font-size-14 mb-3">Group</h5>
-                          <a href="#" className="d-flex justify-content-center">
-                            <i className="mdi mdi-plus-circle-outline me-1" />
-                            <u>Create Group</u>
-                          </a>
-
+                          <div className="d-flex justify-content-between">
+                            <h5 className="font-size-14 mb-3">Group</h5>
+                            <a href="#" className="d-flex justify-content-center">
+                              <i className="mdi mdi-plus-circle-outline me-1" />
+                              <u>Create Group</u>
+                            </a>
+                          </div>
                           <ul className="list-unstyled chat-list">
                             <PerfectScrollbar style={{ height: "410px" }}>
                               {groups &&

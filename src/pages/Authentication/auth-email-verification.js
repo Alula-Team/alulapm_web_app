@@ -4,15 +4,15 @@ import { Link } from "react-router-dom"
 import { Card, CardBody, Col, Container, Row } from "reactstrap"
 
 // import images
-import logodark from "../../assets/images/logo-dark.png"
-import logolight from "../../assets/images/logo-light.png"
+import logodark from "../../assets/images/favicon.png"
+import logolight from "../../assets/images/favicon.png"
 
 const EmailVerification = () => {
   return (
     <React.Fragment>
       <div className="account-pages my-5 pt-sm-5">
         <MetaTags>
-          <title>Email Verification | Skote - React Admin & Dashboard Template</title>
+          <title>Email Verification | Alula - Building the Future of Property Management</title>
         </MetaTags>
         <Container>
           <Row>
@@ -22,17 +22,17 @@ const EmailVerification = () => {
                   <img
                     src={logodark}
                     alt=""
-                    height="20"
+                    height="100"
                     className="auth-logo-dark mx-auto"
                   />
                   <img
                     src={logolight}
                     alt=""
-                    height="20"
+                    height="100"
                     className="auth-logo-light mx-auto"
                   />
                 </Link>
-                <p className="mt-3">React Admin & Dashboard Template</p>
+                <p className="mt-3">Building the Future of Property Management</p>
               </div>
             </Col>
           </Row>
@@ -71,15 +71,8 @@ const EmailVerification = () => {
               </Card>
               <div className="mt-5 text-center">
                 <p>
-                  Did&apos;t receive an email ?{" "}
-                  <a href="#" className="fw-medium text-primary">
-                    {" "}
-                    Resend{" "}
-                  </a>{" "}
-                </p>
-                <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger"></i> by Themesbrand
+                  © {new Date().getFullYear()} Alula Software Inc. Made with{" "}
+                  <i className="mdi mdi-heart text-danger" /> in Las Vegas.
                 </p>
               </div>
             </Col>

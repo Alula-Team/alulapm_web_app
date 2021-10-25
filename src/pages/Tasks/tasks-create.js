@@ -51,7 +51,7 @@ const TasksCreate = () => {
     <>
       <div className="page-content">
         <MetaTags>
-          <title>Create Task | Skote - React Admin & Dashboard Template</title>
+          <title>Create Task | Alula - Building the Future of Property Management</title>
         </MetaTags>
         <Container fluid>
 
@@ -96,7 +96,7 @@ const TasksCreate = () => {
 
                         <FormGroup className="mb-4" row>
                           <Label className="col-form-label col-lg-2">
-                            Task Date
+                            Task Start & Due Dates
                           </Label>
                           <Col lg="10">
                             <Row>
@@ -177,7 +177,7 @@ const TasksCreate = () => {
                                   handleAddFields()
                                 }}
                               >
-                                Add Number
+                                Add Member
                               </Button>
                             </Col>
                           </Row>

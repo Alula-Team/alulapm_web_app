@@ -15,7 +15,7 @@ const Accounting = () => {
                 <Container fluid>
                 <div className="d-flex justify-content-between align-items-center">
                     <div className="page-title-box">
-                        <h4 className="mb-0 font-size-18">Accounting</h4>
+                        <h4 className="mb-0 mt-2 font-size-18">Accounting</h4>
                     </div>
                     <Button
                         color="primary"

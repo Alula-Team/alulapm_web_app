@@ -26,7 +26,7 @@ import {
   deleteEvent as onDeleteEvent,
   getCategories as onGetCategories,
   getEvents as onGetEvents,
-  updateEvent as onUpdateEvent,
+  // updateEvent as onUpdateEvent,
 } from "../../store/actions"
 
 import DeleteModal from "./DeleteModal"
@@ -124,39 +124,39 @@ const Calender = props => {
   /**
    * Handling submit event on event form
    */
-  const handleValidEventSubmit = (e, values) => {
-    const date = event['start']
-    const day = date.getDate()
-    const month = date.getMonth()
-    const year = date.getFullYear()
+  // const handleValidEventSubmit = (e, values) => {
+  //   const date = event['start']
+  //   const day = date.getDate()
+  //   const month = date.getMonth()
+  //   const year = date.getFullYear()
 
-    const currectDate = new Date()
-    const currentHour = currectDate.getHours()
-    const currentMin = currectDate.getMinutes()
-    const currentSec = currectDate.getSeconds()
-    const modifiedDate = new Date(year, month, day, currentHour, currentMin, currentSec)
-    if (isEdit) {
-      const updateEvent = {
-        id: event.id,
-        title: values.title,
-        classNames: values.category + " text-white",
-        start: modifiedDate,
-      }
-      // update event
-      dispatch(onUpdateEvent(updateEvent))
-    } else {
-      const newEvent = {
-        id: Math.floor(Math.random() * 100),
-        title: values["title"],
-        start: selectedDay ? selectedDay.date : new Date(),
-        className: values.category + " text-white",
-      }
-      // save new event
-      dispatch(onAddNewEvent(newEvent))
-    }
-    setSelectedDay(null)
-    toggle()
-  }
+  //   const currectDate = new Date()
+  //   const currentHour = currectDate.getHours()
+  //   const currentMin = currectDate.getMinutes()
+  //   const currentSec = currectDate.getSeconds()
+  //   const modifiedDate = new Date(year, month, day, currentHour, currentMin, currentSec)
+  //   if (isEdit) {
+  //     const updateEvent = {
+  //       id: event.id,
+  //       title: values.title,
+  //       classNames: values.category + " text-white",
+  //       start: modifiedDate,
+  //     }
+  //     // update event
+  //     dispatch(onUpdateEvent(updateEvent))
+  //   } else {
+  //     const newEvent = {
+  //       id: Math.floor(Math.random() * 100),
+  //       title: values["title"],
+  //       start: selectedDay ? selectedDay.date : new Date(),
+  //       className: values.category + " text-white",
+  //     }
+  //     // save new event
+  //     dispatch(onAddNewEvent(newEvent))
+  //   }
+  //   setSelectedDay(null)
+  //   toggle()
+  // }
 
   const handleValidEventSubmitcategory = (event, values) => {
     const newEvent = {
@@ -262,84 +262,14 @@ const Calender = props => {
                         drop={onDrop}
                       />
 
-                      {/* New/Edit event modal */}
-                      <Modal isOpen={modal} className={props.className}>
-                        <ModalHeader toggle={toggle} tag="h4">
-                          {!isEdit ? "Edit Event" : "Add Event"}
-                        </ModalHeader>
-                        <ModalBody>
-                          <AvForm onValidSubmit={handleValidEventSubmit}>
-                            <Row form>
-                              <Col className="col-12 mb-3">
-                                <AvField
-                                  name="title"
-                                  label="Event Name"
-                                  type="text"
-                                  errorMessage="Invalid name"
-                                  validate={{
-                                    required: { value: true },
-                                  }}
-                                  value={event ? event.title : ""}
-                                />
-                              </Col>
-                              <Col className="col-12 mb-3">
-                                <AvField
-                                  type="select"
-                                  name="category"
-                                  label="Select Category"
-                                  validate={{
-                                    required: { value: true },
-                                  }}
-                                  value={event ? event.category : "bg-primary"}
-                                >
-                                  <option value="bg-danger">Danger</option>
-                                  <option value="bg-success">Success</option>
-                                  <option value="bg-primary">Primary</option>
-                                  <option value="bg-info">Info</option>
-                                  <option value="bg-dark">Dark</option>
-                                  <option value="bg-warning">Warning</option>
-                                </AvField>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col>
-                                <div className="text-end">
-                                  <button
-                                    type="button"
-                                    className="btn btn-light me-2"
-                                    onClick={toggle}
-                                  >
-                                    Close
-                                  </button>
-                                  {!!isEdit && (
-                                    <button
-                                      type="button"
-                                      className="btn btn-danger me-2"
-                                      onClick={() => setDeleteModal(true)}
-                                    >
-                                      Delete
-                                    </button>
-                                  )}
-                                  <button
-                                    type="submit"
-                                    className="btn btn-success save-event"
-                                  >
-                                    Save
-                                  </button>
-                                </div>
-                              </Col>
-                            </Row>
-                          </AvForm>
-                        </ModalBody>
-                      </Modal>
-
+                      {/* Create Event / Edit Event Modal */}
                       <Modal
                         isOpen={modalcategory}
                         toggle={toggleCategory}
                         className={props.className}
                       >
-                        <ModalHeader toggle={toggleCategory} tag="h4">
-                            Create Event
+                        <ModalHeader toggle={toggle} tag="h4">
+                          Create Event
                         </ModalHeader>
                         <ModalBody>
                           <AvForm
@@ -369,7 +299,11 @@ const Calender = props => {
                               <Row>
                                 {/* DATE */}
                                 <Col className="col-5 mb-3">
-                                  <AvField name="date" type="date" />
+                                  <AvField 
+                                    name="date" 
+                                    type="date" 
+                                    errorMessage="Please enter event title" 
+                                  />
                                 </Col>
 
                                 {/* TIME Start */}
@@ -693,7 +627,7 @@ const Calender = props => {
                                     className="btn btn-light me-2"
                                     onClick={toggleCategory}
                                   >
-                                    Close
+                                    Cancel
                                   </button>
                                   <button
                                     type="submit"
@@ -701,6 +635,15 @@ const Calender = props => {
                                   >
                                     Save
                                   </button>
+                                  {!!isEdit && (
+                                    <button
+                                      type="button"
+                                      className="btn btn-danger me-2"
+                                      onClick={() => setDeleteModal(true)}
+                                    >
+                                      Delete
+                                    </button>
+                                  )}
                                 </div>
                               </Col>
                             </Row>

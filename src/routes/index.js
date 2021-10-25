@@ -1,21 +1,19 @@
 import React from "react"
 import { Redirect } from "react-router-dom"
 
-// // Pages Component
+// Chat
 import Chat from "../pages/Chat/Chat"
 
 // Profile
 import UserProfile from "../pages/Authentication/user-profile"
 
-// Pages Calendar
+// Calendar
 import Calendar from "../pages/Calendar/index"
 
-// //Tasks
+// Tasks
 import TasksList from "../pages/Tasks/tasks-list"
 import TasksKanban from "../pages/Tasks/tasks-kanban"
 import TasksCreate from "../pages/Tasks/tasks-create"
-
-// //Team
 
 // //Projects
 import ProjectsGrid from "../pages/Projects/projects-grid"
@@ -28,7 +26,6 @@ import Login from "../pages/Authentication/Login"
 import Logout from "../pages/Authentication/Logout"
 import Register from "../pages/Authentication/Register"
 import ForgetPwd from "../pages/Authentication/ForgetPassword"
-import Recoverpw from "../pages/Authentication/Recoverpw"
 import EmailVerification from "../pages/Authentication/auth-email-verification"
 import TwostepVerification from "../pages/Authentication/auth-two-step-verification"
 
@@ -43,8 +40,11 @@ import Rentals from "../pages/Rentals/index"
 import Accounting from "../pages/Accounting/index"
 import InvoiceDetail from "../pages/Accounting/invoices-detail"
 
+// Team
+import Team from "../pages/Team/index"
+
 const authProtectedRoutes = [
-  //dashboard
+  // dashboard
   { path: "/dashboard", component: Dashboard },
   { path: "/invoices-detail/:id?", component: InvoiceDetail },
 
@@ -54,19 +54,30 @@ const authProtectedRoutes = [
   // accounting
   { path: "/accounting", component: Accounting },
 
-  //chat
-  { path: "/chat", component: Chat },
-
-  // //calendar
+  // calendar
   { path: "/calendar", component: Calendar },
 
-  // //profile
-  { path: "/profile", component: UserProfile },
+  // chat
+  { path: "/chat", component: Chat },
+
+  // leasing
+  // { path: "/leasing", component: Leasing },
+  // { path: "/lease-create", component: Leasing },
+
+
+  // maintenance 
+  // { path: "/maintenance", component: Maintenance },
+  // { path: "/maintenance-detail/:id?", component: MaintenanceDetail },
+  // { path: "/maintenance-create", component: MaintenanceCreate },
 
   // Tasks
   { path: "/tasks-list", component: TasksList },
   { path: "/tasks-kanban", component: TasksKanban },
   { path: "/tasks-create", component: TasksCreate },
+
+  // Team
+  { path: "/team", component: Team },
+  // { path: "/contacts-profile", component: ContactsProfile },
 
   //Projects
   { path: "/projects-grid", component: ProjectsGrid },
@@ -75,13 +86,9 @@ const authProtectedRoutes = [
   { path: "/projects-overview/:id", component: ProjectsOverview },
   { path: "/projects-create", component: ProjectsCreate },
 
-  // Team
-  // { path: "/contacts-list", component: ContactsList },
-  // { path: "/contacts-profile", component: ContactsProfile },
 
-
-  //Utility
-  // { path: "/pages-faqs", component: PagesFaqs },
+  // //profile
+  { path: "/profile", component: UserProfile },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
@@ -95,7 +102,6 @@ const publicRoutes = [
   { path: "/register", component: Register },
 
   // Authentication Inner
-  { path: "/page-recoverpw", component: Recoverpw },
   { path: "/auth-email-verification", component: EmailVerification },
   { path: "/auth-two-step-verification", component: TwostepVerification },
 ]

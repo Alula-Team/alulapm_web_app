@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import 'react-drawer/lib/react-drawer.css'
 import { Link } from "react-router-dom"
 
-import logo from "../../assets/images/Logo_color.png"
+import logo from "../../assets/images/favicon.png"
 
 import NotificationDropdown from './NotificationDropdown'
 import ProfileMenu from './ProfileMenu'

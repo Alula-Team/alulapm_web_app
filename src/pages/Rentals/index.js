@@ -21,7 +21,7 @@ const Rentals = () => {
                 <Container fluid>
                 <div className="d-flex justify-content-between align-items-center">
                     <div className="page-title-box">
-                        <h4 className="mb-0 font-size-18">Rental Propertiess</h4>
+                        <h4 className="mb-0 mt-2 font-size-18">Rental Properties</h4>
                     </div>
                     <Button
                         color="primary"

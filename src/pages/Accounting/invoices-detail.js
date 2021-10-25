@@ -7,7 +7,7 @@ import { isEmpty, map } from "lodash"
 
 
 //Import Image
-import logo from "../../assets/images/logo-dark.png"
+import logo from "../../assets/images/favicon.png"
 import { getInvoiceDetail as onGetInvoiceDetail } from "../../store/invoices/actions"
 //redux
 import { useSelector, useDispatch } from "react-redux"

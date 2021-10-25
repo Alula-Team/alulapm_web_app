@@ -66,7 +66,7 @@ const UserProfile = () => {
     <React.Fragment>
       <div className="page-content">
         <MetaTags>
-          <title>Profile | Skote - React Admin & Dashboard Template</title>
+          <title>Profile | Alula - Building the Future of Property Management</title>
         </MetaTags>
         <Container fluid>
           
