@@ -17,10 +17,10 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 const OneProperty = ({ thing }) => (
     <tr>
         {/* Property Address */}
-        <td>{thing.address}</td>
+        <td>{thing.propertyAddress}</td>
 
         {/* Tenant Name */}
-        <td className=""> {thing.city} </td>
+        <td className=""> Yeah </td>
 
         {/* Start Date */}
         <td> 11-06-2020 </td>
@@ -43,15 +43,14 @@ const OneProperty = ({ thing }) => (
 const PropertiesTable = () => {
     const [properties, setProperties] = useState([])
     // const [addPropertyModal, setAddPropertyModal] = useState(false)
-    const theQuery = query(collection(db, "properties"), orderBy("address", "asc"))
+    const theQuery = query(collection(db, "properties"), orderBy("propertyAddress", "asc"))
 
     useEffect(() => {
         const unsubscribe = onSnapshot(theQuery, (snapshot) => {
-            const data = snapshot.docs.map(doc => doc.data())
+            const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
             console.log(data)
             setProperties(data)
         })
-
         return () => unsubscribe()
     }, [])
 
@@ -59,7 +58,7 @@ const PropertiesTable = () => {
     if (!properties) {
         zeeTable = <tr className="text-center"><td>Loading...</td></tr>
     } else {
-        zeeTable = properties.map((thing) => <OneProperty key={thing.address} thing={thing} />)
+        zeeTable = properties.map((thing) => <OneProperty key={thing.id} thing={thing} />)
     }
     return (
         <React.Fragment>
