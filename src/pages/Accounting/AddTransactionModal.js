@@ -26,7 +26,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
         
                 var n_button = document.createElement("button")
                         n_button.setAttribute("type","button")
-                            n_button.setAttribute("class","btn btn-primary")
+                            n_button.setAttribute("class","btn btn-success")
                             n_button.innerHTML = "Next"
         
                 $(this).find('.modal-footer').append(b_button).append(n_button)

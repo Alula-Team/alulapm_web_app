@@ -140,16 +140,16 @@ const SidebarContent = props => {
             </li>
 
             {/* Leasing - Projects Grid UI w/ Detail (Create task button that links to create task compose) */}
-            <li>
+            {/* <li>
               <Link to="#" className="">
                 <i className="bx bx-receipt"></i>
                 <span>{props.t("Leasing")}</span>
               </Link>
-            </li>
+            </li> */}
 
             {/* Maintenance - Projects List UI w/ Detail (Create task button that links to create task compose) */}
             <li>
-              <Link to="#" className="">
+              <Link to="/maintenance" className="">
                 <i className="bx bx-briefcase-alt-2"></i>
                 <span className="badge rounded-pill bg-danger float-end">
                   10
@@ -159,7 +159,7 @@ const SidebarContent = props => {
             </li>
 
             {/* TASK CREATION & KANBAN BOARD */}
-            <li>
+            {/* <li>
               <Link to="#" className="">
                 <i className="bx bx-task"></i>
                 <span className="badge rounded-pill bg-danger float-end">
@@ -167,7 +167,7 @@ const SidebarContent = props => {
                 </span>
                 <span>{props.t("Tasks")}</span>
               </Link>
-            </li>
+            </li> */}
 
             {/* TEAM */}
             <li>

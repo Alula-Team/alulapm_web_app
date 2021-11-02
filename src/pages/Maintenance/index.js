@@ -3,40 +3,40 @@ import MetaTags from "react-meta-tags"
 import { Container, Button } from "reactstrap"
 
 // Components
-import TeamTable from "./teamTable"
-import UserModal from "./createUserModal"
+import MaintenanceTable from "./maintenanceTable"
+import RequestModal from "./createRequestModal"
 
-const Team = () => {
-    const [userModal, setUserModal] = useState(false)
+const Maintenance = () => {
+    const [requestModal, setRequestModal] = useState(false)
     return (
         <React.Fragment>
-            <UserModal
-                show={userModal}
-                onCloseClick={() => setUserModal(false)}
+            <RequestModal
+                show={requestModal}
+                onCloseClick={() => setRequestModal(false)}
             />
             <div className="page-content">
                 <MetaTags>
-                    <title>Team | Alula - Building the Future of Property Management</title>
+                    <title>Maintenance | Alula - Building the Future of Property Management</title>
                 </MetaTags>
                 <Container fluid>
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="page-title-box">
-                            <h4 className="mb-0 mt-2 font-size-18">Team</h4>
+                            <h4 className="mb-0 mt-2 font-size-18">Maintenance</h4>
                         </div>
                         <Button
                             color="primary"
                             className="font-16 btn-block mb-3"
-                            onClick={() => setUserModal(true)}
+                            onClick={() => setRequestModal(true)}
                         >
                             <i className="mdi mdi-plus-circle-outline me-1" />
-                            Create New User
+                            Create Maintenance Request
                         </Button>
                     </div>
-                    <TeamTable />
+                    <MaintenanceTable />
                 </Container>
             </div>
         </React.Fragment>
     )
 }
 
-export default Team
+export default Maintenance

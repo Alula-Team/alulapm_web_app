@@ -16,9 +16,9 @@ const EditUserModal = ({ show, onCloseClick }) => {
                         <Row form>
                             {/* USER NAME */}
                             <Col className="col-12 mb-4">
+                                <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Name <span className="text-danger">*</span></p>
                                 <AvField
                                     name="user_name"
-                                    label="Name"
                                     placeholder="Enter user&apos;s name..."
                                     type="text"
                                     errorMessage="Please enter user&apos;s name"
@@ -35,9 +35,9 @@ const EditUserModal = ({ show, onCloseClick }) => {
 
                             {/* EMAIL */}
                             <Col className="col-12 mb-4">
+                                <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Email <span className="text-danger">*</span></p>
                                 <AvField
                                     name="user_email"
-                                    label="Email"
                                     placeholder="Enter user&apos;s email address..."
                                     helpMessage="i.e john@email.com"
                                     type="text"
@@ -55,9 +55,9 @@ const EditUserModal = ({ show, onCloseClick }) => {
 
                             {/* Telephone Number */}
                             <Col className="col-12 mb-4">
+                                <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Phone Number <span className="text-danger">*</span></p>
                                 <AvField
                                     name="user_telephone"
-                                    label="Phone Number"
                                     placeholder="Enter user&apos;s telephone number..."
                                     helpMessage="i.e (xxx)xxx-xxxx"
                                     type="phone"
@@ -71,11 +71,11 @@ const EditUserModal = ({ show, onCloseClick }) => {
 
                             {/* JOB TITLE */}
                             <Col className="col-12 mb-4">
+                                <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Job Title <span className="text-danger">*</span></p>
                                 <AvField 
                                     type="select"
                                     name="job_title"
-                                    label="Job Title"
-                                    errorMessage="Please enter user&apos;s job title"
+                                    errorMessage="Please select user&apos;s job title"
                                     validate={{
                                         required: { value: true },
                                       }}
@@ -96,11 +96,31 @@ const EditUserModal = ({ show, onCloseClick }) => {
                                 </AvField>
                             </Col>
 
+                            {/* ADMIN ROLE */}
+                            <Col className="col-12 mb-4">
+                                <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Administrative Role <span className="text-danger">*</span></p>
+                                <AvField 
+                                    type="select"
+                                    name="admin_role"
+                                    errorMessage="Please select user&apos;s administrative role"
+                                    validate={{
+                                        required: { value: true },
+                                      }}
+                                    value={
+                                      event ? event.admin_role : "select_admin_role"
+                                    }
+                                >
+                                    <option value="select_admin_role">Select Administrative Role</option>
+                                    <option value="role_admin">Administrator</option>
+                                    <option value="role_user">User</option>
+                                </AvField>
+                            </Col>
+
                             {/* HIRE DATE */}
                             <Col className="col-12 mb-4">
+                                <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Hire Date <span className="text-danger">*</span></p>
                                 <AvField 
-                                    name="date" 
-                                    label="Hire Date" 
+                                    name="date"
                                     type="date" 
                                     errorMessage="Please enter user&apos;s hire date"
                                     validate={{

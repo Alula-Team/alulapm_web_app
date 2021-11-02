@@ -1,25 +1,10 @@
 import React from "react"
 import { Redirect } from "react-router-dom"
 
-// Chat
-import Chat from "../pages/Chat/Chat"
 
-// Profile
-import UserProfile from "../pages/Authentication/user-profile"
-
-// Calendar
-import Calendar from "../pages/Calendar/index"
-
-// Tasks
-import TasksList from "../pages/Tasks/tasks-list"
-import TasksKanban from "../pages/Tasks/tasks-kanban"
-import TasksCreate from "../pages/Tasks/tasks-create"
-
-// //Projects
-import ProjectsGrid from "../pages/Projects/projects-grid"
-import ProjectsList from "../pages/Projects/projects-list"
-import ProjectsOverview from "../pages/Projects/ProjectOverview/projects-overview"
-import ProjectsCreate from "../pages/Projects/projects-create"
+// Accounting
+import Accounting from "../pages/Accounting/index"
+import InvoiceDetail from "../pages/Accounting/invoices-detail"
 
 // Authentication related pages
 import Login from "../pages/Authentication/Login"
@@ -29,46 +14,56 @@ import ForgetPwd from "../pages/Authentication/ForgetPassword"
 import EmailVerification from "../pages/Authentication/auth-email-verification"
 import TwostepVerification from "../pages/Authentication/auth-two-step-verification"
 
+// Chat
+import Chat from "../pages/Chat/Chat"
+
+// Profile
+import UserProfile from "../pages/Authentication/user-profile"
+
+// Calendar
+import Calendar from "../pages/Calendar/index"
 
 // Dashboard
 import Dashboard from "../pages/Dashboard/index"
 
+//Maintenance
+import Maintenance from "../pages/Maintenance/index"
+
 // Rentals
 import Rentals from "../pages/Rentals/index"
 
-// Accounting
-import Accounting from "../pages/Accounting/index"
-import InvoiceDetail from "../pages/Accounting/invoices-detail"
+// Tasks
+import TasksList from "../pages/Tasks/tasks-list"
+import TasksKanban from "../pages/Tasks/tasks-kanban"
+import TasksCreate from "../pages/Tasks/tasks-create"
 
 // Team
 import Team from "../pages/Team/index"
 
 const authProtectedRoutes = [
-  // dashboard
-  { path: "/dashboard", component: Dashboard },
-  { path: "/invoices-detail/:id?", component: InvoiceDetail },
-
-  // rentals
-  { path: "/rentals", component: Rentals },
 
   // accounting
   { path: "/accounting", component: Accounting },
 
-  // calendar
+  // Calendar
   { path: "/calendar", component: Calendar },
 
-  // chat
+  // Chat
   { path: "/chat", component: Chat },
 
-  // leasing
+  // Dashboard
+  { path: "/dashboard", component: Dashboard },
+  { path: "/invoices-detail/:id?", component: InvoiceDetail },
+
+  // Leasing
   // { path: "/leasing", component: Leasing },
   // { path: "/lease-create", component: Leasing },
 
+  // Maintenance 
+  { path: "/maintenance", component: Maintenance },
 
-  // maintenance 
-  // { path: "/maintenance", component: Maintenance },
-  // { path: "/maintenance-detail/:id?", component: MaintenanceDetail },
-  // { path: "/maintenance-create", component: MaintenanceCreate },
+  // Rentals
+  { path: "/rentals", component: Rentals },
 
   // Tasks
   { path: "/tasks-list", component: TasksList },
@@ -79,15 +74,7 @@ const authProtectedRoutes = [
   { path: "/team", component: Team },
   // { path: "/contacts-profile", component: ContactsProfile },
 
-  //Projects
-  { path: "/projects-grid", component: ProjectsGrid },
-  { path: "/projects-list", component: ProjectsList },
-  { path: "/projects-overview", component: ProjectsOverview },
-  { path: "/projects-overview/:id", component: ProjectsOverview },
-  { path: "/projects-create", component: ProjectsCreate },
-
-
-  // //profile
+  // Profile
   { path: "/profile", component: UserProfile },
 
   // this route should be at the end of all other routes
