@@ -2,17 +2,66 @@ import PropTypes from "prop-types"
 import React, { useState, useEffect } from 'react'
 
 // import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit"
-import { Card, CardBody, Button, Input } from "reactstrap"
+import { Card, CardBody, Button, Input, Modal, ModalHeader, ModalBody, Form, Row, Col, FormText } from "reactstrap"
 
+import { useForm, Controller } from 'react-hook-form'
 //redux
 // import { useSelector, useDispatch } from "react-redux"
 
 // Modals
-import AddPropertyModal from "./modals/AddPropertyModal"
+// import AddPropertyModal from '../Rentals/AddPropertyModal'
 
 // Firebase
 import { db } from '../../helpers/firebase_helper_2'
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
+
+const PropertyModal = ({show, onCloseClick}) => {
+    const {handleSubmit, control, formState: {errors}} = useForm()
+    function onSubmit(data) {
+        console.log(data)
+    }
+    return (
+        <React.Fragment>
+            <Modal isOpen={show} toggle={onCloseClick} centered={true}>
+                <ModalHeader tag="h4" toggle={onCloseClick}>
+                    Add Property
+                </ModalHeader>
+                <ModalBody>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
+                        <Row form>
+                            {/* PAGE 1 MODAL SPLIT */}
+                            <div className="modal-split" id="page1">
+                                <Col className="col-12 mb-1">
+                                    {/* Property Address - Needs Google Places API */}
+                                    <Controller
+                                        control={control}
+                                        name="propertyAddress"
+                                        render={({ field }) => <Input type="text" placeholder="Enter property address..." {...field} />}
+                                        rules={{ required: true }}
+                                        defaultValue=""
+                                    />
+                                    {errors.propertyAddress && <FormText color="warning">This field is required</FormText>}
+                                </Col>
+                                <Col className="col-12 mb-3">
+                                    {/* Unit - Optional */}
+                                    <FormText>Unit</FormText>
+                                    <Controller
+                                        control={control}
+                                        name="unit"
+                                        render={({ field }) => <Input type="text" placeholder="Enter unit number... " {...field} />}
+                                        rules={{ required: false }}
+                                        defaultValue=""
+                                    />
+                                    
+                                </Col>
+                            </div>
+                        </Row>
+                    </Form>
+                </ModalBody>
+            </Modal>
+        </React.Fragment>
+    )
+}
 
 const OneProperty = ({ thing }) => (
     <tr>
@@ -20,7 +69,7 @@ const OneProperty = ({ thing }) => (
         <td>{thing.address}</td>
 
         {/* Tenant Name */}
-        <td className=""> {thing.city} </td>
+        <td className=""> {thing.city} GODDAMIT </td>
 
         {/* Date Added */}
         <td> 11-06-2020 </td>
@@ -45,7 +94,7 @@ const PropertiesTable = () => {
     useEffect(() => {
         const unsubscribe = onSnapshot(theQuery, (snapshot) => {
             const data = snapshot.docs.map(doc => doc.data())
-            console.log(data)
+            console.log("HEre's the data", data)
             setProperties(data)
         })
 
@@ -60,7 +109,7 @@ const PropertiesTable = () => {
     }
     return (
         <React.Fragment>
-            <AddPropertyModal
+            <PropertyModal
                 show={addPropertyModal}
                 onCloseClick={() => setAddPropertyModal(false)}
             />
@@ -103,31 +152,31 @@ const PropertiesTable = () => {
                                 <thead className="table-light">
                                     <tr>
                                         {/* Property Address */}
-                                        <th tabIndex="0" aria-label="Property Address sortable" className="sortable">
+                                        <th tabIndex={0} aria-label="Property Address sortable" className="sortable">
                                             Property Address
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* Tenant Name */}
-                                        <th tabIndex="0" aria-label="Property Address sortable" className="sortable">
+                                        <th tabIndex={0} aria-label="Property Address sortable" className="sortable">
                                             Tenant Name
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* Date Added */}
-                                        <th tabIndex="0" aria-label="Date Added sortable" className="sortable">
+                                        <th tabIndex={0} aria-label="Date Added sortable" className="sortable">
                                             Date Added
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* Status */}
-                                        <th tabIndex="0" aria-label="Status sortable" className="sortable">
+                                        <th tabIndex={0} aria-label="Status sortable" className="sortable">
                                             Status
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* View Details */}
-                                        <th tabIndex="0" aria-label="View Details sortable" className="sortable text-center">
+                                        <th tabIndex={0} aria-label="View Details sortable" className="sortable text-center">
                                             View Details
                                             <span className="order-4"></span>
                                         </th>

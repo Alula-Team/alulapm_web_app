@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import { Col, Modal, ModalHeader, ModalBody, Row, Input, FormText, Form, FormGroup, Button } from 'reactstrap'
 import { useForm, Controller } from 'react-hook-form'
@@ -7,6 +7,8 @@ import { db } from '../../helpers/firebase_helper_2'
 import { collection, addDoc } from 'firebase/firestore'
 
 const AddPropertyModal = ({ show, onCloseClick }) => {
+    const [tab, setTab] = useState(0)
+    const [property, setProperty] = useState({})
 
     // $(document).ready(function () {
     //     prep_modal()
@@ -86,9 +88,23 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
 
     const status = watch("status", "Vacant")
 
-    async function onSubmit(data) {
+    function addData(data) {
+        setProperty({...property,...data})
+        console.log(property)
+    }
+
+    function nextTab() {
+        setTab(tab + 1)
+        console.log(tab)
+    }
+    function prevTab() {
+        setTab(tab - 1)
+        console.log(tab)
+    }
+
+    async function onSubmit() {
         let docRef = await addDoc(collection(db, "properties"), {
-            ...data
+            ...property
         })
         console.log(`Doc added with id: `, docRef.id)
         reset({
@@ -111,7 +127,8 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                     Add Property
                 </ModalHeader>
                 <ModalBody>
-                    <Form onSubmit={handleSubmit(onSubmit)}>
+                { tab == 0 && 
+                    <Form onSubmit={handleSubmit(addData)}>
                         <Row form>
                             {/* PAGE 1 MODAL SPLIT */}
                             <div className="modal-split" id="page1">
@@ -139,10 +156,16 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     />
                                     <FormText>Optional - include &quot;Apt&quot;, &quot;Unit&quot;, etc...</FormText>
                                 </Col>
+                                <div className="modal-footer mt-3"></div>
+                                <Button onClick={nextTab} type="submit">Next</Button>
                             </div>
+                            </Row>
+                            </Form> }
 
-                            {/* PAGE 2 MODAL SPLIT */}
-                            <div className="modal-split" id="page2">
+                            { tab == 1 && 
+                            <Form onSubmit={handleSubmit(addData)}>
+                            <Row form>
+                                <div className="modal-split" id="page2">
                                 <Col className="col-12 mb-1">
                                     {/* # of Bedrooms */}
                                     <FormText>Bedrooms</FormText>
@@ -191,9 +214,19 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     />
                                     {errors.lotSQFT && <FormText color="warning">This field is required</FormText>}
                                 </Col>
+                                <div className="modal-footer mt-3"></div>
+                                <Button type="button" onClick={prevTab}>Back</Button>
+                                <Button onClick={nextTab}>Next</Button>
                             </div>
+                            </Row>
+                            </Form>
+                            }
 
                             {/* PAGE 3 MODAL SPLIT - Needs to Hide or show tenant add in */}
+                            { tab == 2 && 
+                            <Form onSubmit={handleSubmit(addData)}>
+                                <Row form>
+                            
                             <div className="modal-split" id="page3">
                                 <Col className="col-12 mb-1">
                                     <FormText style={{ fontWeight: 500 }}>Select Property Status</FormText>
@@ -227,10 +260,25 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     {errors.tenantEmail && <FormText color="warning">This field is required</FormText>}
                                 </Col>}
                                 <div className="modal-footer mt-3"></div>
+                                <Button onClick={prevTab}>Back</Button>
+                                <Button onClick={nextTab}>Next</Button>
                                 <Button type="submit">Submit</Button>
                             </div>
-                        </Row>
-                    </Form>
+                            </Row>
+                            </Form>
+                            }
+                            { tab == 3 && 
+                                <Col className="col-12 mb-1">
+                                    <div className="modal-split" id="page3">
+                                        <div>
+                                            You reached the end, you big silly GOOSE!
+                                        </div>
+                                        <div className="modal-footer mt-3"></div>
+                                        <Button onClick={prevTab}>Back</Button>
+                                        <Button onClick={onSubmit}>Make a Property</Button>
+                                    </div>
+                                </Col>
+                            }
                 </ModalBody>
                
             </Modal>
