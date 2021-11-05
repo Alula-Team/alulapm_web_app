@@ -26,7 +26,7 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
         
                 var n_button = document.createElement("button")
                         n_button.setAttribute("type","button")
-                            n_button.setAttribute("class","btn btn-success")
+                            n_button.setAttribute("class","btn btn-primary")
                             n_button.innerHTML = "Next"
         
                 $(this).find('.modal-footer').append(b_button).append(n_button)
@@ -98,9 +98,9 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                 <Col className="col-12 mb-3">
                                     
                                     {/* Property Address - Needs Google Places API */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Property Address <span className="text-danger">*</span></p>
                                     <AvField
                                         name="propertyAddress"
-                                        label="Property Address"
                                         placeholder="Enter property address..."
                                         type="text"
                                         errorMessage="Please enter the property address"
@@ -112,9 +112,9 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                     />
 
                                     {/* Unit - Optional */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Unit</p>
                                     <AvField
                                         name="unit"
-                                        label="Unit"
                                         placeholder="Enter unit number... "
                                         helpMessage="Optional - include &quot;Apt&quot;, &quot;Unit&quot;, etc..."
                                         type="text"
@@ -127,9 +127,9 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                             <div className="modal-split" id="page2">
                                 <Col className="col-12 mb-3">
                                     {/* # of Bedrooms */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Bedrooms <span className="text-danger">*</span></p>
                                     <AvField
                                         name="bedCount"
-                                        label="Bedrooms"
                                         placeholder="Enter number of bedrooms..."
                                         helpMessage="Numbers only"
                                         type="number"
@@ -142,9 +142,9 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                 </Col>
                                 <Col className="col-12 mb-3">
                                     {/* # of Bathrooms */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Bathrooms <span className="text-danger">*</span></p>
                                     <AvField
                                         name="bathCount"
-                                        label="Bathrooms"
                                         placeholder="Enter number of bathrooms..."
                                         helpMessage="Numbers only"
                                         type="number"
@@ -157,9 +157,9 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                 </Col>
                                 <Col className="col-12 mb-3">
                                     {/* Square Footage */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Living Space Sqft <span className="text-danger">*</span></p>
                                     <AvField
                                         name="livingSQFT"
-                                        label="Living Space Sqft"
                                         placeholder="Enter number of living space SqFt..."
                                         helpMessage="Numbers only"
                                         type="number"
@@ -172,9 +172,9 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                 </Col>
                                 <Col className="col-12 mb-3">
                                     {/* Square Footage - Optional */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Lot Sqft <span className="text-danger">*</span></p>
                                     <AvField
                                         name="lotSQFT"
-                                        label="Lot Sqft"
                                         placeholder="Enter number of lot SqFt..."
                                         helpMessage="Numbers only"
                                         type="number"
@@ -190,7 +190,7 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                             {/* PAGE 3 MODAL SPLIT - Needs to Hide or show tenant add in */}
                             <div className="modal-split" id="page3">
                                 <Col className="col-12 mb-3">
-                                    <p style={{fontWeight: 500}}>Select Property Status</p>
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Select Property Status <span className="text-danger">*</span></p>
                                     <AvRadioGroup inline name="statusRadio" required>
                                         <AvRadio label="Occupied" value="occupied" />
                                         <AvRadio label="Vacant" value="vacant" />

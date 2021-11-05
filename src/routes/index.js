@@ -3,7 +3,8 @@ import { Redirect } from "react-router-dom"
 
 
 // Accounting
-import Accounting from "../pages/Accounting/index"
+import Transactions from "../pages/Accounting/transactions"
+import Reporting from "../pages/Accounting/reporting"
 import InvoiceDetail from "../pages/Accounting/invoices-detail"
 
 // Authentication related pages
@@ -26,6 +27,9 @@ import Calendar from "../pages/Calendar/index"
 // Dashboard
 import Dashboard from "../pages/Dashboard/index"
 
+// Leasing
+import Leasing from "../pages/Leasing/index"
+
 //Maintenance
 import Maintenance from "../pages/Maintenance/index"
 
@@ -43,7 +47,8 @@ import Team from "../pages/Team/index"
 const authProtectedRoutes = [
 
   // accounting
-  { path: "/accounting", component: Accounting },
+  { path: "/transactions", component: Transactions },
+  { path: "/reporting", component: Reporting },
 
   // Calendar
   { path: "/calendar", component: Calendar },
@@ -56,7 +61,7 @@ const authProtectedRoutes = [
   { path: "/invoices-detail/:id?", component: InvoiceDetail },
 
   // Leasing
-  // { path: "/leasing", component: Leasing },
+  { path: "/leasing", component: Leasing },
   // { path: "/lease-create", component: Leasing },
 
   // Maintenance 

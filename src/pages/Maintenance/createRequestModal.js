@@ -26,7 +26,7 @@ const CreateRequestModal = ({ show, onCloseClick }) => {
         
                 var n_button = document.createElement("button")
                         n_button.setAttribute("type","button")
-                            n_button.setAttribute("class","btn btn-success")
+                            n_button.setAttribute("class","btn btn-primary")
                             n_button.innerHTML = "Next"
         
                 $(this).find('.modal-footer').append(b_button).append(n_button)
@@ -127,14 +127,14 @@ const CreateRequestModal = ({ show, onCloseClick }) => {
                                         }
                                     >
                                         <option value="select_location">Select Location</option>
-                                        <option value="">--- Exterior ---</option>
+                                        <option value="ext-list">--- Exterior ---</option>
                                         <option value="air_conditioner">Air Conditioner</option>
                                         <option value="back_yard">Back Yard</option>
                                         <option value="front_yard">Front Yard</option>
                                         <option value="garage">Garage</option>
                                         <option value="other_exterior">Other Exterior</option>
                                         <option value="water_heater">Water Heater</option>
-                                        <option value="">--- Interior ---</option>
+                                        <option value="int-list">--- Interior ---</option>
                                         <option value="game_room">Game Room</option>
                                         <option value="family_room">Family Room</option>
                                         <option value="foyer">Foyer</option>

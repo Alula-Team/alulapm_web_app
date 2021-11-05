@@ -141,7 +141,7 @@ const EditUserModal = ({ show, onCloseClick }) => {
                                 </button>
                                 <button
                                 type="submit"
-                                className="btn btn-success save-event"
+                                className="btn btn-primary save-event"
                                 >
                                 Save
                                 </button>

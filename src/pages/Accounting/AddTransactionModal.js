@@ -26,7 +26,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
         
                 var n_button = document.createElement("button")
                         n_button.setAttribute("type","button")
-                            n_button.setAttribute("class","btn btn-success")
+                            n_button.setAttribute("class","btn btn-primary")
                             n_button.innerHTML = "Next"
         
                 $(this).find('.modal-footer').append(b_button).append(n_button)
@@ -86,7 +86,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
         <React.Fragment>
             <Modal isOpen={show} toggle={onCloseClick} centered={true}>
                 <ModalHeader tag="h4" toggle={onCloseClick}>
-                    Add Property
+                    Add Transaction
                 </ModalHeader>
                 <ModalBody>
                     <AvForm 
@@ -97,7 +97,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                             <div className="modal-split" id="page1">
                                 <Col className="col-12 mb-3">
                                     {/* Select Transaction Type */}
-                                    <p style={{fontWeight: 500}}>Select Transaction Type*</p>
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Select Transaction Type <span className="text-danger">*</span></p>
                                     <AvRadioGroup inline name="transactionTypeRadio" required>
                                         <AvRadio label="Expense" value="expense" />
                                         <AvRadio label="Payment" value="payment" />
@@ -106,10 +106,10 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
 
                                 <Col className="col-12 mb-3">
                                     {/* Select Transaction Destination */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Transaction Destination <span className="text-danger">*</span></p>
                                     <AvField
                                         type="select"
                                         name="transaction_destination"
-                                        label="Transaction Destination*"
                                         helpMessage="Select the appropriate property or choose general transaction"
                                         validate={{
                                             required: { value: true },
@@ -130,10 +130,10 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                             <div className="modal-split" id="page2">
                                 <Col className="col-12 mb-3">
                                     {/* Select Transaction Category */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Transaction Category <span className="text-danger">*</span></p>
                                     <AvField
                                         type="select"
                                         name="transaction_category"
-                                        label="Transaction Category*"
                                         validate={{
                                             required: { value: true },
                                         }}
@@ -160,10 +160,10 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
 
                                 <Col className="col-12 mb-3">
                                     {/* Select Payment Type */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Payment Type <span className="text-danger">*</span></p>
                                     <AvField
                                         type="select"
                                         name="payment_type"
-                                        label="Payment Type*"
                                         validate={{
                                             required: { value: true },
                                         }}
@@ -183,9 +183,9 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
 
                                 <Col className="col-12 mb-3">
                                     {/* Amount */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Amount <span className="text-danger">*</span></p>
                                     <AvField
                                         name="amount"
-                                        label="Amount*"
                                         placeholder="i.e 1500"
                                         helpMessage="Numbers only"
                                         type="number"
@@ -199,9 +199,9 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
 
                                 <Col className="col-12 mb-3">
                                     {/* Date Paid */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Date Paid <span className="text-danger">*</span></p>
                                     <AvField
                                         name="date-paid"
-                                        label="Date Paid*"
                                         placeholder="i.e MM-DD-YYYY"
                                         helpMessage="Numbers only"
                                         type="number"
@@ -217,7 +217,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                             {/* PAGE 3 MODAL SPLIT */}
                             <div className="modal-split" id="page3">
                                 {/* Description */}
-                                <p style={{fontWeight: 500}}>Description</p>
+                                <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Description</p>
                                 <AvInput
                                     name="description"
                                     placeholder="Enter transaction description..."
@@ -229,7 +229,7 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                             {/* Page 4 MODAL SPLIT */}
                             <div className="modal-split" id="page3">
                                 {/* Upload Invoice or Receipt - PDF or IMG */}
-                                <p style={{fontWeight: 500}}>Upload Invoice or Receipt</p>
+                                <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Upload Invoice or Receipt</p>
                                 <Col >
                                     <div className="mt-4 mt-md-0">
                                         <Input

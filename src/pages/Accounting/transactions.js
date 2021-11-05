@@ -16,22 +16,22 @@ const Accounting = () => {
             />
             <div className="page-content">
                 <MetaTags>
-                    <title>Accounting | Alula - Building the Future of Property Management</title>
+                    <title>Transactions | Alula - Building the Future of Property Management</title>
                 </MetaTags>
                 <Container fluid>
-                <div className="d-flex justify-content-between align-items-center">
-                    <div className="page-title-box">
-                        <h4 className="mb-0 mt-2 font-size-18">Accounting</h4>
+                    <div className="d-flex justify-content-between align-items-center">
+                        <div className="page-title-box">
+                            <h4 className="mb-0 mt-2 font-size-18">Transactions</h4>
+                        </div>
+                        <Button
+                            color="primary"
+                            className="font-16 btn-block mb-3"
+                            onClick={() => setAddTransactionModal(true)}
+                        >
+                            <i className="mdi mdi-plus-circle-outline me-1" />
+                            Add Transaction
+                        </Button>
                     </div>
-                    <Button
-                        color="primary"
-                        className="font-16 btn-block mb-3"
-                        onClick={() => setAddTransactionModal(true)}
-                    >
-                        <i className="mdi mdi-plus-circle-outline me-1" />
-                        Add Transaction
-                    </Button>
-                </div>
                     <TransactionsTable />
                 </Container>
             </div>
