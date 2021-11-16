@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom"
 
 // Accounting
 import Transactions from "../pages/Accounting/transactions"
-import Reporting from "../pages/Accounting/reporting"
 import InvoiceDetail from "../pages/Accounting/invoices-detail"
 
 // Authentication related pages
@@ -47,8 +46,7 @@ import Team from "../pages/Team/index"
 const authProtectedRoutes = [
 
   // accounting
-  { path: "/transactions", component: Transactions },
-  { path: "/reporting", component: Reporting },
+  { path: "/accounting", component: Transactions },
 
   // Calendar
   { path: "/calendar", component: Calendar },

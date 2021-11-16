@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap'
 import { AvField, AvForm, AvRadio, AvRadioGroup } from "availity-reactstrap-validation"
 
+
 const AddPropertyModal = ({ show, onCloseClick }) => {
     
     $(document).ready(function() {
@@ -96,7 +97,6 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                             {/* PAGE 1 MODAL SPLIT */}
                             <div className="modal-split" id="page1">
                                 <Col className="col-12 mb-3">
-                                    
                                     {/* Property Address - Needs Google Places API */}
                                     <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Property Address <span className="text-danger">*</span></p>
                                     <AvField
@@ -120,6 +120,25 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                         type="text"
                                         value={event ? event.title : ""}
                                     />
+                                </Col>
+                                <Col className="col-12 mb-3">
+                                    {/* Purchase Price */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Purchase Price <span className="text-danger">*</span></p>
+                                    <AvField
+                                        name="purchasePrice"
+                                        placeholder="Enter the purchase..."
+                                        helpMessage="Numbers only - used to calculate metrics for reporting"
+                                        type="number"
+                                        errorMessage="Please enter the purchase price"
+                                        validate={{
+                                            required: { value: true },
+                                        }}
+                                        value={event ? event.title : ""}
+                                    />
+                                </Col>
+                                <Col className="col-12 mb-3">
+                                    {/* Purchase Date */}
+                                    <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Purchase Date <span className="text-danger">*</span></p>
                                 </Col>
                             </div>
 

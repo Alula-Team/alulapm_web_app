@@ -233,9 +233,9 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                                 <Col >
                                     <div className="mt-4 mt-md-0">
                                         <Input
-                                        type="file"
-                                        className="form-control"
-                                        // defaultValue={}
+                                            type="file"
+                                            className="form-control"
+                                            // defaultValue={}
                                         />
                                         <FormText color="muted">
                                             Optional - any file type

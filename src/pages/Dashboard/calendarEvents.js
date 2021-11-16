@@ -7,8 +7,8 @@ const CalendarEvents = () => {
         <React.Fragment>
             <Card style={{ height: 440 }}>
                 <CardBody>
-                    <CardTitle>Todays Events</CardTitle>
-                    <hr />
+                    <CardTitle className="mb-5">Todays Events</CardTitle>
+                    
                     <ul className="verti-timeline list-unstyled">
 
 

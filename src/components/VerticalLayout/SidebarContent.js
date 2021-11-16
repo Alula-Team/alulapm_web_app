@@ -97,7 +97,7 @@ const SidebarContent = props => {
             {/* DASHBOARD */}
             <li>
               <Link to="/dashboard" className="">
-                <i className="bx bx-home-circle"></i>
+                <i className="bx bx-grid-alt"></i>
                 <span>{props.t("Dashboard")}</span>
               </Link>
             </li>
@@ -112,18 +112,10 @@ const SidebarContent = props => {
 
             {/* Accounting */}
             <li>
-              <Link to="" className="has-arrow">
+              <Link to="/accounting" className="">
                 <i className="bx bx-file"></i>
                 <span>{props.t("Accounting")}</span>
               </Link>
-              <ul className="sub-menu" aria-expanded="false">
-                <li>
-                  <Link to="/reporting">{props.t("Reporting")}</Link>
-                </li>
-                <li>
-                  <Link to="/transactions">{props.t("Transactions")}</Link>
-                </li>
-              </ul>
             </li>
 
             <li className="menu-title">{props.t("Apps")} </li>
