@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Form, Col, Modal, ModalHeader, ModalBody, Row, Button, Input, FormText, FormGroup, Label } from 'reactstrap'
 import { useForm, Controller } from 'react-hook-form'
@@ -8,8 +8,6 @@ import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 const AddPropertyModal = ({ show, onCloseClick }) => {
     const [tab, setTab] = useState(0)
     const [property, setProperty] = useState({})
-
-    let whichTab = useRef(0)
 
     let { handleSubmit, control, register, watch, reset, formState: { errors } } = useForm()
 
@@ -30,7 +28,7 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
     function onSubmit(data) {
         setProperty({ ...data })
         nextTab()
-        console.log(whichTab.current)
+        // console.log(whichTab.current)
     }
 
     if (show) {
