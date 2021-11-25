@@ -139,6 +139,14 @@ const AddPropertyModal = ({ show, onCloseClick }) => {
                                 <Col className="col-12 mb-3">
                                     {/* Purchase Date */}
                                     <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Purchase Date <span className="text-danger">*</span></p>
+                                    <AvField 
+                                        name="date"
+                                        type="date" 
+                                        errorMessage="Please enter properties purchase date"
+                                        validate={{
+                                            required: { value: true },
+                                        }}
+                                    />
                                 </Col>
                             </div>
 

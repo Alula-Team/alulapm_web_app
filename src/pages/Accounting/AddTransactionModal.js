@@ -200,16 +200,13 @@ const AddTransactionsModal = ({ show, onCloseClick }) => {
                                 <Col className="col-12 mb-3">
                                     {/* Date Paid */}
                                     <p style={{fontWeight: 500, fontSize: 13, marginBottom: 7.5}}>Date Paid <span className="text-danger">*</span></p>
-                                    <AvField
+                                    <AvField 
                                         name="date-paid"
-                                        placeholder="i.e MM-DD-YYYY"
-                                        helpMessage="Numbers only"
-                                        type="number"
-                                        errorMessage="Please enter the ammount"
+                                        type="date" 
+                                        errorMessage="Please enter the date paid"
                                         validate={{
                                             required: { value: true },
                                         }}
-                                        value={event ? event.title : ""}
                                     />
                                 </Col>
                             </div>

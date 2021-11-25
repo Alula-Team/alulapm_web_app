@@ -50,6 +50,9 @@ const RentalOverview = () => {
                             </table>
                         </div>
                     </div>
+                    
+                    {/* MAX 5 EVENTS PER PAGE */}
+                    <p className="text-center mt-4">This is supposed to scroll</p>
                 </CardBody>
             </Card>
         </React.Fragment>
