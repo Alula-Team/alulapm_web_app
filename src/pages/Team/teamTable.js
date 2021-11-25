@@ -14,6 +14,9 @@ import DeleteUserModal from "./deleteUserModal"
 
 // Firebase
 
+// users
+import user1 from "../../assets/images/users/avatar-3.jpg"
+
 const TeamTable = () => {
     const [userModal, setUserModal] = useState(false)
     const [deleteUserModal, setDeleteUserModal] = useState(false)
@@ -43,44 +46,39 @@ const TeamTable = () => {
                                 <i className="bx bx-search-alt search-icon" />
                             </div>
                         </div>
-
-                        {/* Filter */}
-                        <div>
-                            <select className="mb-4 me-3 custom-select" id="inputGroupSelect01">
-                                <option selected>Filter by Status:</option>
-                                <option value="1">All Properties</option>
-                                <option value="2">Occupied</option>
-                                <option value="3">Renewal</option>
-                                <option value="4">Vacant</option>
-                            </select>
-                        </div>
                     </div>
                     <div className="table-responsive">
                         <div className="react-bootstrap-table">
                             <table className="table table align-middle table-nowrap table-check">
                                 <thead className="table-light">
                                     <tr>
-                                        {/* User's Name */}
+                                        {/* User's Image */}
                                         <th tabIndex="0" aria-label="Property Address sortable" className="sortable text-center">
+                                            #
+                                            <span className="order-4"></span>
+                                        </th>
+
+                                        {/* User's Name */}
+                                        <th tabIndex="0" aria-label="Property Address sortable" className="sortable">
                                             Name
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* User's Email */}
-                                        <th tabIndex="0" aria-label="Property Address sortable" className="sortable text-center">
+                                        <th tabIndex="0" aria-label="Property Address sortable" className="sortable">
                                             Email
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* Phone Number */}
-                                        <th tabIndex="0" aria-label="Date Added sortable" className="sortable text-center">
+                                        <th tabIndex="0" aria-label="Date Added sortable" className="sortable">
                                             Phone Number
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* Job Title */}
-                                        <th tabIndex="0" aria-label="Date Added sortable" className="sortable text-center">
-                                            Job Title
+                                        <th tabIndex="0" aria-label="Date Added sortable" className="sortable">
+                                            Role
                                             <span className="order-4"></span>
                                         </th>
 
@@ -93,17 +91,30 @@ const TeamTable = () => {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        {/* User's Name*/}
-                                        <td className="text-center"> Kane Toomer </td>
+                                        {/* User's Image */}
+                                        <td className="text-center"> 
+                                            <img
+                                                className="rounded-circle header-profile-user"
+                                                src={user1}
+                                                alt="Header Avatar"
+                                            />
+                                        </td>
+
+                                        {/* User's Name */}
+                                        <td> 
+                                            <span style={{ fontWeight: '500' }}>Kane Toomer</span>
+                                            <br />
+                                            <span className="text-muted">Property Owner</span>
+                                        </td>
 
                                         {/* User's Email */}
-                                        <td className="text-center"> kane@alulapm.com </td>
+                                        <td>kane@alulapm.com</td>
 
                                         {/* Uswer's Phone Number */}
-                                        <td className="text-center"> (702)918-9000 </td>
-
-                                        {/* Job Title*/}
-                                        <td className="text-center"> Property Owner </td>
+                                        <td>(702)918-9000</td>
+                                        
+                                        {/* Role*/}
+                                        <td> Admin </td>
 
                                         {/* Actions */}
                                         <td className="text-center">

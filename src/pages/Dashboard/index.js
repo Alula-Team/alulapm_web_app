@@ -4,12 +4,12 @@ import MetaTags from "react-meta-tags"
 import { Col, Container, Row } from "reactstrap"
 
 // Pages Components
-import OutstandingBalances from "./outstandingBalances"
-import OutstandingTasks from "./outstandingTasks"
 import CalendarEvents from "./calendarEvents"
-import LeaseExpiration from "./expiringLeases"
-import MaintenanceRequests from "./maintenanceRequests"
-import Applicants from "./applicantBox"
+import MarketingBox from "./marketingBox"
+import CashFlow from "./cashflow"
+import RentalOverview from "./rentalOverview"
+import RentalApplications from "./rentalApplications"
+import PortfolioMetrics from "./portfolioMetrics"
 
 //i18n
 import { withTranslation } from "react-i18next"
@@ -27,41 +27,42 @@ const Dashboard = () => {
               <h4 className="mb-0 font-size-18">Dashboard</h4>
           </div>
 
-          {/* Row 1 - Outstanding Balances, Outstanding Tasks, Upcoming Calendar Events */}
+          {/* Row 1 - Marketing, Portfolio Overview, Cashflow */}
           <Row>
-            {/* Outstanding Balances */}
-            <Col className="col-4">
-              <OutstandingBalances />
+            {/* Marketing, Portfolio Metrics */}
+            <Col xs={12} md={4}>
+              <Row>
+               <MarketingBox />
+               <PortfolioMetrics />
+              </Row>
             </Col>
 
-            {/* Outstanding Tasks */}
-            <Col className="col-4">
-              <OutstandingTasks />
+            {/* Cashflow */}
+            <Col xs={12} md={8}>
+              <CashFlow />
+            </Col>
+          </Row>
+
+          {/* Row 2 - Rental Overview, Rental Applications, Calendar Events */}
+          <Row>
+            {/* Rental Overview */}
+            <Col xs={12} md={4}>
+              <RentalOverview />
             </Col>
 
-            {/* Upcoming Calendar Events */}
-            <Col className="col-4">
+            {/* Rental Applications */}
+            <Col xs={12} md={4}>
+              <RentalApplications />
+            </Col>
+
+            {/* Calendar Events */}
+            <Col xs={12} md={4}>
               <CalendarEvents />
             </Col>
           </Row>
 
-          {/* Row 2 - Upcoming Lease Renewals, Property Chart */}
-          <Row>
-            {/* Expiring Leases */}
-            <Col className="col-4">
-              <LeaseExpiration />
-            </Col>
-
-            {/* Maintenance Requests */}
-            <Col className="col-4">
-              <MaintenanceRequests />
-            </Col>
-
-            {/* Rental Applications */}
-            <Col className="col-4">
-              <Applicants />
-            </Col>
-          </Row>
+          {/* Row 3 - Service Requests, tasks,  */}
+          
 
         </Container>
       </div>
