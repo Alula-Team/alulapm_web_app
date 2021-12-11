@@ -1,25 +1,78 @@
 import PropTypes from "prop-types"
 import React, { useState, useEffect } from 'react'
-import { Card, CardBody, Input } from "reactstrap"
+
+// import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit"
+import { Card, CardBody, Button, Input, Modal, ModalHeader, ModalBody, Form, Row, Col, FormText } from "reactstrap"
+
+import { useForm, Controller } from 'react-hook-form'
+//redux
+// import { useSelector, useDispatch } from "react-redux"
+
+// Modals
+// import AddPropertyModal from '../Rentals/AddPropertyModal'
 
 // Firebase
 import { db } from '../../helpers/firebase_helper_2'
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 
+const PropertyModal = ({show, onCloseClick}) => {
+    const {handleSubmit, control, formState: {errors}} = useForm()
+    function onSubmit(data) {
+        console.log(data)
+    }
+    return (
+        <React.Fragment>
+            <Modal isOpen={show} toggle={onCloseClick} centered={true}>
+                <ModalHeader tag="h4" toggle={onCloseClick}>
+                    Add Property
+                </ModalHeader>
+                <ModalBody>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
+                        <Row form>
+                            {/* PAGE 1 MODAL SPLIT */}
+                            <div className="modal-split" id="page1">
+                                <Col className="col-12 mb-1">
+                                    {/* Property Address - Needs Google Places API */}
+                                    <Controller
+                                        control={control}
+                                        name="propertyAddress"
+                                        render={({ field }) => <Input type="text" placeholder="Enter property address..." {...field} />}
+                                        rules={{ required: true }}
+                                        defaultValue=""
+                                    />
+                                    {errors.propertyAddress && <FormText color="warning">This field is required</FormText>}
+                                </Col>
+                                <Col className="col-12 mb-3">
+                                    {/* Unit - Optional */}
+                                    <FormText>Unit</FormText>
+                                    <Controller
+                                        control={control}
+                                        name="unit"
+                                        render={({ field }) => <Input type="text" placeholder="Enter unit number... " {...field} />}
+                                        rules={{ required: false }}
+                                        defaultValue=""
+                                    />
+                                    
+                                </Col>
+                            </div>
+                        </Row>
+                    </Form>
+                </ModalBody>
+            </Modal>
+        </React.Fragment>
+    )
+}
 
 const OneProperty = ({ thing }) => (
     <tr>
         {/* Property Address */}
-        <td>{thing.propertyAddress}</td>
+        <td>{thing.address}</td>
 
         {/* Tenant Name */}
-        <td className=""> Yeah NO!</td>
+        <td className=""> {thing.city} GODDAMIT </td>
 
-        {/* Start Date */}
+        {/* Date Added */}
         <td> 11-06-2020 </td>
-
-        {/* End Date */}
-        <td> 11-06-2021 </td>
 
         {/* Status */}
         <td> Renewal </td>
@@ -35,27 +88,32 @@ const OneProperty = ({ thing }) => (
 
 const PropertiesTable = () => {
     const [properties, setProperties] = useState([])
-    const theQuery = query(collection(db, "properties"), orderBy("propertyAddress", "asc"))
+    const [addPropertyModal, setAddPropertyModal] = useState(false)
+    const theQuery = query(collection(db, "properties"), orderBy("address", "asc"))
 
     useEffect(() => {
         const unsubscribe = onSnapshot(theQuery, (snapshot) => {
-            const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-            console.log(data)
+            const data = snapshot.docs.map(doc => doc.data())
+            console.log("HEre's the data", data)
             setProperties(data)
         })
+
         return () => unsubscribe()
     }, [])
 
-
     let zeeTable
     if (!properties) {
-        zeeTable = <tr className="text-center"><td>Loading...</td></tr>
+        zeeTable = <tr><td>Loading...</td></tr>
     } else {
-        zeeTable = properties.map((thing) => <OneProperty key={thing.id} thing={thing} />)
+        zeeTable = properties.map((thing) => <OneProperty key={thing.address} thing={thing} />)
     }
     return (
         <React.Fragment>
-            <Card style={{ minHeight: 650 }}>
+            <PropertyModal
+                show={addPropertyModal}
+                onCloseClick={() => setAddPropertyModal(false)}
+            />
+            <Card>
                 <CardBody>
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="d-flex justify-content-between align-items-center">
@@ -81,6 +139,11 @@ const PropertiesTable = () => {
                                 <option value="3">Renewal</option>
                                 <option value="4">Vacant</option>
                             </select>
+                            {/* Add Property Button */}
+                            <Button className="btn btn-danger btn-sm mb-4 d-flex align-items-center" onClick={() => setAddPropertyModal(true)}>
+                                <i className="mdi mdi-plus-circle-outline me-1" />
+                                Add Property
+                            </Button>
                         </div>
                     </div>
                     <div className="table-responsive">
@@ -89,31 +152,25 @@ const PropertiesTable = () => {
                                 <thead className="table-light">
                                     <tr>
                                         {/* Property Address */}
-                                        <th tabIndex={0} aria-label="Property Address sortable" className="sortable text-center">
+                                        <th tabIndex={0} aria-label="Property Address sortable" className="sortable">
                                             Property Address
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* Tenant Name */}
-                                        <th tabIndex={0} aria-label="Property Address sortable" className="sortable text-center">
-                                            Tenant
+                                        <th tabIndex={0} aria-label="Property Address sortable" className="sortable">
+                                            Tenant Name
                                             <span className="order-4"></span>
                                         </th>
 
-                                        {/* Start Date */}
-                                        <th tabIndex={0} aria-label="Date Added sortable" className="sortable text-center">
-                                            Start Date
-                                            <span className="order-4"></span>
-                                        </th>
-
-                                        {/* End Date */}
-                                        <th tabIndex={0} aria-label="Date Added sortable" className="sortable text-center">
-                                            End Date
+                                        {/* Date Added */}
+                                        <th tabIndex={0} aria-label="Date Added sortable" className="sortable">
+                                            Date Added
                                             <span className="order-4"></span>
                                         </th>
 
                                         {/* Status */}
-                                        <th tabIndex={0} aria-label="Status sortable" className="sortable text-center">
+                                        <th tabIndex={0} aria-label="Status sortable" className="sortable">
                                             Status
                                             <span className="order-4"></span>
                                         </th>
@@ -131,9 +188,6 @@ const PropertiesTable = () => {
                             </table>
                         </div>
                     </div>
-
-                    {/* MAX 12 PROPERTIES PER PAGE */}
-                    <p className="text-center mt-4">Pagination goes at the bottom; fixed</p>
                 </CardBody>
             </Card>
         </React.Fragment>

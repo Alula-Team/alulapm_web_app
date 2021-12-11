@@ -1,11 +1,68 @@
 import PropTypes from "prop-types"
 import React, { useState, useEffect } from 'react'
-import { Card, CardBody, Input } from "reactstrap"
+
+// import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit"
+import { Card, CardBody, Button, Input } from "reactstrap"
+
+
+//redux
+// import { useSelector, useDispatch } from "react-redux"
+
+// Modals
+// import AddPropertyModal from "./modals/AddPropertyModal"
 
 // Firebase
 import { db } from '../../helpers/firebase_helper_2'
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 
+const PropertyModal = ({show}) => {
+   
+    return (
+        show ?? <div>GOLL DARNIT</div>
+    )
+    // return (
+    //     <React.Fragment>
+    //         <Modal isOpen={show} toggle={onCloseClick} centered={true}>
+    //             <ModalHeader tag="h4" toggle={onCloseClick}>
+    //                 Add Smooperty
+    //             </ModalHeader>
+    //             <ModalBody>
+    //                 <Form onSubmit={something}>
+    //                     <Row form>
+    //                         {/* PAGE 1 MODAL SPLIT */}
+    //                         <div className="modal-split" id="page1">
+    //                             <Col className="col-12 mb-1">
+    //                                 {/* Property Address - Needs Google Places API */}
+    //                                 <Controller
+    //                                     control={control}
+    //                                     name="propertyAddress"
+    //                                     render={({ field }) => <Input type="text" placeholder="Enter property address..." {...field} />}
+    //                                     rules={{ required: true }}
+    //                                     defaultValue=""
+    //                                 />
+    //                                 {errors.propertyAddress && <FormText color="warning">This field is required</FormText>}
+    //                             </Col>
+    //                             <Col className="col-12 mb-3">
+    //                                 {/* Unit - Optional */}
+    //                                 <FormText>Unit</FormText>
+    //                                 <Controller
+    //                                     control={control}
+    //                                     name="unit"
+    //                                     render={({ field }) => <Input type="text" placeholder="Enter unit number... " {...field} />}
+    //                                     rules={{ required: false }}
+    //                                     defaultValue=""
+    //                                 />
+                                    
+    //                             </Col>
+    //                         </div>
+    //                     </Row>
+    //                     <Button>Go</Button>
+    //                 </Form>
+    //             </ModalBody>
+    //         </Modal>
+    //     </React.Fragment>
+    
+}
 
 const OneProperty = ({ thing }) => (
     <tr>
@@ -34,7 +91,9 @@ const OneProperty = ({ thing }) => (
 )
 
 const PropertiesTable = () => {
+    const [count, setCount] = useState(0)
     const [properties, setProperties] = useState([])
+    // const [addPropertyModal, setAddPropertyModal] = useState(false)
     const theQuery = query(collection(db, "properties"), orderBy("propertyAddress", "asc"))
 
     useEffect(() => {
@@ -46,6 +105,10 @@ const PropertiesTable = () => {
         return () => unsubscribe()
     }, [])
 
+    const countIt = () => {
+        setCount(count+1)
+        console.log(count)
+    }
 
     let zeeTable
     if (!properties) {
@@ -55,6 +118,8 @@ const PropertiesTable = () => {
     }
     return (
         <React.Fragment>
+           
+            <Button onClick={countIt}>Count Up</Button>
             <Card style={{ minHeight: 650 }}>
                 <CardBody>
                     <div className="d-flex justify-content-between align-items-center">
@@ -142,6 +207,11 @@ const PropertiesTable = () => {
 
 OneProperty.propTypes = {
     thing: PropTypes.object
+}
+
+PropertyModal.propTypes = {
+    show: PropTypes.bool,
+    onCloseClick: PropTypes.func
 }
 
 export default PropertiesTable
